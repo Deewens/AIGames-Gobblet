@@ -11,7 +11,7 @@ public:
 	void Draw(sf::RenderWindow& t_window);
 	void MouseGridCoord();
 private:
-	Tile m_gridArray[4][4];
+	Tile * m_gridArray[4][4];
 	sf::Font m_arialBlackfont; // font used by message
 	sf::Text m_gridCoordinate; // text used for message on screen
 };
