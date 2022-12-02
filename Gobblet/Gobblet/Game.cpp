@@ -73,6 +73,8 @@ void Game::processEvents()
 		{
 			processKeys(newEvent);
 		}
+
+		m_grid.MouseEvents(newEvent);
 	}
 }
 

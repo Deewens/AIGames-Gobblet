@@ -2,21 +2,33 @@
 
 Grid::Grid()
 {
-	int x = 0;
-	int y = 0;
+	if (!m_arialBlackfont.loadFromFile("ASSETS\\FONTS\\ariblk.ttf"))
+	{
+		std::cout << "problem loading arial black font" << std::endl;
+	}
+
+	int x = m_baseX;
+	int y = m_baseY;
+
+
+	m_mouseCoordinate.setFont(m_arialBlackfont);
+	m_mouseCoordinate.setPosition(10.0f, 40.0f);
+	m_mouseCoordinate.setCharacterSize(20U);
+	m_mouseCoordinate.setFillColor(sf::Color::White);
+	m_mouseCoordinate.setOutlineThickness(3.0f);
+	m_mouseCoordinate.setString("Mouse Position: blank, blank");
 
 	for (int i = 0; i < 4; i++)
 	{
 		for (int j= 0; j < 4; j++)
 		{
-			m_gridArray[i][j] = new Tile();
-			//m_gridArray[i][j]->GetShape().setPosition(m_gridArray[i][j]->GetShape().getPosition().x + 100, m_gridArray[i][j]->GetShape().getPosition().y);
+			m_gridArray[i][j] = new Tile(i, j, m_tileSize);
 			m_gridArray[i][j]->SetPosition(x,y);
 
-			x += 50;
+			x += m_tileSize;
 		}
-		x = 0;
-		y += 50;
+		x = m_baseX;
+		y += m_tileSize;
 	}
 }
 
@@ -40,6 +52,15 @@ void Grid::Draw(sf::RenderWindow& t_window)
 			
 		}
 	}
+
+	m_mousePositionView = t_window.mapPixelToCoords(sf::Mouse::getPosition(t_window));
+	MouseGridCoord();
+	t_window.draw(m_mouseCoordinate);
+}
+
+void Grid::MouseEvents(sf::Event t_event)
+{
+	m_mouseCoordinate.setString("Mouse Position: " + std::to_string(m_mousePositionView.x) + " | " + std::to_string(m_mousePositionView.y));
 }
 
 void Grid::MouseGridCoord()
