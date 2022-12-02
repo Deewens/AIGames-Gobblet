@@ -110,7 +110,7 @@ void Game::update(sf::Time t_deltaTime)
 /// </summary>
 void Game::render()
 {
-	m_window.clear(sf::Color::Black);
+	m_window.clear(sf::Color::Green);
 	m_grid.Draw(m_window);
 	m_window.display();
 }
