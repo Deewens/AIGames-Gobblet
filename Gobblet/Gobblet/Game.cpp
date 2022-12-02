@@ -101,6 +101,8 @@ void Game::update(sf::Time t_deltaTime)
 	{
 		m_window.close();
 	}
+
+	m_grid.Update();
 }
 
 /// <summary>

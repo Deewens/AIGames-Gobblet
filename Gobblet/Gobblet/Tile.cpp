@@ -23,6 +23,16 @@ Tile::~Tile()
 {
 }
 
+void Tile::Update(sf::RectangleShape t_mouse)
+{
+	
+}
+
+sf::Vector2f Tile::GetGridCoordinate()
+{
+	return m_gridCoordinate;
+}
+
 sf::RectangleShape& Tile::GetShape()
 {
 	return m_tileShape;
@@ -32,4 +42,5 @@ void Tile::SetPosition(int t_x, int t_y)
 {
 	m_tileShape.setPosition(sf::Vector2f(t_x, t_y));
 }
+
 
