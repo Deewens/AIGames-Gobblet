@@ -1,19 +1,29 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include <iostream>
-class Tile
+#include <stack>
+
+class Gobblet;
+
+class Tile : public sf::Drawable
 {
 public:
-	Tile();
-	Tile(int row, int col, int t_tileSize);
-	~Tile();
-	void Update(sf::RectangleShape t_mouse);
-	sf::Vector2f GetGridCoordinate();
-	sf::RectangleShape& GetShape();
-	void SetPosition(int t_x, int t_y);
-private:
-	sf::RectangleShape m_tileShape;
-	sf::Vector2f m_gridCoordinate;
-	float m_tileSize = 20;
-};
+    Tile();
+    Tile(int row, int col, int t_tileSize);
+    ~Tile();
+    void Update(sf::RectangleShape t_mouse);
+    sf::Vector2f GetGridCoordinate();
+    sf::RectangleShape& GetShape();
+    void SetPosition(int t_x, int t_y);
 
+    sf::Vector2f getCenter() const;
+
+private:
+    void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
+
+    sf::RectangleShape m_tileShape;
+    sf::Vector2f m_gridCoordinate;
+    float m_tileSize = 20;
+
+    std::stack<std::shared_ptr<Gobblet>> m_gobblets;
+};
