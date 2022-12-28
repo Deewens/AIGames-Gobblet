@@ -15,12 +15,13 @@ public:
 private:
 	Tile * m_gridArray[4][4];
 	sf::Font m_arialBlackfont; // font used by message
-	sf::Text m_gridCoordinate; // text used for message on screen
-	sf::Text m_mouseCoordinate; // text used for message on screen
+	sf::Text m_gridCoordinateText; // text used for message on screen
+	sf::Text m_mouseCoordinateText; // text used for message on screen
 
-	//int m_baseX = (sf::VideoMode::getDesktopMode().width/2)/2;
-	int m_baseX = 720;
-	int m_baseY = 300;
+	int m_baseX = (sf::VideoMode::getDesktopMode().width/2)/4;
+	int m_baseY = (sf::VideoMode::getDesktopMode().height/2)/4;
+	//int m_baseX = 720;
+	//int m_baseY = 300;
 	int m_tileSize = 100;
 
 	//Mouse Position

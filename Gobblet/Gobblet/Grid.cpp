@@ -11,19 +11,19 @@ Grid::Grid()
 	int y = m_baseY;
 
 	//Debug mouse coordinates
-	m_mouseCoordinate.setFont(m_arialBlackfont);
-	m_mouseCoordinate.setPosition(10.0f, 40.0f);
-	m_mouseCoordinate.setCharacterSize(20U);
-	m_mouseCoordinate.setFillColor(sf::Color::White);
-	m_mouseCoordinate.setOutlineThickness(3.0f);
-	m_mouseCoordinate.setString("Mouse Position: blank, blank");
+	m_mouseCoordinateText.setFont(m_arialBlackfont);
+	m_mouseCoordinateText.setPosition(10.0f, 40.0f);
+	m_mouseCoordinateText.setCharacterSize(20U);
+	m_mouseCoordinateText.setFillColor(sf::Color::White);
+	m_mouseCoordinateText.setOutlineThickness(3.0f);
+	m_mouseCoordinateText.setString("Mouse Position: blank, blank");
 
-	m_gridCoordinate.setFont(m_arialBlackfont);
-	m_gridCoordinate.setPosition(10.0f, 80.0f);
-	m_gridCoordinate.setCharacterSize(20U);
-	m_gridCoordinate.setFillColor(sf::Color::White);
-	m_gridCoordinate.setOutlineThickness(3.0f);
-	m_gridCoordinate.setString("Grid Position: blank, blank");
+	m_gridCoordinateText.setFont(m_arialBlackfont);
+	m_gridCoordinateText.setPosition(10.0f, 80.0f);
+	m_gridCoordinateText.setCharacterSize(20U);
+	m_gridCoordinateText.setFillColor(sf::Color::White);
+	m_gridCoordinateText.setOutlineThickness(3.0f);
+	m_gridCoordinateText.setString("Grid Position: blank, blank");
 
 	//Sets up an invisible bounding box for where the mouse is
 	m_invisibleMouse.setFillColor(sf::Color::Blue);
@@ -66,15 +66,15 @@ void Grid::Draw(sf::RenderWindow& t_window)
 
 	m_mousePositionView = t_window.mapPixelToCoords(sf::Mouse::getPosition(t_window));
 	GridCoord();
-	t_window.draw(m_mouseCoordinate);
-	t_window.draw(m_gridCoordinate);
+	t_window.draw(m_mouseCoordinateText);
+	t_window.draw(m_gridCoordinateText);
 	t_window.draw(m_invisibleMouse);
 }
 
 void Grid::MouseEvents(sf::Event t_event)
 {
 
-	m_mouseCoordinate.setString("Mouse Position: " + std::to_string(m_mousePositionView.x) + " | " + std::to_string(m_mousePositionView.y));
+	m_mouseCoordinateText.setString("Mouse Position: " + std::to_string(m_mousePositionView.x) + " | " + std::to_string(m_mousePositionView.y));
 }
 
 void Grid::GridCoord()
@@ -89,7 +89,7 @@ void Grid::GridCoord()
 			if (m_invisibleMouse.getGlobalBounds().intersects(m_gridArray[i][j]->GetShape().getGlobalBounds()))
 			{
 				sf::Vector2u g = static_cast<sf::Vector2u> (m_gridArray[i][j]->GetGridCoordinate());
-				m_gridCoordinate.setString("Grid: " + std::to_string(g.x) + ", " + std::to_string(g.y));
+				m_gridCoordinateText.setString("Grid: " + std::to_string(g.x) + ", " + std::to_string(g.y));
 			}
 
 		}
