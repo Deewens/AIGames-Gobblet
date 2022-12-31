@@ -2,7 +2,7 @@
 
 #include "Grid.h"
 
-Gobblet::Gobblet(const Color& t_color, const int t_size, Grid& t_grid) :
+Gobblet::Gobblet(const Color& t_color, int t_size, Grid& t_grid) :
     m_grid(t_grid),
     m_size(t_size),
     m_shape(static_cast<float>(t_size) * m_sizeFactor)
@@ -22,6 +22,12 @@ Gobblet::Gobblet(const Color& t_color, const int t_size, Grid& t_grid) :
     m_shape.setFillColor(m_color);
 }
 
+Gobblet::~Gobblet()
+{
+    /*delete m_childGobblet;
+    delete m_parentGobblet;*/
+}
+
 int Gobblet::getSize() const
 {
     return m_size;
@@ -32,10 +38,10 @@ std::optional<sf::Vector2i> Gobblet::getGridCoordinates() const
     return m_gridCoordinates;
 }
 
-void Gobblet::setGridCoordinates(std::optional<sf::Vector2i> t_coordinates)
+void Gobblet::setGridCoordinates(const std::optional<sf::Vector2i> t_coordinates)
 {
     m_gridCoordinates = t_coordinates;
-    
+
     if (m_gridCoordinates.has_value())
     {
         for (int i = 0; i < 4; i++)
@@ -53,14 +59,14 @@ void Gobblet::setGridCoordinates(std::optional<sf::Vector2i> t_coordinates)
     }
 }
 
-bool Gobblet::gobbleUp(const std::shared_ptr<Gobblet>& t_biggerGobblet)
+bool Gobblet::gobbleUp(Gobblet& t_biggerGobblet)
 {
-    if (t_biggerGobblet->getSize() > m_size)
+    if (t_biggerGobblet.getSize() > m_size)
     {
-        t_biggerGobblet->setGridCoordinates(m_gridCoordinates);
+        t_biggerGobblet.setGridCoordinates(m_gridCoordinates);
 
-        m_parentGobblet = t_biggerGobblet;
-        t_biggerGobblet->m_childGobblet = shared_from_this();
+        m_parentGobblet = &t_biggerGobblet;
+        t_biggerGobblet.m_childGobblet = this;
 
         return true;
     }
@@ -68,12 +74,12 @@ bool Gobblet::gobbleUp(const std::shared_ptr<Gobblet>& t_biggerGobblet)
     return false;
 }
 
-std::shared_ptr<Gobblet> Gobblet::getParentGobblet()
+Gobblet* Gobblet::getParentGobblet() const
 {
     return m_parentGobblet;
 }
 
-std::shared_ptr<Gobblet> Gobblet::getChildGobblet()
+Gobblet* Gobblet::getChildGobblet() const
 {
     return m_childGobblet;
 }
@@ -81,6 +87,11 @@ std::shared_ptr<Gobblet> Gobblet::getChildGobblet()
 sf::Vector2f Gobblet::getPosition() const
 {
     return m_shape.getPosition();
+}
+
+void Gobblet::setPosition(const sf::Vector2f& t_position)
+{
+    m_shape.setPosition(t_position);
 }
 
 void Gobblet::verifySize()
@@ -97,8 +108,5 @@ void Gobblet::verifySize()
 
 void Gobblet::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
-    if (m_gridCoordinates.has_value() || m_parentGobblet == nullptr)
-    {
-        target.draw(m_shape, states);
-    }
+    target.draw(m_shape, states);
 }

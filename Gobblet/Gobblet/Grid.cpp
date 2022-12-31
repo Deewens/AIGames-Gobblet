@@ -49,35 +49,19 @@ Grid::~Grid()
 {
 }
 
-void Grid::Update()
+void Grid::update(const sf::RenderWindow& t_window)
 {
-    GridCoord();
+    m_mousePositionView = t_window.mapPixelToCoords(sf::Mouse::getPosition(t_window));
+    gridCoord();
 }
 
-void Grid::Draw(sf::RenderWindow& t_window)
-{
-    for (int i = 0; i < 4; i++)
-    {
-        for (int j = 0; j < 4; j++)
-        {
-            t_window.draw(m_gridArray[i][j]);
-        }
-    }
-
-	m_mousePositionView = t_window.mapPixelToCoords(sf::Mouse::getPosition(t_window));
-	GridCoord();
-	t_window.draw(m_mouseCoordinateText);
-	t_window.draw(m_gridCoordinateText);
-	t_window.draw(m_invisibleMouse);
-}
-
-void Grid::MouseEvents(sf::Event t_event)
+void Grid::mouseEvents(sf::Event t_event)
 {
 
 	m_mouseCoordinateText.setString("Mouse Position: " + std::to_string(m_mousePositionView.x) + " | " + std::to_string(m_mousePositionView.y));
 }
 
-void Grid::GridCoord()
+void Grid::gridCoord()
 {
     m_invisibleMouse.setPosition(m_mousePositionView);
 
@@ -89,13 +73,39 @@ void Grid::GridCoord()
             if (m_invisibleMouse.getGlobalBounds().intersects(m_gridArray[i][j].GetShape().getGlobalBounds()))
             {
                 auto g = static_cast<sf::Vector2u>(m_gridArray[i][j].GetGridCoordinate());
-                m_gridCoordinate.setString("Grid: " + std::to_string(g.x) + ", " + std::to_string(g.y));
+                m_gridCoordinateText.setString("Grid: " + std::to_string(g.x) + ", " + std::to_string(g.y));
             }
         }
     }
 }
 
+sf::Vector2f Grid::getPosition() const
+{
+    return {static_cast<float>(m_baseX), static_cast<float>(m_baseY)};
+}
+
+sf::Vector2f Grid::getSize() const
+{
+    // Calculate the size of the grid
+    return {static_cast<float>(m_tileSize * 4), static_cast<float>(m_tileSize * 4)};
+}
+
 std::array<std::array<Tile, 4>, 4>& Grid::getGridArray()
 {
     return m_gridArray;
+}
+
+void Grid::draw(sf::RenderTarget& target, sf::RenderStates states) const
+{
+    for (int i = 0; i < 4; i++)
+    {
+        for (int j = 0; j < 4; j++)
+        {
+            target.draw(m_gridArray[i][j]);
+        }
+    }
+    
+    target.draw(m_mouseCoordinateText);
+    target.draw(m_gridCoordinateText);
+    target.draw(m_invisibleMouse);
 }

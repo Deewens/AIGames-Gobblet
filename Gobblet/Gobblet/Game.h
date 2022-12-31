@@ -7,6 +7,7 @@
 /// </summary>
 #include <SFML/Graphics.hpp>
 
+#include "Board.hpp"
 #include "Gobblet.hpp"
 #include "Grid.h"
 
@@ -25,13 +26,11 @@ private:
     void processKeys(sf::Event t_event);
     void update(sf::Time t_deltaTime);
     void render();
-
-    Grid m_grid;
-
-    std::shared_ptr<Gobblet> m_gobblet;
-    std::shared_ptr<Gobblet> m_gobblet2;
-
+    
     sf::RenderWindow m_window; // main SFML window
+
+    Board m_board;
+    
     sf::Font m_ArialBlackfont; // font used by message
     bool m_exitGame; // control exiting game
 };

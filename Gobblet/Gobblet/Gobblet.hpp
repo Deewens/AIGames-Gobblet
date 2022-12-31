@@ -13,7 +13,7 @@
 
 class Grid;
 
-class Gobblet final : public sf::Drawable, public std::enable_shared_from_this<Gobblet>, sf::NonCopyable
+class Gobblet final : public sf::Drawable
 {
 public:
     enum class Color { Black, White };
@@ -26,11 +26,13 @@ public:
      */
     Gobblet(const Color& t_color, int t_size, Grid& t_grid);
 
+    ~Gobblet() override;
+
     int getSize() const;
 
     /**
      * \brief Get the grid coordinate of the gobblet
-     * \return The coordinate of the gobblet on the grid. If the gobblet is not on the grid, the returned value is nullptr
+     * \return The coordinate of the gobblet on the grid.
      */
     std::optional<sf::Vector2i> getGridCoordinates() const;
 
@@ -46,12 +48,13 @@ public:
      * \param t_biggerGobblet Bigger gobblet
      * \return true if the passed gobblet is bigger than this one, false otherwise
      */
-    bool gobbleUp(const std::shared_ptr<Gobblet>& t_biggerGobblet);
+    bool gobbleUp(Gobblet& t_biggerGobblet);
 
-    std::shared_ptr<Gobblet> getParentGobblet();
-    std::shared_ptr<Gobblet> getChildGobblet();
+    Gobblet* getParentGobblet() const;
+    Gobblet* getChildGobblet() const;
 
     sf::Vector2f getPosition() const;
+    void setPosition(const sf::Vector2f& t_position);
 
 private:
     /**
@@ -65,9 +68,9 @@ private:
     Grid& m_grid;
 
     std::optional<sf::Vector2i> m_gridCoordinates;
-
-    std::shared_ptr<Gobblet> m_parentGobblet;
-    std::shared_ptr<Gobblet> m_childGobblet;
+    
+    Gobblet* m_parentGobblet;
+    Gobblet* m_childGobblet;
 
     int m_size;
     const float m_sizeFactor = 4;

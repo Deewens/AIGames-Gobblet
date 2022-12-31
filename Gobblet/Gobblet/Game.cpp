@@ -11,23 +11,13 @@
 /// setup the window properties
 /// </summary>
 Game::Game() :
-    m_gobblet(std::make_shared<Gobblet>(Gobblet::Color::White, 3, m_grid)),
-    m_gobblet2(std::make_shared<Gobblet>(Gobblet::Color::Black, 4, m_grid)),
     m_window{
         sf::VideoMode{sf::VideoMode::getDesktopMode().width / 2, sf::VideoMode::getDesktopMode().height / 2, 32U},
         "Gobblet Game"
-    }, //when true game will exit
+    },
+    m_board(m_window), //when true game will exit
     m_exitGame{false}
 {
-    // Just testing the Gobblet class
-    // TODO: to be removed
-    // ================================
-    m_gobblet->setGridCoordinates(sf::Vector2i(0, 1));
-    //m_gobblet.setGridCoordinates(std::nullopt);
-    
-    //m_gobblet2->setGridCoordinates(sf::Vector2i(0, 1));
-    // ================================
-
 }
 
 /// <summary>
@@ -83,7 +73,7 @@ void Game::processEvents()
             processKeys(newEvent);
         }
 
-        m_grid.MouseEvents(newEvent);
+        m_board.processMouse(newEvent);
     }
 }
 
@@ -110,8 +100,7 @@ void Game::update(sf::Time t_deltaTime)
     {
         m_window.close();
     }
-
-    m_grid.Update();
+    m_board.update(t_deltaTime);
 }
 
 /// <summary>
@@ -120,10 +109,8 @@ void Game::update(sf::Time t_deltaTime)
 void Game::render()
 {
     m_window.clear(sf::Color::Green);
-    m_grid.Draw(m_window);
-    
-    m_window.draw(*m_gobblet);
-    m_window.draw(*m_gobblet2);
+
+    m_window.draw(m_board);
 
     m_window.display();
 }

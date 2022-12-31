@@ -7,19 +7,25 @@
 #include "Tile.h"
 #include <iostream>
 
-class Grid
+class Grid : public sf::Drawable
 {
 public:
     Grid();
     ~Grid();
 
-    void Update();
-    void Draw(sf::RenderWindow& t_window);
-    void MouseEvents(sf::Event t_event);
-    void GridCoord();
+    void update(const sf::RenderWindow& t_window);
+    void draw(sf::RenderWindow& t_window);
+    void mouseEvents(sf::Event t_event);
+    void gridCoord();
 
+    sf::Vector2f getPosition() const;
+    sf::Vector2f getSize() const;
+    
     std::array<std::array<Tile, 4>, 4>& getGridArray();
 
+protected:
+    void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
+    
 private:
 
     //Tile * m_gridArray[4][4];
@@ -30,7 +36,7 @@ private:
 
     //int m_baseX = (sf::VideoMode::getDesktopMode().width/2)/4;
 	//int m_baseY = (sf::VideoMode::getDesktopMode().height/2)/4;
-    int m_baseX = 720;
+    int m_baseX = 300;
     int m_baseY = 300;
     //int m_tileSize = 100;
     int m_tileSize = 50; // Use of 50 for testing because 100 is too big for 1080p screen
