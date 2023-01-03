@@ -2,6 +2,7 @@
 
 #include "GobbletStack.hpp"
 #include "Grid.h"
+#include "Entity.h"
 
 class Board final : public sf::Drawable
 {
@@ -43,4 +44,18 @@ private:
     std::weak_ptr<GobbletStack> m_activeStack;
 
     ActionState m_gobbletActionState = ActionState::ChooseGobblet;
+
+    bool m_turnOrder;//True is player, false is NPC
+
+    Entity m_player;
+    Entity m_NPCPlayer;
 };
+
+/*
+Rules to implement:
+Gobblet clicked on board must be moved.
+If the same or similar move is made 3 times, it's a draw.
+If there are 3 Gobblets of the same colour in a row, opposing player may gobble up a gobblet from their reserves
+4 in a row of the same colour is a win.
+
+*/

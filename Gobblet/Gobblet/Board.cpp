@@ -2,7 +2,9 @@
 
 #include "Gobblet.hpp"
 
-Board::Board(sf::RenderWindow& t_window) : m_window(t_window), m_mousePosition(0, 0, 1, 1), m_activeStack()
+Board::Board(sf::RenderWindow& t_window) : m_window(t_window), m_mousePosition(0, 0, 1, 1), m_activeStack(),
+m_player(sf::Color::White,false),
+m_NPCPlayer(sf::Color::Black,false)
 {
     // Initialise the board, create external stacks around the grid
     const sf::Vector2f gridPosition = m_grid.getPosition();
@@ -28,6 +30,8 @@ Board::Board(sf::RenderWindow& t_window) : m_window(t_window), m_mousePosition(0
         m_gobbletStacks.push_back(std::make_shared<GobbletStack>(blackStack));
         m_gobbletStacks.push_back(std::make_shared<GobbletStack>(whiteStack));
     }
+
+    m_turnOrder = true;
 }
 
 void Board::update(sf::Time t_deltaTime)
@@ -59,34 +63,76 @@ bool Board::chooseGobblet()
     {
         bool isGobbletClicked = false;
 
-        // Determine if mouse clicked on a GobbletStack
-        for (auto& stack : m_gobbletStacks)
+        //Player 1's turn
+        if (m_turnOrder)
         {
-            if (stack->top().getShape().getGlobalBounds().intersects(m_mousePosition))
+            // Determine if mouse clicked on a GobbletStack
+            for (auto& stack : m_gobbletStacks)
             {
-                isGobbletClicked = true;
-
-                // Remove the "active effect" on the top gobblet from the currently active stack
-                if (!m_activeStack.expired()) // .expired weak_ptr equivalent for m_activeStack == nullptr
+                if (stack->top().getShape().getGlobalBounds().intersects(m_mousePosition) && stack->top().getShape().getFillColor() == m_player.GetColor())
                 {
-                    // .lock() convert the weak_ptr into a shared_ptr to be used as such
-                    m_activeStack.lock()->top().deactivateClickedState();
-                }
+                    isGobbletClicked = true;
 
-                // Set the new active stack and activate the "active effect" on its top
-                m_activeStack = stack;
-                m_activeStack.lock()->top().activateClickedState();
-                m_gobbletActionState = ActionState::PlaceGobblet;
-                return true;
+                    // Remove the "active effect" on the top gobblet from the currently active stack
+                    if (!m_activeStack.expired()) // .expired weak_ptr equivalent for m_activeStack == nullptr
+                    {
+                        // .lock() convert the weak_ptr into a shared_ptr to be used as such
+                        m_activeStack.lock()->top().deactivateClickedState();
+                    }
+
+                    // Set the new active stack and activate the "active effect" on its top
+                    m_activeStack = stack;
+                    m_activeStack.lock()->top().activateClickedState();
+                    m_gobbletActionState = ActionState::PlaceGobblet;
+
+                    return true;
+                }
             }
+
+            if (!isGobbletClicked && !m_activeStack.expired())
+            {
+                m_activeStack.lock()->top().deactivateClickedState();
+                m_activeStack.reset();
+
+                m_gobbletActionState = ActionState::ChooseGobblet;
+            }
+
+
         }
 
-        if (!isGobbletClicked && !m_activeStack.expired())
+        //Player 2's turn
+        else
         {
-            m_activeStack.lock()->top().deactivateClickedState();
-            m_activeStack.reset();
+            for (auto& stack : m_gobbletStacks)
+            {
 
-            m_gobbletActionState = ActionState::ChooseGobblet;
+                if (stack->top().getShape().getGlobalBounds().intersects(m_mousePosition) && stack->top().getShape().getFillColor() == m_NPCPlayer.GetColor())
+                {
+                    isGobbletClicked = true;
+
+                    // Remove the "active effect" on the top gobblet from the currently active stack
+                    if (!m_activeStack.expired()) // .expired weak_ptr equivalent for m_activeStack == nullptr
+                    {
+                        // .lock() convert the weak_ptr into a shared_ptr to be used as such
+                        m_activeStack.lock()->top().deactivateClickedState();
+                    }
+
+                    // Set the new active stack and activate the "active effect" on its top
+                    m_activeStack = stack;
+                    m_activeStack.lock()->top().activateClickedState();
+                    m_gobbletActionState = ActionState::PlaceGobblet;
+
+                    return true;
+                }
+            }
+
+            if (!isGobbletClicked && !m_activeStack.expired())
+            {
+                m_activeStack.lock()->top().deactivateClickedState();
+                m_activeStack.reset();
+
+                m_gobbletActionState = ActionState::ChooseGobblet;
+            }
         }
     }
     return false;
@@ -146,9 +192,15 @@ bool Board::placeGobblet()
                                     removeStackIfEmpty(m_activeStack.lock());
                                     m_activeStack.reset();
                                 }
+                                else
+                                {
+                                    break;
+                                }
                             }
 
                             m_gobbletActionState = ActionState::ChooseGobblet;
+
+                            m_turnOrder = !m_turnOrder;
                             return true;
                         }
                     }
