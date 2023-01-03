@@ -15,13 +15,14 @@ public:
 
     void update(const sf::RenderWindow& t_window);
     void draw(sf::RenderWindow& t_window);
-    void mouseEvents(sf::Event t_event);
     void gridCoord();
 
     sf::Vector2f getPosition() const;
     sf::Vector2f getSize() const;
     
     std::array<std::array<Tile, 4>, 4>& getGridArray();
+
+    sf::FloatRect getBounds() const;
 
 protected:
     void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
@@ -46,4 +47,6 @@ private:
     sf::Vector2f m_mousePositionView;
 
     sf::RectangleShape m_invisibleMouse;
+
+    sf::FloatRect m_bounds;
 };

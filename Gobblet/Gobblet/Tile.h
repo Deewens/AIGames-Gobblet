@@ -3,6 +3,8 @@
 #include <iostream>
 #include <stack>
 
+class GobbletStack;
+
 class Gobblet;
 
 class Tile : public sf::Drawable
@@ -18,12 +20,13 @@ public:
 
     sf::Vector2f getCenter() const;
 
+    std::weak_ptr<GobbletStack> gobbletStack;
+    
+    
 private:
     void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 
     sf::RectangleShape m_tileShape;
     sf::Vector2f m_gridCoordinate;
     float m_tileSize = 20;
-
-    std::stack<std::shared_ptr<Gobblet>> m_gobblets;
 };

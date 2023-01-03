@@ -1,6 +1,6 @@
 #include "Grid.h"
 
-Grid::Grid()
+Grid::Grid() : m_bounds(m_baseX, m_baseY, getSize().x, getSize().y)
 {
     if (!m_arialBlackfont.loadFromFile("ASSETS\\FONTS\\ariblk.ttf"))
     {
@@ -53,13 +53,10 @@ void Grid::update(const sf::RenderWindow& t_window)
 {
     m_mousePositionView = t_window.mapPixelToCoords(sf::Mouse::getPosition(t_window));
     gridCoord();
+
+    m_mouseCoordinateText.setString("Mouse Position: " + std::to_string(m_mousePositionView.x) + " | " + std::to_string(m_mousePositionView.y));
 }
 
-void Grid::mouseEvents(sf::Event t_event)
-{
-
-	m_mouseCoordinateText.setString("Mouse Position: " + std::to_string(m_mousePositionView.x) + " | " + std::to_string(m_mousePositionView.y));
-}
 
 void Grid::gridCoord()
 {
@@ -93,6 +90,11 @@ sf::Vector2f Grid::getSize() const
 std::array<std::array<Tile, 4>, 4>& Grid::getGridArray()
 {
     return m_gridArray;
+}
+
+sf::FloatRect Grid::getBounds() const
+{
+    return m_bounds;
 }
 
 void Grid::draw(sf::RenderTarget& target, sf::RenderStates states) const

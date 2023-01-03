@@ -26,8 +26,6 @@ public:
      */
     Gobblet(const Color& t_color, int t_size, Grid& t_grid);
 
-    ~Gobblet() override;
-
     int getSize() const;
 
     /**
@@ -50,11 +48,17 @@ public:
      */
     bool gobbleUp(Gobblet& t_biggerGobblet);
 
-    Gobblet* getParentGobblet() const;
-    Gobblet* getChildGobblet() const;
-
     sf::Vector2f getPosition() const;
     void setPosition(const sf::Vector2f& t_position);
+
+    sf::CircleShape& getShape();
+
+    void deactivateClickedState();
+    void activateClickedState();
+
+    friend bool operator==(const Gobblet& t_lhs, const Gobblet& t_rhs);
+
+    friend bool operator!=(const Gobblet& t_lhs, const Gobblet& t_rhs);
 
 private:
     /**
@@ -68,9 +72,6 @@ private:
     Grid& m_grid;
 
     std::optional<sf::Vector2i> m_gridCoordinates;
-    
-    Gobblet* m_parentGobblet;
-    Gobblet* m_childGobblet;
 
     int m_size;
     const float m_sizeFactor = 4;
