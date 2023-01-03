@@ -81,10 +81,19 @@ bool Board::chooseGobblet()
                     }
 
                     // Set the new active stack and activate the "active effect" on its top
-                    m_activeStack = stack;
-                    m_activeStack.lock()->top().activateClickedState();
-                    m_gobbletActionState = ActionState::PlaceGobblet;
 
+                    if (stack->top().getGridCoordinates().has_value())
+                    {
+                        m_activeStack = stack;
+                        m_activeStack.lock()->top().activateClickedState();
+                        m_gobbletActionState = ActionState::PlaceBoardGobblet;
+                    }
+                    else
+                    {
+                        m_activeStack = stack;
+                        m_activeStack.lock()->top().activateClickedState();
+                        m_gobbletActionState = ActionState::PlaceGobblet;
+                    }
                     return true;
                 }
             }
@@ -118,9 +127,20 @@ bool Board::chooseGobblet()
                     }
 
                     // Set the new active stack and activate the "active effect" on its top
-                    m_activeStack = stack;
-                    m_activeStack.lock()->top().activateClickedState();
-                    m_gobbletActionState = ActionState::PlaceGobblet;
+
+                    //If the gobblet picked is on the board, they are unable to deselect it
+                    if (stack->top().getGridCoordinates().has_value())
+                    {
+                        m_activeStack = stack;
+                        m_activeStack.lock()->top().activateClickedState();
+                        m_gobbletActionState = ActionState::PlaceBoardGobblet;
+                    }
+                    else
+                    {
+                        m_activeStack = stack;
+                        m_activeStack.lock()->top().activateClickedState();
+                        m_gobbletActionState = ActionState::PlaceGobblet;
+                    }
 
                     return true;
                 }
@@ -140,7 +160,7 @@ bool Board::chooseGobblet()
 
 bool Board::placeGobblet()
 {
-    if (m_gobbletActionState == ActionState::PlaceGobblet)
+    if (m_gobbletActionState == ActionState::PlaceGobblet || m_gobbletActionState == ActionState::PlaceBoardGobblet)
     {
         // If mouse clicked on a tile of the grid, move the top gobblet from the active gobblet stack to the tile
         if (!m_activeStack.expired())
@@ -192,7 +212,7 @@ bool Board::placeGobblet()
                                     removeStackIfEmpty(m_activeStack.lock());
                                     m_activeStack.reset();
                                 }
-                                else
+                                else//Guard that breaks out and returns to the loop if both gobblets are of the same size
                                 {
                                     break;
                                 }
@@ -206,7 +226,7 @@ bool Board::placeGobblet()
                     }
                 }
             }
-            else
+            else if (m_gobbletActionState == ActionState::PlaceGobblet)
             {
                 m_activeStack.lock()->top().deactivateClickedState();
                 m_activeStack.reset();
