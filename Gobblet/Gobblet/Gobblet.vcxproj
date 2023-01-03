@@ -27,7 +27,6 @@
     <ClCompile Include="Grid.cpp" />
     <ClCompile Include="Gobblet.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Player.cpp" />
     <ClCompile Include="Tile.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -38,7 +37,6 @@
     <ClInclude Include="Globals.h" />
     <ClInclude Include="GobbletStack.hpp" />
     <ClInclude Include="Grid.h" />
-    <ClInclude Include="Player.h" />
     <ClInclude Include="Tile.h" />
     <ClInclude Include="Gobblet.hpp" />
   </ItemGroup>

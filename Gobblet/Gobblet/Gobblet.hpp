@@ -46,7 +46,7 @@ public:
      * \param t_biggerGobblet Bigger gobblet
      * \return true if the passed gobblet is bigger than this one, false otherwise
      */
-    bool gobbleUp(Gobblet& t_biggerGobblet);
+    //bool gobbleUp(Gobblet& t_biggerGobblet);
 
     sf::Vector2f getPosition() const;
     void setPosition(const sf::Vector2f& t_position);

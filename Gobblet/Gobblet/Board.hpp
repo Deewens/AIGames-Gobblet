@@ -32,7 +32,8 @@ private:
     enum class ActionState
     {
         ChooseGobblet,
-        PlaceGobblet
+        PlaceGobblet,
+        PlaceBoardGobblet
     };
 
     sf::RenderWindow& m_window;
