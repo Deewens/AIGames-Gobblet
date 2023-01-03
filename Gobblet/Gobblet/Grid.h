@@ -14,7 +14,6 @@ public:
     ~Grid();
 
     void update(const sf::RenderWindow& t_window);
-    void draw(sf::RenderWindow& t_window);
     void gridCoord();
 
     sf::Vector2f getPosition() const;
@@ -29,7 +28,6 @@ protected:
     
 private:
 
-    //Tile * m_gridArray[4][4];
     std::array<std::array<Tile, 4>, 4> m_gridArray;
     sf::Font m_arialBlackfont; // font used by message
 	sf::Text m_gridCoordinateText; // text used for message on screen

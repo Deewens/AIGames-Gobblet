@@ -107,7 +107,7 @@ void Grid::draw(sf::RenderTarget& target, sf::RenderStates states) const
         }
     }
     
-    target.draw(m_mouseCoordinateText);
+    //target.draw(m_mouseCoordinateText);
     target.draw(m_gridCoordinateText);
     target.draw(m_invisibleMouse);
 }

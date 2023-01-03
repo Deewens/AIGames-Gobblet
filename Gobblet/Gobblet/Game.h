@@ -10,6 +10,8 @@
 #include "Board.hpp"
 #include "Gobblet.hpp"
 #include "Grid.h"
+#include "AI.h"
+
 
 class Game
 {
@@ -21,6 +23,7 @@ public:
     /// </summary>
     void run();
 
+
 private:
     void processEvents();
     void processKeys(sf::Event t_event);
@@ -30,7 +33,7 @@ private:
     sf::RenderWindow m_window; // main SFML window
 
     Board m_board;
-    
+
     sf::Font m_ArialBlackfont; // font used by message
     bool m_exitGame; // control exiting game
 };
