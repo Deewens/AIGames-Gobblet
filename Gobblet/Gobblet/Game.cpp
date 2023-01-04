@@ -88,6 +88,11 @@ void Game::processKeys(sf::Event t_event)
     {
         m_exitGame = true;
     }
+
+    if (sf::Keyboard::Space == t_event.key.code)
+    {
+        m_board.CheckWinCondition();
+    }
 }
 
 /// <summary>

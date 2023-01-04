@@ -252,6 +252,42 @@ void Board::processMouse(sf::Event t_event)
     }
 }
 
+void Board::CheckWinCondition()
+{
+    auto& gridArray = m_grid.getGridArray();
+
+    bool rowOfGobblets[4];
+    int count = 0;
+
+    //Checks every row
+    for (size_t y = 0; y < gridArray.size(); y++)
+    {
+        for (size_t x = 0; x < gridArray[y].size(); x++)
+        {
+            
+            auto& tile = gridArray[y][x];
+
+            if (!tile.gobbletStack.expired() && count < 3)
+            {
+                rowOfGobblets[count] = true;
+                count++;
+
+            }
+            else
+            {
+                count = 0;
+
+                for (int i = 0; i < sizeof(rowOfGobblets); i++)
+                {
+                    rowOfGobblets[i] = false;
+                }
+            }
+        }
+    }
+
+    
+}
+
 
 void Board::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
