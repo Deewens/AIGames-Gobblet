@@ -91,7 +91,7 @@ void Game::processKeys(sf::Event t_event)
 
     if (sf::Keyboard::Space == t_event.key.code)
     {
-        m_board.CheckWinCondition();
+        m_board.CheckWinCondition(sf::Color::White);
     }
 }
 

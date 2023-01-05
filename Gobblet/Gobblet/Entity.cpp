@@ -5,7 +5,6 @@ Entity::Entity(sf::Color t_entityColor, bool t_isAI):
 	m_isAi(t_isAI)
 {
 
-
 }
 
 sf::Color Entity::GetColor()
