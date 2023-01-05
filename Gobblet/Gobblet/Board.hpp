@@ -62,6 +62,6 @@ Rules to implement:
 Gobblet clicked on board must be moved. Done
 If the same or similar move is made 3 times, it's a draw.
 If there are 3 Gobblets of the same colour in a row, opposing player may gobble up a gobblet from their reserves
-4 in a row of the same colour is a win.
+4 in a row of the same colour is a win. Done
 
 */

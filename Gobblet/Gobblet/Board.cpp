@@ -276,20 +276,19 @@ bool Board::CheckWinCondition(sf::Color t_color)
         sf::Color rowOfColors[4] = { sf::Color::Blue,sf::Color::Blue,sf::Color::Blue,sf::Color::Blue };
         sf::Color colOfColors[4] = { sf::Color::Blue,sf::Color::Blue,sf::Color::Blue,sf::Color::Blue };
 
+        int count = 0;
+
         for (size_t x = 0; x < gridArray[y].size(); x++)
         {
             //checks all rows
             auto& tile = gridArray[y][x];
 
+            //Checks if there is a gobblet stack on the tile
+            //Checks for if the tile's gobblet is the same colour as the player's
             if (!tile.gobbletStack.expired() && tile.gobbletStack.lock().get()->top().getShape().getFillColor() == t_color)
             {
                 rowOfColors[x] = t_color;
             }
-            else
-            {
-                rowOfColors[x] = sf::Color::Blue;
-            }
-
             
             //Checks if all of in the array is true
             if (std::all_of(
@@ -312,10 +311,6 @@ bool Board::CheckWinCondition(sf::Color t_color)
             {
                 colOfColors[x] = t_color;
             }
-            else
-            {
-                colOfColors[x] = sf::Color::Blue;
-            }
 
             //Checks if all of in the array is true
             if (std::all_of(
@@ -329,7 +324,26 @@ bool Board::CheckWinCondition(sf::Color t_color)
                 return true;
             }
         }
+
+        //Checks if the current player can gobble up a gobblet from their reserves
+        for (size_t i = 0; i < 4; i++)
+        {
+            if (rowOfColors[i] == t_color || colOfColors[i] == t_color)
+            {
+                count++;
+                if (count == 3)
+                {
+                    std::cout << "Gobble from reserves available" << std::endl;
+                    break;
+                }
+            }
+        }
+
+
     }
+
+
+
 
     sf::Color diagonalOfColorsA[4] = { sf::Color::Blue,sf::Color::Blue,sf::Color::Blue,sf::Color::Blue };
     sf::Color diagonalOfColorsB[4] = { sf::Color::Blue,sf::Color::Blue,sf::Color::Blue,sf::Color::Blue };
@@ -350,10 +364,6 @@ bool Board::CheckWinCondition(sf::Color t_color)
         {
             diagonalOfColorsA[i] = t_color;
         }
-        else
-        {
-            diagonalOfColorsA[i] = sf::Color::Blue;
-        }
 
         auto& tileB = gridArray[count][i];
 
@@ -361,14 +371,25 @@ bool Board::CheckWinCondition(sf::Color t_color)
         {
             diagonalOfColorsB[i] = t_color;
         }
-        else
-        {
-            diagonalOfColorsB[i] = sf::Color::Blue;
-        }
 
         count--;
     }
 
+    int c = 0;
+
+    for (size_t i = 0; i < 4; i++)
+    {
+        if (diagonalOfColorsA[i] == t_color || diagonalOfColorsB[i] == t_color)
+        {
+            c++;
+            if (c == 3)
+            {
+                std::cout << "Gobble from reserves available" << std::endl;
+                break;
+            }
+        }
+    }
+    
     if (std::all_of(
         std::begin(diagonalOfColorsA),
         std::end(diagonalOfColorsA),
@@ -391,6 +412,8 @@ bool Board::CheckWinCondition(sf::Color t_color)
         std::cout << "4 in a diagonal row" << std::endl;
         return true;
     }
+
+
 
     return false;
 
