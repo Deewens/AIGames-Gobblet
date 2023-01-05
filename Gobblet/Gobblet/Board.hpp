@@ -30,6 +30,15 @@ public:
     /// </summary>
     bool CheckWinCondition(sf::Color t_color);
 
+    /// <summary>
+    ///Checks if either players can gobble using their reserves if there are 3 gobblets of the same colour in a row
+    /// </summary>
+    /// <param name="a">The row/diagonalA array of colors</param>
+    /// <param name="b">The col/diagonalB array of colors</param>
+    /// <param name="t_color"></param>
+    /// <returns>Returns if either player is able to use the ability</returns>
+    bool CheckReserveUsage(sf::Color a[], sf::Color b[], sf::Color t_color);
+
 protected:
     void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 
@@ -60,7 +69,7 @@ private:
 /*
 Rules to implement:
 Gobblet clicked on board must be moved. Done
-If the same or similar move is made 3 times, it's a draw.
+If the same or similar move is made 3 times between players, it's a draw.
 If there are 3 Gobblets of the same colour in a row, opposing player may gobble up a gobblet from their reserves
 4 in a row of the same colour is a win. Done
 
