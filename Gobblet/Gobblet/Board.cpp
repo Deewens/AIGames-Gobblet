@@ -200,22 +200,69 @@ bool Board::placeGobblet()
                             // If a gobblet stack already exist on this tile, just add the active gobblet to it
                             else
                             {
-                                auto activeGobblet = m_activeStack.lock()->top();
-                                auto tileGobblet = tile.gobbletStack.lock()->top();
-                                if (activeGobblet.getSize() > tileGobblet.getSize())
+                                if (m_gobbletActionState == ActionState::PlaceGobblet)
                                 {
-                                    m_activeStack.lock()->top().deactivateClickedState();
+                                    if (m_turnOrder && m_player.CanUseReserves())
+                                    {
+                                        auto activeGobblet = m_activeStack.lock()->top();
+                                        auto tileGobblet = tile.gobbletStack.lock()->top();
+                                        if (activeGobblet.getSize() > tileGobblet.getSize())
+                                        {
+                                            m_activeStack.lock()->top().deactivateClickedState();
 
-                                    tile.gobbletStack.lock()->add(m_activeStack.lock()->top());
-                                    m_activeStack.lock()->pop();
+                                            tile.gobbletStack.lock()->add(m_activeStack.lock()->top());
+                                            m_activeStack.lock()->pop();
 
-                                    removeStackIfEmpty(m_activeStack.lock());
-                                    m_activeStack.reset();
+                                            removeStackIfEmpty(m_activeStack.lock());
+                                            m_activeStack.reset();
+                                        }
+                                        else//Guard that breaks out and returns to the loop if both gobblets are of the same size
+                                        {
+                                            break;
+                                        }
+                                    }
+                                    else if(!m_turnOrder && m_NPCPlayer.CanUseReserves())
+                                    {
+                                        auto activeGobblet = m_activeStack.lock()->top();
+                                        auto tileGobblet = tile.gobbletStack.lock()->top();
+                                        if (activeGobblet.getSize() > tileGobblet.getSize())
+                                        {
+                                            m_activeStack.lock()->top().deactivateClickedState();
+
+                                            tile.gobbletStack.lock()->add(m_activeStack.lock()->top());
+                                            m_activeStack.lock()->pop();
+
+                                            removeStackIfEmpty(m_activeStack.lock());
+                                            m_activeStack.reset();
+                                        }
+                                        else//Guard that breaks out and returns to the loop if both gobblets are of the same size
+                                        {
+                                            break;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        break;
+
+                                        //auto activeGobblet = m_activeStack.lock()->top();
+                                        //auto tileGobblet = tile.gobbletStack.lock()->top();
+                                        //if (activeGobblet.getSize() > tileGobblet.getSize())
+                                        //{
+                                        //    m_activeStack.lock()->top().deactivateClickedState();
+
+                                        //    tile.gobbletStack.lock()->add(m_activeStack.lock()->top());
+                                        //    m_activeStack.lock()->pop();
+
+                                        //    removeStackIfEmpty(m_activeStack.lock());
+                                        //    m_activeStack.reset();
+                                        //}
+                                        //else//Guard that breaks out and returns to the loop if both gobblets are of the same size
+                                        //{
+                                        //    break;
+                                        //}
+                                    }
                                 }
-                                else//Guard that breaks out and returns to the loop if both gobblets are of the same size
-                                {
-                                    break;
-                                }
+
                             }
 
                             m_gobbletActionState = ActionState::ChooseGobblet;
@@ -276,7 +323,7 @@ bool Board::CheckWinCondition(sf::Color t_color)
         sf::Color rowOfColors[4] = { sf::Color::Blue,sf::Color::Blue,sf::Color::Blue,sf::Color::Blue };
         sf::Color colOfColors[4] = { sf::Color::Blue,sf::Color::Blue,sf::Color::Blue,sf::Color::Blue };
 
-        int count = 0;
+
 
         for (size_t x = 0; x < gridArray[y].size(); x++)
         {
@@ -325,20 +372,9 @@ bool Board::CheckWinCondition(sf::Color t_color)
             }
         }
 
-        //Checks if the current player can gobble up a gobblet from their reserves
-        for (size_t i = 0; i < 4; i++)
-        {
-            if (rowOfColors[i] == t_color || colOfColors[i] == t_color)
-            {
-                count++;
-                if (count == 3)
-                {
-                    std::cout << "Gobble from reserves available" << std::endl;
-                    break;
-                }
-            }
-        }
-
+        //Checks if either players can gobble using their reserves if there are 3 gobblets of the same colour in a row
+        m_player.SetReserveUse(CheckReserveUsage(rowOfColors, colOfColors, t_color));
+        m_NPCPlayer.SetReserveUse(CheckReserveUsage(rowOfColors, colOfColors, t_color));
 
     }
 
@@ -374,22 +410,10 @@ bool Board::CheckWinCondition(sf::Color t_color)
 
         count--;
     }
-
-    int c = 0;
-
-    for (size_t i = 0; i < 4; i++)
-    {
-        if (diagonalOfColorsA[i] == t_color || diagonalOfColorsB[i] == t_color)
-        {
-            c++;
-            if (c == 3)
-            {
-                std::cout << "Gobble from reserves available" << std::endl;
-                break;
-            }
-        }
-    }
     
+    m_player.SetReserveUse(CheckReserveUsage(diagonalOfColorsA, diagonalOfColorsB, t_color));
+    m_NPCPlayer.SetReserveUse(CheckReserveUsage(diagonalOfColorsA, diagonalOfColorsB, t_color));
+
     if (std::all_of(
         std::begin(diagonalOfColorsA),
         std::end(diagonalOfColorsA),
@@ -397,7 +421,7 @@ bool Board::CheckWinCondition(sf::Color t_color)
         {return i == t_color; }
     ))
     {
-        std::cout << "4 in a diagonal" << std::endl;
+        std::cout << "4 in a diagonal row" << std::endl;
         return true;
     }
 
@@ -416,6 +440,28 @@ bool Board::CheckWinCondition(sf::Color t_color)
 
 
     return false;
+
+}
+
+bool Board::CheckReserveUsage(sf::Color a[], sf::Color b[], sf::Color t_color)
+{
+    int count = 0;
+    //Checks if the current player can gobble up a gobblet from their reserves
+    for (size_t i = 0; i < 4; i++)
+    {
+        if (a[i] == t_color || b[i] == t_color)
+        {
+            count++;
+            if (count == 3)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+    }
 
 }
 
