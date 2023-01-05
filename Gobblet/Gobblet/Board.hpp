@@ -18,14 +18,17 @@ public:
      */
     bool chooseGobblet();
     /**
-     * \brief Place the choose gobblet somewhere in the grid according to mouse position
+     * \brief Place the chosen gobblet somewhere in the grid according to mouse position
      * \return flag used for controlling code flow. If true, nothing should be called after this method, and the calling method should immediately break or return
      */
     bool placeGobblet();
 
     void processMouse(sf::Event t_event);
 
-    void CheckWinCondition();
+    /// <summary>
+    /// This checks if there are 4 gobblets in a row/col or diagonal
+    /// </summary>
+    bool CheckWinCondition(sf::Color t_color);
 
 protected:
     void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
@@ -48,7 +51,7 @@ private:
 
     ActionState m_gobbletActionState = ActionState::ChooseGobblet;
 
-    bool m_turnOrder;//True is player, false is NPC
+    bool m_turnOrder;//True is player 1, false is NPC 2
 
     Entity m_player;
     Entity m_NPCPlayer;

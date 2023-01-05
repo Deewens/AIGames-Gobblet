@@ -221,6 +221,16 @@ bool Board::placeGobblet()
                             m_gobbletActionState = ActionState::ChooseGobblet;
 
                             m_turnOrder = !m_turnOrder;
+                            
+                            if (CheckWinCondition(m_player.GetColor()))
+                            {
+                                std::cout << "Player wins" << std::endl;
+                            }
+                            if (CheckWinCondition(m_NPCPlayer.GetColor()))
+                            {
+                                std::cout << "NPC Player wins" << std::endl;
+                            }
+
                             return true;
                         }
                     }
@@ -248,44 +258,142 @@ void Board::processMouse(sf::Event t_event)
             if (chooseGobblet()) return;
 
             placeGobblet();
+
+
         }
     }
 }
 
-void Board::CheckWinCondition()
+
+
+bool Board::CheckWinCondition(sf::Color t_color)
 {
     auto& gridArray = m_grid.getGridArray();
-
-    bool rowOfGobblets[4];
-    int count = 0;
 
     //Checks every row
     for (size_t y = 0; y < gridArray.size(); y++)
     {
+        sf::Color rowOfColors[4] = { sf::Color::Blue,sf::Color::Blue,sf::Color::Blue,sf::Color::Blue };
+        sf::Color colOfColors[4] = { sf::Color::Blue,sf::Color::Blue,sf::Color::Blue,sf::Color::Blue };
+
         for (size_t x = 0; x < gridArray[y].size(); x++)
         {
-            
+            //checks all rows
             auto& tile = gridArray[y][x];
 
-            if (!tile.gobbletStack.expired() && count < 3)
+            if (!tile.gobbletStack.expired() && tile.gobbletStack.lock().get()->top().getShape().getFillColor() == t_color)
             {
-                rowOfGobblets[count] = true;
-                count++;
-
+                rowOfColors[x] = t_color;
             }
             else
             {
-                count = 0;
+                rowOfColors[x] = sf::Color::Blue;
+            }
 
-                for (int i = 0; i < sizeof(rowOfGobblets); i++)
-                {
-                    rowOfGobblets[i] = false;
-                }
+            
+            //Checks if all of in the array is true
+            if (std::all_of(
+                std::begin(rowOfColors),
+                std::end(rowOfColors),
+                [t_color](sf::Color i)
+                {return i == t_color; }
+            ))
+            {
+                std::cout << "4 in a row" << std::endl;
+                return true;
+            }
+
+
+            //Checks all columns
+            auto& tileB = gridArray[x][y];
+
+
+            if (!tileB.gobbletStack.expired() && tileB.gobbletStack.lock().get()->top().getShape().getFillColor() == t_color)
+            {
+                colOfColors[x] = t_color;
+            }
+            else
+            {
+                colOfColors[x] = sf::Color::Blue;
+            }
+
+            //Checks if all of in the array is true
+            if (std::all_of(
+                std::begin(colOfColors),
+                std::end(colOfColors),
+                [t_color](sf::Color i)
+                {return i == t_color; }
+            ))
+            {
+                std::cout << "4 in a col" << std::endl;
+                return true;
             }
         }
     }
 
-    
+    sf::Color diagonalOfColorsA[4] = { sf::Color::Blue,sf::Color::Blue,sf::Color::Blue,sf::Color::Blue };
+    sf::Color diagonalOfColorsB[4] = { sf::Color::Blue,sf::Color::Blue,sf::Color::Blue,sf::Color::Blue };
+
+    //Checks for top left to bottom right to see if there's gobblets
+    int count = 3;
+
+    /// <summary>
+    /// Checks the diagonals if there is 4 in a row
+    /// </summary>
+    /// <param name="t_color"></param>
+    /// <returns></returns>
+    for (int i = 0; i < 4; i++)
+    {
+        auto& tile = gridArray[i][i];
+
+        if (!tile.gobbletStack.expired() && tile.gobbletStack.lock().get()->top().getShape().getFillColor() == t_color)
+        {
+            diagonalOfColorsA[i] = t_color;
+        }
+        else
+        {
+            diagonalOfColorsA[i] = sf::Color::Blue;
+        }
+
+        auto& tileB = gridArray[count][i];
+
+        if (!tileB.gobbletStack.expired() && tileB.gobbletStack.lock().get()->top().getShape().getFillColor() == t_color)
+        {
+            diagonalOfColorsB[i] = t_color;
+        }
+        else
+        {
+            diagonalOfColorsB[i] = sf::Color::Blue;
+        }
+
+        count--;
+    }
+
+    if (std::all_of(
+        std::begin(diagonalOfColorsA),
+        std::end(diagonalOfColorsA),
+        [t_color](sf::Color i)
+        {return i == t_color; }
+    ))
+    {
+        std::cout << "4 in a diagonal" << std::endl;
+        return true;
+    }
+
+
+    if (std::all_of(
+        std::begin(diagonalOfColorsB),
+        std::end(diagonalOfColorsB),
+        [t_color](sf::Color i)
+        {return i == t_color; }
+    ))
+    {
+        std::cout << "4 in a diagonal row" << std::endl;
+        return true;
+    }
+
+    return false;
+
 }
 
 

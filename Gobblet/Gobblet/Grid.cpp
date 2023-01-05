@@ -26,7 +26,7 @@ Grid::Grid() : m_bounds(m_baseX, m_baseY, getSize().x, getSize().y)
 	m_gridCoordinateText.setString("Grid Position: blank, blank");
 
 
-    //Sets up an invisible bounding box for where the mouse is
+    //Sets up an invisible bounding box for where the mouse is.
     m_invisibleMouse.setFillColor(sf::Color::Blue);
     m_invisibleMouse.setSize(sf::Vector2f(1, 1));
     m_invisibleMouse.setOrigin(0.5f, 0.5f);
