@@ -39,6 +39,8 @@ public:
     /// <returns>Returns if either player is able to use the ability</returns>
     bool CheckReserveUsage(sf::Color a[], sf::Color b[], sf::Color t_color);
 
+    void CheckTieCondition();
+
 protected:
     void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 
@@ -64,6 +66,8 @@ private:
 
     Entity m_player;
     Entity m_NPCPlayer;
+
+    int m_sameActionCount;
 };
 
 /*

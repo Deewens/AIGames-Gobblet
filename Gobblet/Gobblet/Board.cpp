@@ -32,6 +32,7 @@ m_NPCPlayer(sf::Color::Black,false)
     }
 
     m_turnOrder = true;
+    m_sameActionCount = 0;
 }
 
 void Board::update(sf::Time t_deltaTime)
@@ -202,7 +203,7 @@ bool Board::placeGobblet()
                             {
                                 if (m_gobbletActionState == ActionState::PlaceGobblet)
                                 {
-                                    if (m_turnOrder && m_player.CanUseReserves())
+                                    if (m_player.CanUseReserves())
                                     {
                                         auto activeGobblet = m_activeStack.lock()->top();
                                         auto tileGobblet = tile.gobbletStack.lock()->top();
@@ -221,7 +222,7 @@ bool Board::placeGobblet()
                                             break;
                                         }
                                     }
-                                    else if(!m_turnOrder && m_NPCPlayer.CanUseReserves())
+                                    else if(m_NPCPlayer.CanUseReserves())
                                     {
                                         auto activeGobblet = m_activeStack.lock()->top();
                                         auto tileGobblet = tile.gobbletStack.lock()->top();
@@ -243,23 +244,6 @@ bool Board::placeGobblet()
                                     else
                                     {
                                         break;
-
-                                        //auto activeGobblet = m_activeStack.lock()->top();
-                                        //auto tileGobblet = tile.gobbletStack.lock()->top();
-                                        //if (activeGobblet.getSize() > tileGobblet.getSize())
-                                        //{
-                                        //    m_activeStack.lock()->top().deactivateClickedState();
-
-                                        //    tile.gobbletStack.lock()->add(m_activeStack.lock()->top());
-                                        //    m_activeStack.lock()->pop();
-
-                                        //    removeStackIfEmpty(m_activeStack.lock());
-                                        //    m_activeStack.reset();
-                                        //}
-                                        //else//Guard that breaks out and returns to the loop if both gobblets are of the same size
-                                        //{
-                                        //    break;
-                                        //}
                                     }
                                 }
 
@@ -305,7 +289,6 @@ void Board::processMouse(sf::Event t_event)
             if (chooseGobblet()) return;
 
             placeGobblet();
-
 
         }
     }
@@ -456,13 +439,41 @@ bool Board::CheckReserveUsage(sf::Color a[], sf::Color b[], sf::Color t_color)
             {
                 return true;
             }
-            else
-            {
-                return false;
-            }
         }
     }
 
+    return false;
+}
+
+void Board::CheckTieCondition()
+{
+
+    //for (auto& stack : m_gobbletStacks)
+    //{
+    //    if (stack.get()->getGridPosition().has_value())
+    //    {
+    //        continue;
+    //    }
+    //    else
+    //    {
+    //        std::cout << "The show goes on" << std::endl;
+    //    }
+    //}
+
+    //if (std::all_of(
+    //    std::begin(m_gobbletStacks),
+    //    std::end(m_gobbletStacks),
+    //    [](GobbletStack i)
+    //    {return i.getGridPosition().has_value() == true; }
+    //))
+    //{
+    //    std::cout << "TIE COUNTDOWN STARTS NOW" << std::endl;
+    //}
+    //else
+    //{
+    //    std::cout << "The show goes on" << std::endl;
+    //}
+    
 }
 
 
