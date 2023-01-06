@@ -246,6 +246,25 @@ bool Board::placeGobblet()
                                         break;
                                     }
                                 }
+                                else
+                                {
+                                    auto activeGobblet = m_activeStack.lock()->top();
+                                    auto tileGobblet = tile.gobbletStack.lock()->top();
+                                    if (activeGobblet.getSize() > tileGobblet.getSize())
+                                    {
+                                        m_activeStack.lock()->top().deactivateClickedState();
+
+                                        tile.gobbletStack.lock()->add(m_activeStack.lock()->top());
+                                        m_activeStack.lock()->pop();
+
+                                        removeStackIfEmpty(m_activeStack.lock());
+                                        m_activeStack.reset();
+                                    }
+                                    else//Guard that breaks out and returns to the loop if both gobblets are of the same size
+                                    {
+                                        break;
+                                    }
+                                }
 
                             }
 
@@ -356,8 +375,16 @@ bool Board::CheckWinCondition(sf::Color t_color)
         }
 
         //Checks if either players can gobble using their reserves if there are 3 gobblets of the same colour in a row
-        m_player.SetReserveUse(CheckReserveUsage(rowOfColors, colOfColors, t_color));
-        m_NPCPlayer.SetReserveUse(CheckReserveUsage(rowOfColors, colOfColors, t_color));
+        if (!m_player.CanUseReserves())
+        {
+            m_player.SetReserveUse(CheckReserveUsage(rowOfColors, colOfColors, sf::Color::Black));
+        }
+
+        if (!m_NPCPlayer.CanUseReserves())
+        {
+            m_NPCPlayer.SetReserveUse(CheckReserveUsage(rowOfColors, colOfColors, sf::Color::White));
+        }
+
 
     }
 
@@ -394,8 +421,17 @@ bool Board::CheckWinCondition(sf::Color t_color)
         count--;
     }
     
-    m_player.SetReserveUse(CheckReserveUsage(diagonalOfColorsA, diagonalOfColorsB, t_color));
-    m_NPCPlayer.SetReserveUse(CheckReserveUsage(diagonalOfColorsA, diagonalOfColorsB, t_color));
+
+    //Checks if either players can gobble using their reserves if there are 3 gobblets of the same colour in a row
+    if (!m_player.CanUseReserves())
+    {
+        m_player.SetReserveUse(CheckReserveUsage(diagonalOfColorsA, diagonalOfColorsB, sf::Color::Black));
+    }
+
+    if (!m_NPCPlayer.CanUseReserves())
+    {
+        m_NPCPlayer.SetReserveUse(CheckReserveUsage(diagonalOfColorsA, diagonalOfColorsB, sf::Color::White));
+    }
 
     if (std::all_of(
         std::begin(diagonalOfColorsA),
