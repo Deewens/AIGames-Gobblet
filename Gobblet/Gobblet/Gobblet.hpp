@@ -10,21 +10,22 @@
 #include <SFML/Graphics/Drawable.hpp>
 #include <SFML/System/NonCopyable.hpp>
 
+#include "Entity.hpp"
+
 
 class Grid;
 
 class Gobblet final : public sf::Drawable
 {
 public:
-    enum class Color { Black, White };
-
     /**
      * \brief Create a new gobblet
      * \param t_color Color of this gobblet (either black or white)
      * \param t_size Gobblet size between 1 and 4
      * \param t_grid Grid this gobblet is on
+     * \param t_playerAIType
      */
-    Gobblet(const Color& t_color, int t_size, Grid& t_grid);
+    Gobblet(const sf::Color& t_color, int t_size, Grid& t_grid, const Entity& t_player);
 
     int getSize() const;
 
@@ -53,8 +54,12 @@ public:
 
     sf::CircleShape& getShape();
 
+    sf::Color getColor() const;
+
     void deactivateClickedState();
     void activateClickedState();
+
+    Entity& getPlayer();
 
     friend bool operator==(const Gobblet& t_lhs, const Gobblet& t_rhs);
 
@@ -78,4 +83,6 @@ private:
 
     sf::Color m_color;
     sf::CircleShape m_shape;
+
+    Entity m_player;
 };

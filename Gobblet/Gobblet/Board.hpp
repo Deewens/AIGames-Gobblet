@@ -2,7 +2,7 @@
 
 #include "GobbletStack.hpp"
 #include "Grid.h"
-#include "Entity.h"
+#include "Entity.hpp"
 
 class Board final : public sf::Drawable
 {
@@ -41,6 +41,10 @@ public:
 
     void CheckTieCondition();
 
+    void moveGobblet(GobbletStack& t_gobbletStack, sf::Vector2i t_gridPosition);
+
+    Grid& getGrid();
+    
 protected:
     void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 
@@ -62,10 +66,10 @@ private:
 
     ActionState m_gobbletActionState = ActionState::ChooseGobblet;
 
-    bool m_turnOrder;//True is player 1, false is NPC 2
-
     Entity m_player;
     Entity m_NPCPlayer;
+
+    bool m_turnOrder;//True is player 1, false is NPC 2
 
     int m_sameActionCount;
 };

@@ -2,10 +2,11 @@
 
 #include "Grid.h"
 
-Gobblet::Gobblet(const Color& t_color, int t_size, Grid& t_grid) :
+Gobblet::Gobblet(const Color& t_color, int t_size, Grid& t_grid, const Entity& t_player) :
     m_grid(t_grid),
     m_size(t_size),
-    m_shape(static_cast<float>(t_size) * m_sizeFactor)
+    m_shape(static_cast<float>(t_size) * m_sizeFactor),
+    m_player(t_player)
 {
     verifySize();
 
@@ -68,6 +69,11 @@ sf::CircleShape& Gobblet::getShape()
     return m_shape;
 }
 
+sf::Color Gobblet::getColor() const
+{
+    return m_color;
+}
+
 void Gobblet::deactivateClickedState()
 {
     getShape().setOutlineColor(sf::Color::Transparent);
@@ -78,6 +84,11 @@ void Gobblet::activateClickedState()
 {
     getShape().setOutlineColor(sf::Color::Blue);
     getShape().setOutlineThickness(2);
+}
+
+Entity& Gobblet::getPlayer()
+{
+    return m_player;
 }
 
 void Gobblet::verifySize()

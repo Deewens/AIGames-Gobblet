@@ -30,13 +30,15 @@
     <ClCompile Include="Tile.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="AI.h" />
+    <ClInclude Include="AI.hpp" />
     <ClInclude Include="Board.hpp" />
-    <ClInclude Include="Entity.h" />
+    <ClInclude Include="Entity.hpp" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Globals.h" />
     <ClInclude Include="GobbletStack.hpp" />
     <ClInclude Include="Grid.h" />
+    <ClInclude Include="PlayerGameState.hpp" />
+    <ClInclude Include="PlayerType.hpp" />
     <ClInclude Include="Tile.h" />
     <ClInclude Include="Gobblet.hpp" />
   </ItemGroup>

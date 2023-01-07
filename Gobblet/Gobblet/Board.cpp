@@ -20,10 +20,10 @@ m_NPCPlayer(sf::Color::Black,false)
 
         for (int j = 1; j <= 4; j++)
         {
-            blackStack.add(Gobblet(Gobblet::Color::Black, j, m_grid));
+            blackStack.add(Gobblet(Gobblet::Color::Black, j, m_grid, PlayerAIType::Max));
             blackStack.setPosition({gridPosition.x - 50, yPosition}); // 50px - left side of the grid
 
-            whiteStack.add(Gobblet(Gobblet::Color::White, j, m_grid));
+            whiteStack.add(Gobblet(Gobblet::Color::White, j, m_grid, PlayerAIType::Min));
             whiteStack.setPosition({gridPosition.x + (gridSize.x + 50), yPosition}); // 50px - right side of the grid
         }
 
@@ -543,6 +543,22 @@ void Board::CheckTieCondition()
     //    std::cout << "The show goes on" << std::endl;
     //}
     
+}
+
+void Board::moveGobblet(GobbletStack& t_gobbletStack, sf::Vector2i t_gridPosition)
+{
+    const auto gobbletCoordinates = t_gobbletStack.top().getGridCoordinates();
+    if (gobbletCoordinates == std::nullopt)
+    {
+        auto currentTile = m_grid.getGridArray()[gobbletCoordinates->x][gobbletCoordinates->y];
+    }
+    
+    auto nextTile = m_grid.getGridArray()[t_gridPosition.x][t_gridPosition.y];
+}
+
+Grid& Board::getGrid()
+{
+    return m_grid;
 }
 
 
