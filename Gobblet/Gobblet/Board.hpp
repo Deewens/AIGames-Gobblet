@@ -10,7 +10,7 @@ public:
     explicit Board(sf::RenderWindow& t_window);
 
     void update(sf::Time t_deltaTime);
-    void removeStackIfEmpty(const std::shared_ptr<GobbletStack>& stackToRemove);
+    void removeStackIfEmpty(const GobbletStack& stackToRemove);
 
     /**
      * \brief Choose the gobblet to be moved. The gobblet is selected from mouse position
@@ -41,7 +41,14 @@ public:
 
     void CheckTieCondition();
 
-    void moveGobblet(GobbletStack& t_gobbletStack, sf::Vector2i t_gridPosition);
+    std::vector<std::shared_ptr<GobbletStack>>& getGobbletStacks();
+    
+    /**
+     * \brief Move a gobblet from top of one stack to another tile in the grid.
+     * \param t_gobbletStack Stack to get the Gobblet from
+     * \param t_gridPosition new gobblet position
+     */
+    bool moveGobblet(GobbletStack& t_gobbletStack, sf::Vector2i t_gridPosition);
 
     Grid& getGrid();
     

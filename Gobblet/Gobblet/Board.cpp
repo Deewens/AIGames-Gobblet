@@ -20,10 +20,10 @@ m_NPCPlayer(sf::Color::Black,false)
 
         for (int j = 1; j <= 4; j++)
         {
-            blackStack.add(Gobblet(Gobblet::Color::Black, j, m_grid, PlayerAIType::Max));
+            blackStack.add(Gobblet(sf::Color::Black, j, m_grid, PlayerAIType::Max));
             blackStack.setPosition({gridPosition.x - 50, yPosition}); // 50px - left side of the grid
 
-            whiteStack.add(Gobblet(Gobblet::Color::White, j, m_grid, PlayerAIType::Min));
+            whiteStack.add(Gobblet(sf::Color::White, j, m_grid, PlayerAIType::Min));
             whiteStack.setPosition({gridPosition.x + (gridSize.x + 50), yPosition}); // 50px - right side of the grid
         }
 
@@ -44,9 +44,9 @@ void Board::update(sf::Time t_deltaTime)
     m_mousePosition.top = mousePosition.y;
 }
 
-void Board::removeStackIfEmpty(const std::shared_ptr<GobbletStack>& stackToRemove)
+void Board::removeStackIfEmpty(const GobbletStack& stackToRemove)
 {
-    if (stackToRemove->isEmpty())
+    if (stackToRemove.isEmpty())
     {
         const auto newEndIt = m_gobbletStacks.erase(
             std::remove(m_gobbletStacks.begin(), m_gobbletStacks.end(),
@@ -183,20 +183,10 @@ bool Board::placeGobblet()
                             {
                                 m_activeStack.lock()->top().deactivateClickedState();
 
-                                GobbletStack newStack;
-                                newStack.add(m_activeStack.lock()->top());
-                                m_activeStack.lock()->pop();
-                                newStack.setGridPosition(sf::Vector2i(static_cast<int>(y), static_cast<int>(x)),
-                                                         m_grid);
+                                moveGobblet(*m_activeStack.lock(), sf::Vector2i(static_cast<int>(y), static_cast<int>(x)));
 
-                                removeStackIfEmpty(m_activeStack.lock());
                                 // Set it to nullptr, because it will be invalidated by push_back anyways and points to an invalid address
                                 m_activeStack.reset();
-
-                                // activeStack pointer is invalidated by emplace_back, because push_back reallocate memory, and activeStack points to a memory address stored in the gobbletStacks vector.
-                                // So, it is important to call emplace_back after we did stuff with m_activeStack, because it is invalidated afterwards.
-                                tile.gobbletStack = m_gobbletStacks.emplace_back(
-                                    std::make_shared<GobbletStack>(newStack));
                             }
                             // If a gobblet stack already exist on this tile, just add the active gobblet to it
                             else
@@ -211,10 +201,9 @@ bool Board::placeGobblet()
                                         {
                                             m_activeStack.lock()->top().deactivateClickedState();
 
-                                            tile.gobbletStack.lock()->add(m_activeStack.lock()->top());
-                                            m_activeStack.lock()->pop();
+                                            moveGobblet(*m_activeStack.lock(), sf::Vector2i(static_cast<int>(y), static_cast<int>(x)));
 
-                                            removeStackIfEmpty(m_activeStack.lock());
+                                            // Set it to nullptr, because it will be invalidated by push_back anyways and points to an invalid address
                                             m_activeStack.reset();
 
                                             m_player.SetReserveUse(false);
@@ -232,10 +221,9 @@ bool Board::placeGobblet()
                                         {
                                             m_activeStack.lock()->top().deactivateClickedState();
 
-                                            tile.gobbletStack.lock()->add(m_activeStack.lock()->top());
-                                            m_activeStack.lock()->pop();
+                                            moveGobblet(*m_activeStack.lock(), sf::Vector2i(static_cast<int>(y), static_cast<int>(x)));
 
-                                            removeStackIfEmpty(m_activeStack.lock());
+                                            // Set it to nullptr, because it will be invalidated by push_back anyways and points to an invalid address
                                             m_activeStack.reset();
 
                                             m_NPCPlayer.SetReserveUse(false);
@@ -258,10 +246,9 @@ bool Board::placeGobblet()
                                     {
                                         m_activeStack.lock()->top().deactivateClickedState();
 
-                                        tile.gobbletStack.lock()->add(m_activeStack.lock()->top());
-                                        m_activeStack.lock()->pop();
+                                        moveGobblet(*m_activeStack.lock(), sf::Vector2i(static_cast<int>(y), static_cast<int>(x)));
 
-                                        removeStackIfEmpty(m_activeStack.lock());
+                                        // Set it to nullptr, because it will be invalidated by push_back anyways and points to an invalid address
                                         m_activeStack.reset();
                                     }
                                     else//Guard that breaks out and returns to the loop if both gobblets are of the same size
@@ -545,15 +532,34 @@ void Board::CheckTieCondition()
     
 }
 
-void Board::moveGobblet(GobbletStack& t_gobbletStack, sf::Vector2i t_gridPosition)
+bool Board::moveGobblet(GobbletStack& t_gobbletStack, sf::Vector2i t_gridPosition)
 {
-    const auto gobbletCoordinates = t_gobbletStack.top().getGridCoordinates();
-    if (gobbletCoordinates == std::nullopt)
+    if (t_gridPosition.x < 0 || t_gridPosition.x > Grid::Size || t_gridPosition.y < 0 || t_gridPosition.y > Grid::Size)
     {
-        auto currentTile = m_grid.getGridArray()[gobbletCoordinates->x][gobbletCoordinates->y];
+        return false;
+    }
+
+    const auto& gobbletToMove = t_gobbletStack.pop(); // Get gobblet reference to move and remove from stack
+    auto& tile = m_grid.getGridArray()[t_gridPosition.y][t_gridPosition.x];
+
+    if (tile.gobbletStack.expired()) // There is no stack on this tile
+    {
+        GobbletStack newStack;
+        newStack.add(gobbletToMove);
+        newStack.setGridPosition(t_gridPosition, m_grid);
+        m_gobbletStacks.emplace_back(std::make_shared<GobbletStack>(newStack));
+    }
+    else // A stack already exist on this tile
+    {
+        const auto stackOnNextTile = tile.gobbletStack.lock();
+        if (gobbletToMove.getSize() > stackOnNextTile->top().getSize())
+        {
+            stackOnNextTile->add(gobbletToMove);
+        }
     }
     
-    auto nextTile = m_grid.getGridArray()[t_gridPosition.x][t_gridPosition.y];
+    removeStackIfEmpty(t_gobbletStack);
+    return true;
 }
 
 Grid& Board::getGrid()
@@ -570,4 +576,9 @@ void Board::draw(sf::RenderTarget& target, sf::RenderStates states) const
     {
         target.draw(*stack.get(), states);
     }
+}
+
+std::vector<std::shared_ptr<GobbletStack>>& Board::getGobbletStacks()
+{
+    return m_gobbletStacks;
 }

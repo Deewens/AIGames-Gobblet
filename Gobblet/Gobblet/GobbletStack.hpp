@@ -21,18 +21,14 @@ public:
     void setGridPosition(const std::optional<sf::Vector2i>& t_gridPosition, Grid& t_grid);
     std::optional<sf::Vector2i> getGridPosition() const;
 
-    friend bool operator==(const GobbletStack& t_lhs, const GobbletStack& t_rhs)
-    {
-        return t_lhs.m_position == t_rhs.m_position
-            && t_lhs.m_gridPosition == t_rhs.m_gridPosition;
-    }
+    bool isExternalStack() const;
+    
+    friend bool operator==(const GobbletStack& t_lhs, const GobbletStack& t_rhs);
 
-    friend bool operator!=(const GobbletStack& t_lhs, const GobbletStack& t_rhs)
-    {
-        return !(t_lhs == t_rhs);
-    }
+    friend bool operator!=(const GobbletStack& t_lhs, const GobbletStack& t_rhs);
 
     bool isClicked;
+
 protected:
     void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 

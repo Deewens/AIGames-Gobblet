@@ -10,6 +10,11 @@
 class Grid : public sf::Drawable
 {
 public:
+    /**
+     * \brief Size of the grid in tiles (horizontal and vertical)
+     */
+    constexpr static int Size = 4;
+    
     Grid();
     ~Grid();
 
