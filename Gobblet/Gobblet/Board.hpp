@@ -41,7 +41,7 @@ public:
 
     void CheckTieCondition();
 
-    std::vector<std::shared_ptr<GobbletStack>>& getGobbletStacks();
+    std::vector<GobbletStack>& getGobbletStacks();
     
     /**
      * \brief Move a gobblet from top of one stack to another tile in the grid.
@@ -68,13 +68,13 @@ private:
 
     Grid m_grid;
 
-    std::vector<std::shared_ptr<GobbletStack>> m_gobbletStacks;
-    std::weak_ptr<GobbletStack> m_activeStack;
+    std::vector<GobbletStack> m_gobbletStacks;
+    GobbletStack* m_activeStack;
 
     ActionState m_gobbletActionState = ActionState::ChooseGobblet;
 
-    Entity m_player;
-    Entity m_NPCPlayer;
+    Entity m_maxPlayer;
+    Entity m_minPlayer;
 
     bool m_turnOrder;//True is player 1, false is NPC 2
 

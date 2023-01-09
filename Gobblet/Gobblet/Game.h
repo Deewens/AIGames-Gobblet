@@ -8,9 +8,6 @@
 #include <SFML/Graphics.hpp>
 
 #include "Board.hpp"
-#include "Gobblet.hpp"
-#include "Grid.h"
-#include "AI.h"
 
 
 class Game

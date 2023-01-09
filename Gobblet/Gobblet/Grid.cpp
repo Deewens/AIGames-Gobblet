@@ -45,10 +45,6 @@ Grid::Grid() : m_bounds(m_baseX, m_baseY, getSize().x, getSize().y)
     }
 }
 
-Grid::~Grid()
-{
-}
-
 void Grid::update(const sf::RenderWindow& t_window)
 {
     m_mousePositionView = t_window.mapPixelToCoords(sf::Mouse::getPosition(t_window));

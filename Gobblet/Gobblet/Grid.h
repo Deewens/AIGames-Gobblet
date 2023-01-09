@@ -13,10 +13,9 @@ public:
     /**
      * \brief Size of the grid in tiles (horizontal and vertical)
      */
-    constexpr static int Size = 4;
+    inline static int Size = 4;
     
     Grid();
-    ~Grid();
 
     void update(const sf::RenderWindow& t_window);
     void gridCoord();

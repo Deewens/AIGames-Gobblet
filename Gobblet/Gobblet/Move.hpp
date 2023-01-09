@@ -3,15 +3,17 @@
 
 #include <SFML/System/Vector2.hpp>
 #include "Entity.hpp"
-#include "Gobblet.hpp"
+#include "GobbletStack.hpp"
 
 struct Move
 {
-    Move(const Entity& t_player, const Gobblet& t_gobblet, const std::optional<sf::Vector2i>& t_from,
+    Move();
+    
+    Move(const Entity& t_player, const GobbletStack& t_gobbletStack, const std::optional<sf::Vector2i>& t_from,
          const sf::Vector2i& t_to);
 
     Entity player;
-    Gobblet gobblet;
+    GobbletStack gobbletStack; // The gobblet moved from the top of this stack
     std::optional<sf::Vector2i> from; // if null, the gobblet come from the external stacks
     sf::Vector2i to;
 };

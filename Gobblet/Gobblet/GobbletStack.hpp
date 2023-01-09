@@ -10,9 +10,9 @@ class GobbletStack final : public sf::Drawable
 public:
     GobbletStack();
 
-    void add(const Gobblet& t_gobblet);
-    Gobblet& top();
-    Gobblet pop();
+    void add(Gobblet& t_gobblet);
+    Gobblet& top() const;
+    Gobblet& pop();
     bool isEmpty() const;
 
     void setPosition(const sf::Vector2f& t_position);
@@ -27,13 +27,13 @@ public:
 
     friend bool operator!=(const GobbletStack& t_lhs, const GobbletStack& t_rhs);
 
-    bool isClicked;
+    bool isSelected = false;
 
 protected:
     void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 
 private:
-    std::stack<Gobblet> m_stack;
+    std::stack<std::reference_wrapper<Gobblet>> m_stack;
 
     sf::Vector2f m_position;
     std::optional<sf::Vector2i> m_gridPosition;

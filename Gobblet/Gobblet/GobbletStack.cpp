@@ -2,28 +2,24 @@
 
 #include <iostream>
 
-GobbletStack::GobbletStack() : 
+GobbletStack::GobbletStack() = default;
+
+void GobbletStack::add(Gobblet& t_gobblet)
 {
+    m_stack.push(std::ref<Gobblet>(t_gobblet));
+
+    m_stack.top().get().setGridCoordinates(m_gridPosition);
 }
 
-void GobbletStack::add(const Gobblet& t_gobblet)
-{
-    m_stack.push(t_gobblet);
-
-    m_stack.top().setGridCoordinates(m_gridPosition);
-}
-
-Gobblet& GobbletStack::top()
+Gobblet& GobbletStack::top() const
 {
     return m_stack.top();
 }
 
-Gobblet GobbletStack::pop()
+Gobblet& GobbletStack::pop()
 {
-    auto removedGobblet = m_stack.top();
-
+    const auto removedGobblet = m_stack.top();
     m_stack.pop();
-
     return removedGobblet;
 }
 
@@ -37,8 +33,8 @@ void GobbletStack::setPosition(const sf::Vector2f& t_position)
     m_position = t_position;
 
     if (m_stack.empty()) return;
-    
-    m_stack.top().setPosition(m_position);
+
+    m_stack.top().get().setPosition(m_position);
 }
 
 sf::Vector2f GobbletStack::getPosition() const
@@ -79,7 +75,7 @@ void GobbletStack::setGridPosition(const std::optional<sf::Vector2i>& t_gridPosi
             }
         }
 
-        m_stack.top().setGridCoordinates(m_gridPosition);
+        m_stack.top().get().setGridCoordinates(m_gridPosition);
     }
 }
 

@@ -23,9 +23,8 @@ public:
      * \param t_color Color of this gobblet (either black or white)
      * \param t_size Gobblet size between 1 and 4
      * \param t_grid Grid this gobblet is on
-     * \param t_playerAIType
      */
-    Gobblet(const sf::Color& t_color, int t_size, Grid& t_grid, const Entity& t_player);
+    Gobblet(const sf::Color& t_color, int t_size, Grid& t_grid);
 
     int getSize() const;
 
@@ -59,8 +58,6 @@ public:
     void deactivateClickedState();
     void activateClickedState();
 
-    Entity& getPlayer();
-
     friend bool operator==(const Gobblet& t_lhs, const Gobblet& t_rhs);
 
     friend bool operator!=(const Gobblet& t_lhs, const Gobblet& t_rhs);
@@ -79,10 +76,8 @@ private:
     std::optional<sf::Vector2i> m_gridCoordinates;
 
     int m_size;
-    const float m_sizeFactor = 4;
+    float m_sizeFactor = 4;
 
     sf::Color m_color;
     sf::CircleShape m_shape;
-
-    Entity m_player;
 };

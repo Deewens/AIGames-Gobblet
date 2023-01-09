@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-enum class PlayerAIType
+enum class PlayerType
 {
     Min,
     Max

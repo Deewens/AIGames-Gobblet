@@ -2,33 +2,38 @@
 
 #include "Gobblet.hpp"
 
-Board::Board(sf::RenderWindow& t_window) : m_window(t_window), m_mousePosition(0, 0, 1, 1), m_activeStack(),
-m_player(sf::Color::White,false),
-m_NPCPlayer(sf::Color::Black,false)
+Board::Board(sf::RenderWindow& t_window) : m_window(t_window),
+                                           m_mousePosition(0, 0, 1, 1),
+                                           m_maxPlayer(m_grid, PlayerType::Max, sf::Color::Black),
+                                           m_minPlayer(m_grid, PlayerType::Max, sf::Color::White)
 {
     // Initialise the board, create external stacks around the grid
     const sf::Vector2f gridPosition = m_grid.getPosition();
     const sf::Vector2f gridSize = m_grid.getSize();
-
+    
     float yPosition = gridPosition.y;
+    
     for (int i = 0; i < 3; i++)
     {
-        GobbletStack blackStack;
-        GobbletStack whiteStack;
+        GobbletStack maxStack;
+        GobbletStack minStack;
 
         yPosition = yPosition + 50;
 
         for (int j = 1; j <= 4; j++)
         {
-            blackStack.add(Gobblet(sf::Color::Black, j, m_grid, PlayerAIType::Max));
-            blackStack.setPosition({gridPosition.x - 50, yPosition}); // 50px - left side of the grid
+            auto& blackGobblet = m_maxPlayer.addGobblet(Gobblet(sf::Color::Black, j, m_grid));
+            auto& whiteGobblet = m_minPlayer.addGobblet(Gobblet(sf::Color::White, j, m_grid));
+            
+            maxStack.add(blackGobblet);
+            maxStack.setPosition({gridPosition.x - 50, yPosition}); // 50px - left side of the grid
 
-            whiteStack.add(Gobblet(sf::Color::White, j, m_grid, PlayerAIType::Min));
-            whiteStack.setPosition({gridPosition.x + (gridSize.x + 50), yPosition}); // 50px - right side of the grid
+            minStack.add(whiteGobblet);
+            minStack.setPosition({gridPosition.x + (gridSize.x + 50), yPosition}); // 50px - right side of the grid
         }
 
-        m_gobbletStacks.push_back(std::make_shared<GobbletStack>(blackStack));
-        m_gobbletStacks.push_back(std::make_shared<GobbletStack>(whiteStack));
+        m_gobbletStacks.push_back(maxStack);
+        m_gobbletStacks.push_back(minStack);
     }
 
     m_turnOrder = true;
@@ -70,44 +75,43 @@ bool Board::chooseGobblet()
             // Determine if mouse clicked on a GobbletStack
             for (auto& stack : m_gobbletStacks)
             {
-                if (stack->top().getShape().getGlobalBounds().intersects(m_mousePosition) && stack->top().getShape().getFillColor() == m_player.GetColor())
+                if (stack.top().getShape().getGlobalBounds().intersects(m_mousePosition) && stack.top().getShape().
+                    getFillColor() == m_maxPlayer.getColor())
                 {
                     isGobbletClicked = true;
 
                     // Remove the "active effect" on the top gobblet from the currently active stack
-                    if (!m_activeStack.expired()) // .expired weak_ptr equivalent for m_activeStack == nullptr
+                    if (m_activeStack != nullptr)
                     {
                         // .lock() convert the weak_ptr into a shared_ptr to be used as such
-                        m_activeStack.lock()->top().deactivateClickedState();
+                        m_activeStack->top().deactivateClickedState();
                     }
 
                     // Set the new active stack and activate the "active effect" on its top
 
-                    if (stack->top().getGridCoordinates().has_value())
+                    if (stack.top().getGridCoordinates().has_value())
                     {
-                        m_activeStack = stack;
-                        m_activeStack.lock()->top().activateClickedState();
+                        m_activeStack = &stack;
+                        m_activeStack->top().activateClickedState();
                         m_gobbletActionState = ActionState::PlaceBoardGobblet;
                     }
                     else
                     {
-                        m_activeStack = stack;
-                        m_activeStack.lock()->top().activateClickedState();
+                        m_activeStack = &stack;
+                        m_activeStack->top().activateClickedState();
                         m_gobbletActionState = ActionState::PlaceGobblet;
                     }
                     return true;
                 }
             }
 
-            if (!isGobbletClicked && !m_activeStack.expired())
+            if (!isGobbletClicked && m_activeStack != nullptr)
             {
-                m_activeStack.lock()->top().deactivateClickedState();
-                m_activeStack.reset();
+                m_activeStack->top().deactivateClickedState();
+                m_activeStack = nullptr;
 
                 m_gobbletActionState = ActionState::ChooseGobblet;
             }
-
-
         }
 
         //Player 2's turn
@@ -115,31 +119,30 @@ bool Board::chooseGobblet()
         {
             for (auto& stack : m_gobbletStacks)
             {
-
-                if (stack->top().getShape().getGlobalBounds().intersects(m_mousePosition) && stack->top().getShape().getFillColor() == m_NPCPlayer.GetColor())
+                if (stack.top().getShape().getGlobalBounds().intersects(m_mousePosition) && stack.top().getShape().
+                    getFillColor() == m_minPlayer.getColor())
                 {
                     isGobbletClicked = true;
 
                     // Remove the "active effect" on the top gobblet from the currently active stack
-                    if (!m_activeStack.expired()) // .expired weak_ptr equivalent for m_activeStack == nullptr
+                    if (m_activeStack != nullptr) // .expired weak_ptr equivalent for m_activeStack == nullptr
                     {
-                        // .lock() convert the weak_ptr into a shared_ptr to be used as such
-                        m_activeStack.lock()->top().deactivateClickedState();
+                        m_activeStack->top().deactivateClickedState();
                     }
 
                     // Set the new active stack and activate the "active effect" on its top
 
                     //If the gobblet picked is on the board, they are unable to deselect it
-                    if (stack->top().getGridCoordinates().has_value())
+                    if (stack.top().getGridCoordinates().has_value())
                     {
-                        m_activeStack = stack;
-                        m_activeStack.lock()->top().activateClickedState();
+                        m_activeStack = &stack;
+                        m_activeStack->top().activateClickedState();
                         m_gobbletActionState = ActionState::PlaceBoardGobblet;
                     }
                     else
                     {
-                        m_activeStack = stack;
-                        m_activeStack.lock()->top().activateClickedState();
+                        m_activeStack = &stack;
+                        m_activeStack->top().activateClickedState();
                         m_gobbletActionState = ActionState::PlaceGobblet;
                     }
 
@@ -147,10 +150,10 @@ bool Board::chooseGobblet()
                 }
             }
 
-            if (!isGobbletClicked && !m_activeStack.expired())
+            if (!isGobbletClicked && m_activeStack != nullptr)
             {
-                m_activeStack.lock()->top().deactivateClickedState();
-                m_activeStack.reset();
+                m_activeStack->top().deactivateClickedState();
+                m_activeStack = nullptr;
 
                 m_gobbletActionState = ActionState::ChooseGobblet;
             }
@@ -164,7 +167,7 @@ bool Board::placeGobblet()
     if (m_gobbletActionState == ActionState::PlaceGobblet || m_gobbletActionState == ActionState::PlaceBoardGobblet)
     {
         // If mouse clicked on a tile of the grid, move the top gobblet from the active gobblet stack to the tile
-        if (!m_activeStack.expired())
+        if (m_activeStack != nullptr)
         {
             // Mouse is on the grid
             if (m_grid.getBounds().intersects(m_mousePosition))
@@ -181,54 +184,59 @@ bool Board::placeGobblet()
                             // If there is not gobblet stack on this tile, create a new one
                             if (tile.gobbletStack.expired())
                             {
-                                m_activeStack.lock()->top().deactivateClickedState();
+                                m_activeStack->top().deactivateClickedState();
 
-                                moveGobblet(*m_activeStack.lock(), sf::Vector2i(static_cast<int>(y), static_cast<int>(x)));
+                                moveGobblet(*m_activeStack,
+                                            sf::Vector2i(static_cast<int>(y), static_cast<int>(x)));
 
                                 // Set it to nullptr, because it will be invalidated by push_back anyways and points to an invalid address
-                                m_activeStack.reset();
+                                m_activeStack = nullptr;
                             }
                             // If a gobblet stack already exist on this tile, just add the active gobblet to it
                             else
                             {
                                 if (m_gobbletActionState == ActionState::PlaceGobblet)
                                 {
-                                    if (m_player.CanUseReserves())
+                                    if (m_maxPlayer.canUseReserves())
                                     {
-                                        auto activeGobblet = m_activeStack.lock()->top();
+                                        auto activeGobblet = m_activeStack->top();
                                         auto tileGobblet = tile.gobbletStack.lock()->top();
                                         if (activeGobblet.getSize() > tileGobblet.getSize())
                                         {
-                                            m_activeStack.lock()->top().deactivateClickedState();
+                                            m_activeStack->top().deactivateClickedState();
 
-                                            moveGobblet(*m_activeStack.lock(), sf::Vector2i(static_cast<int>(y), static_cast<int>(x)));
+                                            moveGobblet(*m_activeStack,
+                                                        sf::Vector2i(static_cast<int>(y), static_cast<int>(x)));
 
                                             // Set it to nullptr, because it will be invalidated by push_back anyways and points to an invalid address
-                                            m_activeStack.reset();
+                                            m_activeStack = nullptr;
 
-                                            m_player.SetReserveUse(false);
+                                            m_maxPlayer.setReserveUse(false);
                                         }
-                                        else//Guard that breaks out and returns to the loop if both gobblets are of the same size
+                                        else
+                                        //Guard that breaks out and returns to the loop if both gobblets are of the same size
                                         {
                                             break;
                                         }
                                     }
-                                    else if(m_NPCPlayer.CanUseReserves())
+                                    else if (m_minPlayer.canUseReserves())
                                     {
-                                        auto activeGobblet = m_activeStack.lock()->top();
+                                        auto activeGobblet = m_activeStack->top();
                                         auto tileGobblet = tile.gobbletStack.lock()->top();
                                         if (activeGobblet.getSize() > tileGobblet.getSize())
                                         {
-                                            m_activeStack.lock()->top().deactivateClickedState();
+                                            m_activeStack->top().deactivateClickedState();
 
-                                            moveGobblet(*m_activeStack.lock(), sf::Vector2i(static_cast<int>(y), static_cast<int>(x)));
+                                            moveGobblet(*m_activeStack,
+                                                        sf::Vector2i(static_cast<int>(y), static_cast<int>(x)));
 
                                             // Set it to nullptr, because it will be invalidated by push_back anyways and points to an invalid address
-                                            m_activeStack.reset();
+                                            m_activeStack = nullptr;
 
-                                            m_NPCPlayer.SetReserveUse(false);
+                                            m_minPlayer.setReserveUse(false);
                                         }
-                                        else//Guard that breaks out and returns to the loop if both gobblets are of the same size
+                                        else
+                                        //Guard that breaks out and returns to the loop if both gobblets are of the same size
                                         {
                                             break;
                                         }
@@ -240,34 +248,35 @@ bool Board::placeGobblet()
                                 }
                                 else
                                 {
-                                    auto activeGobblet = m_activeStack.lock()->top();
+                                    auto activeGobblet = m_activeStack->top();
                                     auto tileGobblet = tile.gobbletStack.lock()->top();
                                     if (activeGobblet.getSize() > tileGobblet.getSize())
                                     {
-                                        m_activeStack.lock()->top().deactivateClickedState();
+                                        m_activeStack->top().deactivateClickedState();
 
-                                        moveGobblet(*m_activeStack.lock(), sf::Vector2i(static_cast<int>(y), static_cast<int>(x)));
+                                        moveGobblet(*m_activeStack,
+                                                    sf::Vector2i(static_cast<int>(y), static_cast<int>(x)));
 
                                         // Set it to nullptr, because it will be invalidated by push_back anyways and points to an invalid address
-                                        m_activeStack.reset();
+                                        m_activeStack = nullptr;
                                     }
-                                    else//Guard that breaks out and returns to the loop if both gobblets are of the same size
+                                    else
+                                    //Guard that breaks out and returns to the loop if both gobblets are of the same size
                                     {
                                         break;
                                     }
                                 }
-
                             }
 
                             m_gobbletActionState = ActionState::ChooseGobblet;
 
                             m_turnOrder = !m_turnOrder;
-                            
-                            if (CheckWinCondition(m_player.GetColor()))
+
+                            if (CheckWinCondition(m_maxPlayer.getColor()))
                             {
                                 std::cout << "Player wins" << std::endl;
                             }
-                            if (CheckWinCondition(m_NPCPlayer.GetColor()))
+                            if (CheckWinCondition(m_minPlayer.getColor()))
                             {
                                 std::cout << "NPC Player wins" << std::endl;
                             }
@@ -279,8 +288,8 @@ bool Board::placeGobblet()
             }
             else if (m_gobbletActionState == ActionState::PlaceGobblet)
             {
-                m_activeStack.lock()->top().deactivateClickedState();
-                m_activeStack.reset();
+                m_activeStack->top().deactivateClickedState();
+                m_activeStack = nullptr;
 
                 m_gobbletActionState = ActionState::ChooseGobblet;
             }
@@ -299,11 +308,9 @@ void Board::processMouse(sf::Event t_event)
             if (chooseGobblet()) return;
 
             placeGobblet();
-
         }
     }
 }
-
 
 
 bool Board::CheckWinCondition(sf::Color t_color)
@@ -313,9 +320,8 @@ bool Board::CheckWinCondition(sf::Color t_color)
     //Checks every row
     for (size_t y = 0; y < gridArray.size(); y++)
     {
-        sf::Color rowOfColors[4] = { sf::Color::Blue,sf::Color::Blue,sf::Color::Blue,sf::Color::Blue };
-        sf::Color colOfColors[4] = { sf::Color::Blue,sf::Color::Blue,sf::Color::Blue,sf::Color::Blue };
-
+        sf::Color rowOfColors[4] = {sf::Color::Blue, sf::Color::Blue, sf::Color::Blue, sf::Color::Blue};
+        sf::Color colOfColors[4] = {sf::Color::Blue, sf::Color::Blue, sf::Color::Blue, sf::Color::Blue};
 
 
         for (size_t x = 0; x < gridArray[y].size(); x++)
@@ -325,17 +331,20 @@ bool Board::CheckWinCondition(sf::Color t_color)
 
             //Checks if there is a gobblet stack on the tile
             //Checks for if the tile's gobblet is the same colour as the player's
-            if (!tile.gobbletStack.expired() && tile.gobbletStack.lock().get()->top().getShape().getFillColor() == t_color)
+            if (!tile.gobbletStack.expired() && tile.gobbletStack.lock().get()->top().getShape().getFillColor() ==
+                t_color)
             {
                 rowOfColors[x] = t_color;
             }
-            
+
             //Checks if all of in the array is true
             if (std::all_of(
                 std::begin(rowOfColors),
                 std::end(rowOfColors),
                 [t_color](sf::Color i)
-                {return i == t_color; }
+                {
+                    return i == t_color;
+                }
             ))
             {
                 std::cout << "4 in a row" << std::endl;
@@ -347,7 +356,8 @@ bool Board::CheckWinCondition(sf::Color t_color)
             auto& tileB = gridArray[x][y];
 
 
-            if (!tileB.gobbletStack.expired() && tileB.gobbletStack.lock().get()->top().getShape().getFillColor() == t_color)
+            if (!tileB.gobbletStack.expired() && tileB.gobbletStack.lock()->top().getShape().getFillColor() ==
+                t_color)
             {
                 colOfColors[x] = t_color;
             }
@@ -357,7 +367,9 @@ bool Board::CheckWinCondition(sf::Color t_color)
                 std::begin(colOfColors),
                 std::end(colOfColors),
                 [t_color](sf::Color i)
-                {return i == t_color; }
+                {
+                    return i == t_color;
+                }
             ))
             {
                 std::cout << "4 in a col" << std::endl;
@@ -378,29 +390,25 @@ bool Board::CheckWinCondition(sf::Color t_color)
 
         if (CheckReserveUsage(rowOfColors, colOfColors, sf::Color::Black))
         {
-            if (!m_player.CanUseReserves())
+            if (!m_maxPlayer.canUseReserves())
             {
-                m_player.SetReserveUse(true);
+                m_maxPlayer.setReserveUse(true);
             }
         }
-
 
 
         if (CheckReserveUsage(rowOfColors, colOfColors, sf::Color::White))
         {
-            if (!m_NPCPlayer.CanUseReserves())
+            if (!m_minPlayer.canUseReserves())
             {
-                m_NPCPlayer.SetReserveUse(true);
+                m_minPlayer.setReserveUse(true);
             }
         }
-
     }
 
 
-
-
-    sf::Color diagonalOfColorsA[4] = { sf::Color::Blue,sf::Color::Blue,sf::Color::Blue,sf::Color::Blue };
-    sf::Color diagonalOfColorsB[4] = { sf::Color::Blue,sf::Color::Blue,sf::Color::Blue,sf::Color::Blue };
+    sf::Color diagonalOfColorsA[4] = {sf::Color::Blue, sf::Color::Blue, sf::Color::Blue, sf::Color::Blue};
+    sf::Color diagonalOfColorsB[4] = {sf::Color::Blue, sf::Color::Blue, sf::Color::Blue, sf::Color::Blue};
 
     //Checks for top left to bottom right to see if there's gobblets
     int count = 3;
@@ -421,30 +429,31 @@ bool Board::CheckWinCondition(sf::Color t_color)
 
         auto& tileB = gridArray[count][i];
 
-        if (!tileB.gobbletStack.expired() && tileB.gobbletStack.lock().get()->top().getShape().getFillColor() == t_color)
+        if (!tileB.gobbletStack.expired() && tileB.gobbletStack.lock().get()->top().getShape().getFillColor() ==
+            t_color)
         {
             diagonalOfColorsB[i] = t_color;
         }
 
         count--;
     }
-    
+
 
     //Checks if either players can gobble using their reserves if there are 3 gobblets of the same colour in a row
     if (CheckReserveUsage(diagonalOfColorsA, diagonalOfColorsB, sf::Color::Black))
     {
-        if (!m_player.CanUseReserves())
+        if (!m_maxPlayer.canUseReserves())
         {
-            m_player.SetReserveUse(true);
+            m_maxPlayer.setReserveUse(true);
         }
     }
 
 
     if (CheckReserveUsage(diagonalOfColorsA, diagonalOfColorsB, sf::Color::White))
     {
-        if (!m_NPCPlayer.CanUseReserves())
+        if (!m_minPlayer.canUseReserves())
         {
-            m_NPCPlayer.SetReserveUse(true);
+            m_minPlayer.setReserveUse(true);
         }
     }
 
@@ -457,7 +466,9 @@ bool Board::CheckWinCondition(sf::Color t_color)
         std::begin(diagonalOfColorsA),
         std::end(diagonalOfColorsA),
         [t_color](sf::Color i)
-        {return i == t_color; }
+        {
+            return i == t_color;
+        }
     ))
     {
         std::cout << "4 in a diagonal row" << std::endl;
@@ -469,7 +480,9 @@ bool Board::CheckWinCondition(sf::Color t_color)
         std::begin(diagonalOfColorsB),
         std::end(diagonalOfColorsB),
         [t_color](sf::Color i)
-        {return i == t_color; }
+        {
+            return i == t_color;
+        }
     ))
     {
         std::cout << "4 in a diagonal row" << std::endl;
@@ -477,9 +490,7 @@ bool Board::CheckWinCondition(sf::Color t_color)
     }
 
 
-
     return false;
-
 }
 
 bool Board::CheckReserveUsage(sf::Color a[], sf::Color b[], sf::Color t_color)
@@ -503,7 +514,6 @@ bool Board::CheckReserveUsage(sf::Color a[], sf::Color b[], sf::Color t_color)
 
 void Board::CheckTieCondition()
 {
-
     //for (auto& stack : m_gobbletStacks)
     //{
     //    if (stack.get()->getGridPosition().has_value())
@@ -529,7 +539,6 @@ void Board::CheckTieCondition()
     //{
     //    std::cout << "The show goes on" << std::endl;
     //}
-    
 }
 
 bool Board::moveGobblet(GobbletStack& t_gobbletStack, sf::Vector2i t_gridPosition)
@@ -539,7 +548,7 @@ bool Board::moveGobblet(GobbletStack& t_gobbletStack, sf::Vector2i t_gridPositio
         return false;
     }
 
-    const auto& gobbletToMove = t_gobbletStack.pop(); // Get gobblet reference to move and remove from stack
+    auto& gobbletToMove = t_gobbletStack.pop(); // Get gobblet reference to move and remove from stack
     auto& tile = m_grid.getGridArray()[t_gridPosition.y][t_gridPosition.x];
 
     if (tile.gobbletStack.expired()) // There is no stack on this tile
@@ -547,7 +556,7 @@ bool Board::moveGobblet(GobbletStack& t_gobbletStack, sf::Vector2i t_gridPositio
         GobbletStack newStack;
         newStack.add(gobbletToMove);
         newStack.setGridPosition(t_gridPosition, m_grid);
-        m_gobbletStacks.emplace_back(std::make_shared<GobbletStack>(newStack));
+        m_gobbletStacks.emplace_back(newStack);
     }
     else // A stack already exist on this tile
     {
@@ -557,7 +566,7 @@ bool Board::moveGobblet(GobbletStack& t_gobbletStack, sf::Vector2i t_gridPositio
             stackOnNextTile->add(gobbletToMove);
         }
     }
-    
+
     removeStackIfEmpty(t_gobbletStack);
     return true;
 }
@@ -574,11 +583,11 @@ void Board::draw(sf::RenderTarget& target, sf::RenderStates states) const
 
     for (const auto& stack : m_gobbletStacks)
     {
-        target.draw(*stack.get(), states);
+        target.draw(stack, states);
     }
 }
 
-std::vector<std::shared_ptr<GobbletStack>>& Board::getGobbletStacks()
+std::vector<GobbletStack>& Board::getGobbletStacks()
 {
     return m_gobbletStacks;
 }

@@ -8,8 +8,11 @@ class Entity;
 
 class AI
 {
+public:
+    void makeBestMove(Board& t_board, Entity t_AIPlayer);
+    
     int minimax(Board t_board, int t_depth, int alpha, int beta, Entity t_player);
-
+    
     int evaluateScore(Board& t_board, Entity& t_player);
 
 private:
