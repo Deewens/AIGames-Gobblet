@@ -7,10 +7,10 @@
 class Entity
 {
 public:
-    Entity(sf::Color t_entityColor, bool t_isAI);
-    sf::Color GetColor();
-    bool CanUseReserves();
-    void SetReserveUse(bool t_b);
+    Entity(sf::Color t_gobbletColor, PlayerAIType t_AIType);
+    sf::Color getColor() const;
+    bool canUseReserves() const;
+    void setReserveUse(bool t_b);
     
     const PlayerAIType& getType() const;
 
@@ -22,6 +22,5 @@ private:
     PlayerAIType m_type;
     
     sf::Color m_entityColor;
-    bool m_isAi;
     bool m_canUseReserves;
 };

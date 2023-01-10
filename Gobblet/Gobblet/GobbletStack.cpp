@@ -2,9 +2,7 @@
 
 #include <iostream>
 
-GobbletStack::GobbletStack() : 
-{
-}
+GobbletStack::GobbletStack() = default;
 
 void GobbletStack::add(const Gobblet& t_gobblet)
 {

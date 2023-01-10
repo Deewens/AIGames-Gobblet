@@ -27,8 +27,6 @@ public:
 
     friend bool operator!=(const GobbletStack& t_lhs, const GobbletStack& t_rhs);
 
-    bool isClicked;
-
 protected:
     void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 

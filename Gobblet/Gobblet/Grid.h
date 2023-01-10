@@ -5,7 +5,6 @@
 #include "SFML/Graphics.hpp"
 
 #include "Tile.h"
-#include <iostream>
 
 class Grid : public sf::Drawable
 {

@@ -3,6 +3,7 @@
 #include "GobbletStack.hpp"
 #include "Grid.h"
 #include "Entity.hpp"
+#include "Move.hpp"
 
 class Board final : public sf::Drawable
 {
@@ -50,8 +51,18 @@ public:
      */
     bool moveGobblet(GobbletStack& t_gobbletStack, sf::Vector2i t_gridPosition);
 
-    Grid& getGrid();
     
+    /**
+     * \brief Move a gobblet from one position to another tile in the grid.
+     * \param t_gobblet
+     * \param t_newPosition
+     */
+    bool moveGobblet(const Gobblet& t_gobblet, std::optional<sf::Vector2i> t_newPosition);
+
+    
+    Grid& getGrid();
+    Entity getOpponent(const Entity& t_player) const;
+
 protected:
     void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 
@@ -73,10 +84,10 @@ private:
 
     ActionState m_gobbletActionState = ActionState::ChooseGobblet;
 
-    Entity m_player;
-    Entity m_NPCPlayer;
+    Entity m_maxPlayer;
+    Entity m_minPlayer;
 
-    bool m_turnOrder;//True is player 1, false is NPC 2
+    bool m_turnOrder;//True is player max, false is min
 
     int m_sameActionCount;
 };

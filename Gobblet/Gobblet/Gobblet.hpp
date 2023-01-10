@@ -1,16 +1,8 @@
 ﻿#pragma once
 
-#include <memory>
 #include <optional>
 
-#include <SFML/Graphics/RenderTarget.hpp>
-#include <SFML/Graphics/CircleShape.hpp>
-
-#include <SFML/Graphics/Color.hpp>
-#include <SFML/Graphics/Drawable.hpp>
-#include <SFML/System/NonCopyable.hpp>
-
-#include "Entity.hpp"
+#include <SFML/Graphics.hpp>
 
 
 class Grid;
@@ -25,7 +17,7 @@ public:
      * \param t_grid Grid this gobblet is on
      * \param t_playerAIType
      */
-    Gobblet(const sf::Color& t_color, int t_size, Grid& t_grid, const Entity& t_player);
+    Gobblet(const sf::Color& t_color, int t_size, Grid& t_grid);
 
     int getSize() const;
 
@@ -58,9 +50,7 @@ public:
 
     void deactivateClickedState();
     void activateClickedState();
-
-    Entity& getPlayer();
-
+    
     friend bool operator==(const Gobblet& t_lhs, const Gobblet& t_rhs);
 
     friend bool operator!=(const Gobblet& t_lhs, const Gobblet& t_rhs);
@@ -83,6 +73,4 @@ private:
 
     sf::Color m_color;
     sf::CircleShape m_shape;
-
-    Entity m_player;
 };

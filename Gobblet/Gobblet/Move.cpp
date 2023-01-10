@@ -1,10 +1,9 @@
 ﻿#include "Move.hpp"
 
-Move::Move(const Entity& t_player, const Gobblet& t_gobblet, const std::optional<sf::Vector2i>& t_from,
-           const sf::Vector2i& t_to)
-    : player(t_player),
-      gobblet(t_gobblet),
-      from(t_from),
-      to(t_to)
+Move::Move(const Entity& t_player, const Gobblet& t_gobblet, const GobbletStack& t_fromStack,
+    const sf::Vector2i& t_toPosition): player(t_player),
+                                       gobblet(t_gobblet),
+                                       fromStack(t_fromStack),
+                                       toPosition(t_toPosition)
 {
 }

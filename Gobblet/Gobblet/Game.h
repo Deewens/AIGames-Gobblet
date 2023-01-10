@@ -8,10 +8,6 @@
 #include <SFML/Graphics.hpp>
 
 #include "Board.hpp"
-#include "Gobblet.hpp"
-#include "Grid.h"
-#include "AI.h"
-
 
 class Game
 {
@@ -23,13 +19,12 @@ public:
     /// </summary>
     void run();
 
-
 private:
     void processEvents();
     void processKeys(sf::Event t_event);
     void update(sf::Time t_deltaTime);
     void render();
-    
+
     sf::RenderWindow m_window; // main SFML window
 
     Board m_board;
