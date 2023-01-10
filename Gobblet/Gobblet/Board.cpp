@@ -578,4 +578,14 @@ void Board::draw(sf::RenderTarget& target, sf::RenderStates states) const
     {
         target.draw(stack, states);
     }
+
+    for (auto& gobblet : m_maxPlayer.getExternalStacks())
+    {
+        target.draw(gobblet, states);
+    }
+
+    for (auto& gobblet : m_minPlayer.getExternalStacks())
+    {
+        target.draw(gobblet, states);
+    }
 }

@@ -1,3 +1,4 @@
+/*
 #include "AI.hpp"
 
 #include <algorithm>
@@ -28,18 +29,18 @@ Move AI::findBestMove(Board& t_board, Entity t_AIPlayer)
 
     Move finalMove = *bestMove;
     delete bestMove;
-    
+
     return finalMove;
 }
 
 int AI::minimax(Board t_board, int t_depth, int alpha, int beta, Entity t_player)
 {
-    
     int bestValue = 0;
     // print alpha and beta
     //std::cout << "Alpha: " << alpha << " Beta: " << beta << std::endl;
-    
-    if (t_depth == 0 || t_board.CheckWinCondition(t_player.getColor())) // Should also return the score if game is over (if player is gonna win)
+
+    if (t_depth == 0 || t_board.CheckWinCondition(t_player.getColor()))
+    // Should also return the score if game is over (if player is gonna win)
     {
         bestValue = evaluateScore(t_board, t_player);
     }
@@ -47,13 +48,14 @@ int AI::minimax(Board t_board, int t_depth, int alpha, int beta, Entity t_player
     {
         bestValue = alpha;
 
-        
+
         auto legalMoves = getAllLegalMoves(t_board, t_player);
         for (auto& move : legalMoves)
         {
             auto copyBoard = t_board;
             t_board.moveGobblet(move.fromStack, move.toPosition);
-            bestValue = std::max(bestValue, minimax(copyBoard, t_depth - 1, bestValue, beta, t_board.getOpponent(t_player)));
+            bestValue = std::max(bestValue, minimax(copyBoard, t_depth - 1, bestValue, beta,
+                                                    t_board.getOpponent(t_player)));
             //t_board.moveGobblet(move.gobblet, std::nullopt);
 
             if (beta <= bestValue)
@@ -65,13 +67,14 @@ int AI::minimax(Board t_board, int t_depth, int alpha, int beta, Entity t_player
     else // Min
     {
         bestValue = beta;
-        
+
         auto legalMoves = getAllLegalMoves(t_board, t_player);
         for (auto& move : legalMoves)
         {
             auto copyBoard = t_board;
             t_board.moveGobblet(move.fromStack, move.toPosition);
-            bestValue = std::min(bestValue, minimax(t_board, t_depth - 1, alpha, bestValue, t_board.getOpponent(t_player)));
+            bestValue = std::min(bestValue, minimax(t_board, t_depth - 1, alpha, bestValue,
+                                                    t_board.getOpponent(t_player)));
             // Move it back to its initial position
             //t_board.moveGobblet(move.gobblet, move.fromStack.getGridPosition());
             if (bestValue <= alpha)
@@ -160,7 +163,6 @@ int AI::evaluateScore(Board& t_board, Entity& t_player)
         {
             totalScore -= colScoreToAdd - rowScoreToAdd;
         }
-
     }
 
     return totalScore;
@@ -241,3 +243,4 @@ std::vector<Move> AI::getAllLegalMoves(Board& t_board, Entity t_currentPlayer)
 
     return possibleMoves;
 }
+*/

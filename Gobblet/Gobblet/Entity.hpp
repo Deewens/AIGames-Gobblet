@@ -4,11 +4,11 @@
 
 #include <SFML/Graphics.hpp>
 
-#include "Board.hpp"
 #include "PlayerType.hpp"
 
 class GobbletStack;
 class Gobblet;
+class Grid;
 
 class Entity
 {
@@ -22,6 +22,8 @@ public:
 
     bool canUseReserves() const;
     void setReserveUse(bool t_b);
+
+    const std::vector<GobbletStack>& getExternalStacks() const;
 
     friend bool operator==(const Entity& t_lhs, const Entity& t_rhs);
 

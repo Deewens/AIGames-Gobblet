@@ -1,7 +1,7 @@
 #include "Entity.hpp"
 
 #include "GobbletStack.hpp"
-#include "Board.hpp"
+#include "Grid.h"
 
 Entity::Entity(const sf::Color& t_gobbletColor, PlayerAIType t_AIType) :
     m_gobbletColor(t_gobbletColor),
@@ -70,6 +70,11 @@ bool Entity::canUseReserves() const
 void Entity::setReserveUse(bool t_b)
 {
     m_canUseReserves = t_b;
+}
+
+const std::vector<GobbletStack>& Entity::getExternalStacks() const
+{
+    return m_externalStacks;
 }
 
 bool operator==(const Entity& t_lhs, const Entity& t_rhs)

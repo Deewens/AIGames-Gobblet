@@ -5,8 +5,6 @@
 
 #include "Gobblet.hpp"
 
-#include "Grid.h"
-
 class GobbletStack final : public sf::Drawable
 {
 public:
