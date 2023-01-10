@@ -8,17 +8,6 @@ Entity::Entity(const sf::Color& t_gobbletColor, PlayerAIType t_AIType) :
     m_type(t_AIType)
 {
     m_canUseReserves = false;
-
-    for (int i = 0; i < 3; i++)
-    {
-        GobbletStack stack;
-        for (int j = 1; j <= 4; j++)
-        {
-            stack.add(m_gobblets.emplace_back(sf::Color::Black, j));
-        }
-
-        m_externalStacks.emplace_back(stack);
-    }
 }
 
 void Entity::initExternalStacks(const Grid& t_grid)
@@ -36,7 +25,7 @@ void Entity::initExternalStacks(const Grid& t_grid)
         yPosition = yPosition + 50;
         for (int j = 1; j <= 4; j++)
         {
-            stack.add(m_gobblets.emplace_back(sf::Color::Black, j));
+            stack.add(m_gobblets.emplace_back(m_gobbletColor, j));
         }
 
         if (m_gobbletColor == sf::Color::Black)
@@ -72,7 +61,12 @@ void Entity::setReserveUse(bool t_b)
     m_canUseReserves = t_b;
 }
 
-const std::vector<GobbletStack>& Entity::getExternalStacks() const
+const std::vector<Gobblet>& Entity::getGobblets() const
+{
+    return m_gobblets;
+}
+
+std::vector<GobbletStack> Entity::getExternalStacks() const
 {
     return m_externalStacks;
 }

@@ -53,12 +53,20 @@ void GobbletStack::setGridPosition(Grid& t_grid, const sf::Vector2i t_gridPositi
 
 void GobbletStack::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
-    if (m_stack.empty()) return;
+    //if (m_stack.empty()) return;
 
-    target.draw(m_stack.back(), states);
+    for (auto& gobblet : m_stack)
+    {
+        target.draw(gobblet, states);
+    }
 }
 
 std::list<std::reference_wrapper<Gobblet>>& GobbletStack::stack()
+{
+    return m_stack;
+}
+
+std::list<std::reference_wrapper<Gobblet>> GobbletStack::stack() const
 {
     return m_stack;
 }

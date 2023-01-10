@@ -10,7 +10,7 @@ Board::Board(sf::RenderWindow& t_window) :
 {
     // Initialise the board, create external stacks around the grid
     m_maxPlayer.initExternalStacks(m_grid);
-    m_maxPlayer.initExternalStacks(m_grid);
+    m_minPlayer.initExternalStacks(m_grid);
 
     m_turnOrder = true;
     m_sameActionCount = 0;
@@ -579,12 +579,12 @@ void Board::draw(sf::RenderTarget& target, sf::RenderStates states) const
         target.draw(stack, states);
     }
 
-    for (auto& gobblet : m_maxPlayer.getExternalStacks())
+    for (auto& gobblet : m_maxPlayer.getGobblets())
     {
         target.draw(gobblet, states);
     }
 
-    for (auto& gobblet : m_minPlayer.getExternalStacks())
+    for (auto& gobblet : m_minPlayer.getGobblets())
     {
         target.draw(gobblet, states);
     }

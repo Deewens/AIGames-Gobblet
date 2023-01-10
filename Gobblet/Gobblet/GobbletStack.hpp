@@ -20,6 +20,7 @@ public:
     void setGridPosition(Grid& t_grid, sf::Vector2i t_gridPosition) const;
 
     std::list<std::reference_wrapper<Gobblet>>& stack();
+    std::list<std::reference_wrapper<Gobblet>> stack() const;
     
     bool isExternalStack = false;
     bool isClicked = false;
