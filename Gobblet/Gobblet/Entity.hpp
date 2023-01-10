@@ -1,26 +1,37 @@
 ﻿#pragma once
 
-#include <SFML/Graphics/Color.hpp>
+#include <vector>
+
+#include <SFML/Graphics.hpp>
 
 #include "PlayerType.hpp"
+
+class GobbletStack;
+class Gobblet;
 
 class Entity
 {
 public:
-    Entity(sf::Color t_gobbletColor, PlayerAIType t_AIType);
-    sf::Color getColor() const;
+    Entity(const sf::Color& t_gobbletColor, PlayerAIType t_AIType);
+
+    std::vector<GobbletStack> initialiseGame();
+    
+    const sf::Color& getColor() const;
+    const PlayerAIType& getType() const;
+
     bool canUseReserves() const;
     void setReserveUse(bool t_b);
-    
-    const PlayerAIType& getType() const;
 
     friend bool operator==(const Entity& t_lhs, const Entity& t_rhs);
 
     friend bool operator!=(const Entity& t_lhs, const Entity& t_rhs);
 
 private:
-    PlayerAIType m_type;
+    std::vector<Gobblet> m_gobblets;
+    std::vector<GobbletStack> m_externalStacks;
     
-    sf::Color m_entityColor;
+    const sf::Color m_gobbletColor;
+    const PlayerAIType m_type;
+
     bool m_canUseReserves;
 };

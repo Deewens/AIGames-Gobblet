@@ -34,57 +34,54 @@ Move AI::findBestMove(Board& t_board, Entity t_AIPlayer)
 
 int AI::minimax(Board t_board, int t_depth, int alpha, int beta, Entity t_player)
 {
-    int bestValue = evaluateScore(t_board, t_player);
     
-    if (t_depth == 0 || bestValue >= 1000) // Should also return the score if game is over (if player is gonna win)
-    {
-        return bestValue;
-        //bestValue = evaluateScore(t_board, t_player);
-    }
-
+    int bestValue = 0;
     // print alpha and beta
-    std::cout << "Alpha: " << alpha << " Beta: " << beta << std::endl;
-
-    if (t_player.getType() == PlayerAIType::Max) // Max player
+    //std::cout << "Alpha: " << alpha << " Beta: " << beta << std::endl;
+    
+    if (t_depth == 0 || t_board.CheckWinCondition(t_player.getColor())) // Should also return the score if game is over (if player is gonna win)
     {
+        bestValue = evaluateScore(t_board, t_player);
+    }
+    else if (t_player.getType() == PlayerAIType::Max) // Max player
+    {
+        bestValue = alpha;
+
+        
         auto legalMoves = getAllLegalMoves(t_board, t_player);
-        //Board boardCopy = t_board;
         for (auto& move : legalMoves)
         {
+            auto copyBoard = t_board;
             t_board.moveGobblet(move.fromStack, move.toPosition);
-            alpha = std::max(alpha, minimax(t_board, t_depth - 1, alpha, beta, t_board.getOpponent(t_player)));
-            t_board.moveGobblet(move.gobblet, std::nullopt);
+            bestValue = std::max(bestValue, minimax(copyBoard, t_depth - 1, bestValue, beta, t_board.getOpponent(t_player)));
+            //t_board.moveGobblet(move.gobblet, std::nullopt);
 
-            if (alpha >= beta)
+            if (beta <= bestValue)
             {
-                return alpha; // Prune
+                break;
             }
         }
-        return alpha;
     }
     else // Min
     {
-        //bestValue = beta;
+        bestValue = beta;
         
         auto legalMoves = getAllLegalMoves(t_board, t_player);
-        //Board boardCopy = t_board;
         for (auto& move : legalMoves)
         {
+            auto copyBoard = t_board;
             t_board.moveGobblet(move.fromStack, move.toPosition);
-            beta = std::min(beta, minimax(t_board, t_depth - 1, alpha, bestValue, t_board.getOpponent(t_player)));
-
+            bestValue = std::min(bestValue, minimax(t_board, t_depth - 1, alpha, bestValue, t_board.getOpponent(t_player)));
             // Move it back to its initial position
-            t_board.moveGobblet(move.gobblet, move.fromStack.getGridPosition());
-            if (alpha >= beta)
+            //t_board.moveGobblet(move.gobblet, move.fromStack.getGridPosition());
+            if (bestValue <= alpha)
             {
-                return beta; // Prune
+                break;
             }
         }
-
-        return beta;
     }
 
-    //return bestValue;
+    return bestValue;
 }
 
 int AI::evaluateScore(Board& t_board, Entity& t_player)
@@ -155,7 +152,15 @@ int AI::evaluateScore(Board& t_board, Entity& t_player)
             }
         }
 
-        totalScore += colScoreToAdd + rowScoreToAdd;
+        if (t_player.getType() == PlayerAIType::Max)
+        {
+            totalScore += colScoreToAdd + rowScoreToAdd;
+        }
+        else
+        {
+            totalScore -= colScoreToAdd - rowScoreToAdd;
+        }
+
     }
 
     return totalScore;
