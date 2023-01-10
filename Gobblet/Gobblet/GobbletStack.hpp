@@ -11,7 +11,7 @@ public:
     GobbletStack();
     explicit GobbletStack(bool t_isExternalStack);
 
-    void add(Gobblet& t_gobblet);
+    void add(std::reference_wrapper<Gobblet> t_gobblet);
     Gobblet& top() const;
     Gobblet& pop();
     bool isEmpty() const;

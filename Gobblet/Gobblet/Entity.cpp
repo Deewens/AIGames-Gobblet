@@ -20,12 +20,13 @@ void Entity::initExternalStacks(const Grid& t_grid)
 
     for (int i = 0; i < 3; i++)
     {
-        GobbletStack stack;
+        GobbletStack stack = GobbletStack(true);
 
         yPosition = yPosition + 50;
-        for (int j = 1; j <= 4; j++)
+        for (int size = 1; size <= 4; size++)
         {
-            stack.add(m_gobblets.emplace_back(m_gobbletColor, j));
+            m_gobblets.emplace_back(m_gobbletColor, size);
+            stack.add(std::ref(m_gobblets.back()));
         }
 
         if (m_gobbletColor == sf::Color::Black)
@@ -37,7 +38,7 @@ void Entity::initExternalStacks(const Grid& t_grid)
             stack.setPosition({gridPosition.x + (gridSize.x + 50), yPosition}); // 50px - right side of the grid
         }
 
-        m_externalStacks.emplace_back(stack);
+        m_externalStacks.push_back(stack);
     }
 }
 
@@ -66,7 +67,7 @@ const std::vector<Gobblet>& Entity::getGobblets() const
     return m_gobblets;
 }
 
-std::vector<GobbletStack> Entity::getExternalStacks() const
+const std::vector<GobbletStack>& Entity::getExternalStacks() const
 {
     return m_externalStacks;
 }

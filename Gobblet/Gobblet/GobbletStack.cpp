@@ -8,10 +8,9 @@ GobbletStack::GobbletStack(const bool t_isExternalStack) : isExternalStack(t_isE
 {
 }
 
-void GobbletStack::add(Gobblet& t_gobblet)
+void GobbletStack::add(std::reference_wrapper<Gobblet> t_gobblet)
 {
-    m_stack.push_back(std::ref(t_gobblet));
-
+    m_stack.push_back(t_gobblet);
     m_stack.sort([](const Gobblet& t_gobblet1, const Gobblet& t_gobblet2)
     {
         return t_gobblet1.getSize() < t_gobblet2.getSize();

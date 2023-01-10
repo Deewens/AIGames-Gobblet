@@ -24,7 +24,7 @@ public:
     void setReserveUse(bool t_b);
 
     const std::vector<Gobblet>& getGobblets() const;
-    std::vector<GobbletStack> getExternalStacks() const;
+    const std::vector<GobbletStack>& getExternalStacks() const;
 
     friend bool operator==(const Entity& t_lhs, const Entity& t_rhs);
 
