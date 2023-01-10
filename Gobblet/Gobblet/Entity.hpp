@@ -4,6 +4,7 @@
 
 #include <SFML/Graphics.hpp>
 
+#include "Board.hpp"
 #include "PlayerType.hpp"
 
 class GobbletStack;
@@ -12,9 +13,9 @@ class Gobblet;
 class Entity
 {
 public:
+    Entity();
     Entity(const sf::Color& t_gobbletColor, PlayerAIType t_AIType);
-
-    std::vector<GobbletStack> initialiseGame();
+    void initExternalStacks(const Grid& t_grid);
     
     const sf::Color& getColor() const;
     const PlayerAIType& getType() const;

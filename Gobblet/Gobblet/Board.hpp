@@ -3,7 +3,6 @@
 #include "GobbletStack.hpp"
 #include "Grid.h"
 #include "Entity.hpp"
-#include "Move.hpp"
 
 class Board final : public sf::Drawable
 {
@@ -41,8 +40,6 @@ public:
     bool CheckReserveUsage(sf::Color a[], sf::Color b[], sf::Color t_color);
 
     void CheckTieCondition();
-
-    std::vector<std::shared_ptr<GobbletStack>>& getGobbletStacks();
     
     /**
      * \brief Move a gobblet from top of one stack to another tile in the grid.
@@ -50,14 +47,6 @@ public:
      * \param t_gridPosition new gobblet position
      */
     bool moveGobblet(GobbletStack& t_gobbletStack, sf::Vector2i t_gridPosition);
-
-    
-    /**
-     * \brief Move a gobblet from one position to another tile in the grid.
-     * \param t_gobblet
-     * \param t_newPosition
-     */
-    bool moveGobblet(const Gobblet& t_gobblet, std::optional<sf::Vector2i> t_newPosition);
 
     
     Grid& getGrid();
@@ -79,8 +68,9 @@ private:
 
     Grid m_grid;
 
-    std::vector<std::shared_ptr<GobbletStack>> m_gobbletStacks;
-    std::weak_ptr<GobbletStack> m_activeStack;
+    std::vector<GobbletStack> m_gobbletStacks;
+    
+    GobbletStack* m_activeStack;
 
     ActionState m_gobbletActionState = ActionState::ChooseGobblet;
 

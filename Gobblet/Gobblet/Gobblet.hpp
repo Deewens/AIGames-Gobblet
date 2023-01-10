@@ -10,6 +10,7 @@ class Grid;
 class Gobblet final : public sf::Drawable
 {
 public:
+    Gobblet();
     /**
      * \brief Create a new gobblet
      * \param t_color Color of this gobblet (either black or white)
@@ -17,7 +18,7 @@ public:
      * \param t_grid Grid this gobblet is on
      * \param t_playerAIType
      */
-    Gobblet(const sf::Color& t_color, int t_size, Grid& t_grid);
+    Gobblet(const sf::Color& t_color, int t_size);
 
     int getSize() const;
 
@@ -30,8 +31,9 @@ public:
     /**
      * \brief Set the grid coordinate of the gobblet
      * \param t_coordinates Coordinate of the gobblet on the grid. Pass nullptr to remove the gobblet from the grid
+     * \param t_grid
      */
-    void setGridCoordinates(std::optional<sf::Vector2i> t_coordinates);
+    void setGridCoordinates(std::optional<sf::Vector2i> t_coordinates, Grid& t_grid);
 
     /**
      * \brief Gobble up this gobblet with a bigger one
@@ -63,8 +65,6 @@ private:
     void verifySize();
 
     void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
-
-    Grid& m_grid;
 
     std::optional<sf::Vector2i> m_gridCoordinates;
 

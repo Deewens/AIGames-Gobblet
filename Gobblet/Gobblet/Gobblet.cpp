@@ -2,8 +2,7 @@
 
 #include "Grid.h"
 
-Gobblet::Gobblet(const sf::Color& t_color, int t_size, Grid& t_grid) :
-    m_grid(t_grid),
+Gobblet::Gobblet(const sf::Color& t_color, int t_size) :
     m_size(t_size),
     m_shape(static_cast<float>(t_size) * m_sizeFactor)
 {
@@ -32,7 +31,7 @@ std::optional<sf::Vector2i> Gobblet::getGridCoordinates() const
     return m_gridCoordinates;
 }
 
-void Gobblet::setGridCoordinates(const std::optional<sf::Vector2i> t_coordinates)
+void Gobblet::setGridCoordinates(const std::optional<sf::Vector2i> t_coordinates, Grid& t_grid)
 {
     m_gridCoordinates = t_coordinates;
 
@@ -45,7 +44,7 @@ void Gobblet::setGridCoordinates(const std::optional<sf::Vector2i> t_coordinates
                 // Set the gobblet's world position to the grid coordinates
                 if (m_gridCoordinates->x == i && m_gridCoordinates->y == j)
                 {
-                    auto tile = m_grid.getGridArray()[i][j];
+                    auto tile = t_grid.getGridArray()[i][j];
                     m_shape.setPosition(tile.getCenter());
                 }
             }
