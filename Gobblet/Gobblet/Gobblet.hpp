@@ -9,7 +9,7 @@
 class Tile;
 class Grid;
 
-class Gobblet final : public sf::Drawable, public std::enable_shared_from_this<Gobblet>
+class Gobblet final : public sf::Drawable
 {
 public:
     /**
@@ -21,8 +21,6 @@ public:
     Gobblet(const sf::Color& t_color, int t_size);
 
     int getSize() const;
-
-    const sf::Color& getColor() const;
 
     /**
      * \brief Get the grid coordinate of the gobblet
@@ -37,17 +35,17 @@ public:
      */
     void setGridCoordinates(const Grid& t_grid, std::optional<sf::Vector2i> t_coordinates);
 
-    const std::weak_ptr<Gobblet>& getParentGobblet() const;
-    const std::weak_ptr<Gobblet>& getChildGobblet() const;
+    const Gobblet* getParentGobblet() const;
+    const Gobblet* getChildGobblet() const;
 
-    std::weak_ptr<Gobblet>& getParentGobblet();
-    std::weak_ptr<Gobblet>& getChildGobblet();
+    Gobblet* getParentGobblet();
+    Gobblet* getChildGobblet();
     
     const Tile* getTile() const;
     Tile* getTile();
 
-    void setParentGobblet(std::shared_ptr<Gobblet> t_parent);
-    void setChildGobblet(std::shared_ptr<Gobblet> t_child);
+    void setParentGobblet(Gobblet* t_parent);
+    void setChildGobblet(Gobblet* t_child);
     void setTile(Tile* t_tile);
 
     /**
@@ -55,7 +53,7 @@ public:
      * \param t_biggerGobblet Bigger gobblet
      * \return true if the passed gobblet is bigger than this one, false otherwise
      */
-    bool gobbleUp(const Grid& t_grid, const std::shared_ptr<Gobblet>& t_biggerGobblet);
+    bool gobbleUp(const Grid& t_grid, Gobblet& t_biggerGobblet);
 
     sf::Vector2f getPosition() const;
     void setPosition(const sf::Vector2f& t_position);
@@ -83,8 +81,8 @@ private:
     // If std::nullopt, then the gobblet is not on the grid (it is an external gobblet)
     Tile* m_tile; // If nullptr, then the gobblet is not on a tile (it is an external gobblet)
 
-    std::weak_ptr<Gobblet> m_parentGobblet; // If null, top pointer
-    std::weak_ptr<Gobblet> m_childGobblet; // If null, bottom pointer
+    Gobblet* m_parentGobblet = nullptr; // If null, top pointer
+    Gobblet* m_childGobblet = nullptr; // If null, bottom pointer
 
     int m_size;
     const float m_sizeFactor = 4;

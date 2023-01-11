@@ -26,11 +26,6 @@ int Gobblet::getSize() const
     return m_size;
 }
 
-const sf::Color& Gobblet::getColor() const
-{
-    return m_color;
-}
-
 std::optional<sf::Vector2i> Gobblet::getGridCoordinates() const
 {
     return m_gridCoordinates;
@@ -57,22 +52,22 @@ void Gobblet::setGridCoordinates(const Grid& t_grid, const std::optional<sf::Vec
     }
 }
 
-const std::weak_ptr<Gobblet>& Gobblet::getParentGobblet() const
+const Gobblet* Gobblet::getParentGobblet() const
 {
     return m_parentGobblet;
 }
 
-const std::weak_ptr<Gobblet>& Gobblet::getChildGobblet() const
+const Gobblet* Gobblet::getChildGobblet() const
 {
     return m_childGobblet;
 }
 
-std::weak_ptr<Gobblet>& Gobblet::getParentGobblet()
+Gobblet* Gobblet::getParentGobblet()
 {
     return m_parentGobblet;
 }
 
-std::weak_ptr<Gobblet>& Gobblet::getChildGobblet()
+Gobblet* Gobblet::getChildGobblet()
 {
     return m_childGobblet;
 }
@@ -87,12 +82,12 @@ Tile* Gobblet::getTile()
     return m_tile;
 }
 
-void Gobblet::setParentGobblet(std::shared_ptr<Gobblet> t_parent)
+void Gobblet::setParentGobblet(Gobblet* t_parent)
 {
     m_parentGobblet = t_parent;
 }
 
-void Gobblet::setChildGobblet(std::shared_ptr<Gobblet> t_child)
+void Gobblet::setChildGobblet(Gobblet* t_child)
 {
     m_childGobblet = t_child;
 }
@@ -102,14 +97,14 @@ void Gobblet::setTile(Tile* t_tile)
     m_tile = t_tile;
 }
 
-bool Gobblet::gobbleUp(const Grid& t_grid, const std::shared_ptr<Gobblet>& t_biggerGobblet)
+bool Gobblet::gobbleUp(const Grid& t_grid, Gobblet& t_biggerGobblet)
 {
-    if (t_biggerGobblet->getSize() > m_size)
+    if (t_biggerGobblet.getSize() > m_size)
     {
-        t_biggerGobblet->m_childGobblet = shared_from_this();
-        m_parentGobblet = t_biggerGobblet;
-        t_biggerGobblet->m_tile = m_tile;
-        t_biggerGobblet->setGridCoordinates(t_grid, m_gridCoordinates);
+        t_biggerGobblet.m_childGobblet = this;
+        m_parentGobblet = &t_biggerGobblet;
+        m_tile = t_biggerGobblet.m_tile;
+        t_biggerGobblet.setGridCoordinates(t_grid, m_gridCoordinates);
         
         return true;
     }

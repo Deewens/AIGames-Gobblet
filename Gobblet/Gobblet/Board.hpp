@@ -17,7 +17,6 @@ public:
      */
     bool chooseGobblet();
     void switchCurrentPlayer();
-    void removeClickedGobbletFromReserve() const;
     /**
      * \brief Place the chosen gobblet somewhere in the grid according to mouse position
      * \return flag used for controlling code flow. If true, nothing should be called after this method, and the calling method should immediately break or return
@@ -58,7 +57,7 @@ private:
 
     Grid m_grid;
 
-    std::vector<std::shared_ptr<Gobblet>> m_gobblets;
+    std::vector<Gobblet*> m_gobblets;
 
     ActionState m_gobbletActionState = ActionState::ChooseGobblet;
 
@@ -67,7 +66,7 @@ private:
     Entity m_maxPlayer;
     Entity m_minPlayer;
 
-    std::weak_ptr<Gobblet> m_clickedGobblet;
+    Gobblet* m_clickedGobblet = nullptr;
 
     int m_sameActionCount;
 };

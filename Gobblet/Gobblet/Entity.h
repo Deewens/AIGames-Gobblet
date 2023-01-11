@@ -19,7 +19,6 @@ public:
     ~Entity();*/
 
     sf::Color getColor() const;
-    sf::Color getColor();
 
     const Type& getType() const;
     bool isAI() const;
@@ -27,11 +26,11 @@ public:
     bool canUseReserves() const;
     void setReserveUse(bool t_b);
 
-    std::vector<std::shared_ptr<Gobblet>>& getExternalGobblets();
-    const std::vector<std::shared_ptr<Gobblet>>& getExternalGobblets() const;
+    std::vector<Gobblet*>& getExternalGobblets();
+    const std::vector<Gobblet*>& getExternalGobblets() const;
     
 private:
-    std::vector<std::shared_ptr<Gobblet>> m_externalGobblets;
+    std::vector<Gobblet*> m_externalGobblets;
     
     sf::Color m_gobbletColor;
     Type m_type;

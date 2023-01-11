@@ -7,9 +7,6 @@ Board::Board(sf::RenderWindow& t_window) :
     m_maxPlayer(sf::Color::Black, Entity::Type::Max, false, m_grid),
     m_minPlayer(sf::Color::White, Entity::Type::Min, true, m_grid)
 {
-    m_gobblets.insert(m_gobblets.end(), m_minPlayer.getExternalGobblets().begin(), m_minPlayer.getExternalGobblets().end());
-    m_gobblets.insert(m_gobblets.end(), m_minPlayer.getExternalGobblets().begin(), m_minPlayer.getExternalGobblets().end());
-    
     m_currentPlayer = &m_maxPlayer;
     m_sameActionCount = 0;
 }
@@ -25,28 +22,25 @@ void Board::update(sf::Time t_deltaTime)
 
 void Board::deactivateClickedGobblet()
 {
-    if (!m_clickedGobblet.expired())
-    {
-        m_clickedGobblet.lock()->deactivateClickedState();
-        m_clickedGobblet.reset();
-    }
+    m_clickedGobblet->deactivateClickedState();
+    m_clickedGobblet = nullptr;
 }
 
 bool Board::chooseGobblet()
 {
     if (m_gobbletActionState == ActionState::ChooseGobblet)
     {
-        if (!m_clickedGobblet.expired())
+        if (m_clickedGobblet != nullptr)
         {
             deactivateClickedGobblet();
         }
         
         for (auto const& gobblet : m_currentPlayer->getExternalGobblets())
         {
-            if (gobblet->getParentGobblet().expired() && gobblet->getShape().getGlobalBounds().intersects(m_mousePosition))
+            if (gobblet->getParentGobblet() == nullptr && gobblet->getShape().getGlobalBounds().intersects(m_mousePosition))
             {
                 m_clickedGobblet = gobblet;
-                m_clickedGobblet.lock()->activateClickedState();
+                m_clickedGobblet->activateClickedState();
                 m_gobbletActionState = ActionState::PlaceGobblet;
                 
                 return true;
@@ -55,10 +49,10 @@ bool Board::chooseGobblet()
 
         for (auto const& gobblet : m_gobblets)
         {
-            if (gobblet->getParentGobblet().expired() && gobblet->getColor() == m_currentPlayer->getColor() && gobblet->getShape().getGlobalBounds().intersects(m_mousePosition))
+            if (gobblet->getParentGobblet() == nullptr && gobblet->getShape().getGlobalBounds().intersects(m_mousePosition))
             {
                 m_clickedGobblet = gobblet;
-                m_clickedGobblet.lock()->activateClickedState();
+                m_clickedGobblet->activateClickedState();
                 m_gobbletActionState = ActionState::PlaceBoardGobblet;
                 
                 return true;
@@ -81,21 +75,12 @@ void Board::switchCurrentPlayer()
     }
 }
 
-void Board::removeClickedGobbletFromReserve() const
-{
-    // If external stack
-    if (!m_clickedGobblet.expired() && !m_clickedGobblet.lock()->getGridCoordinates().has_value())
-    {
-        m_currentPlayer->getExternalGobblets().erase(std::remove(m_currentPlayer->getExternalGobblets().begin(), m_currentPlayer->getExternalGobblets().end(), m_clickedGobblet.lock()), m_currentPlayer->getExternalGobblets().end());
-    }
-}
-
 bool Board::placeGobblet()
 {
     if (m_gobbletActionState == ActionState::PlaceGobblet || m_gobbletActionState == ActionState::PlaceBoardGobblet)
     {
         // If mouse clicked on a tile of the grid, move the top gobblet from the active gobblet stack to the tile
-        if (!m_clickedGobblet.expired())
+        if (m_clickedGobblet != nullptr)
         {
             // Mouse is on the grid
             if (m_grid.getBounds().intersects(m_mousePosition))
@@ -110,35 +95,44 @@ bool Board::placeGobblet()
                         if (tile.GetShape().getGlobalBounds().intersects(m_mousePosition))
                         {
                             // If there is not gobblet stack on this tile, place it
-                            if (tile.activeGobblet.expired())
+                            if (tile.activeGobblet == nullptr)
                             {
-                                removeClickedGobbletFromReserve();
-                                    
-                                tile.activeGobblet = m_clickedGobblet.lock();
-
-                                if (!tile.activeGobblet.lock()->getChildGobblet().expired())
+                                // If external stack
+                                if (!m_clickedGobblet->getGridCoordinates().has_value())
                                 {
-                                    tile.activeGobblet.lock()->getChildGobblet().lock()->setParentGobblet(nullptr);
-                                }
-
-                                if (m_clickedGobblet.lock()->getGridCoordinates().has_value())
-                                {
-                                    if (!m_clickedGobblet.lock()->getChildGobblet().expired())
+                                    const auto foundIt = std::find_if(m_currentPlayer->getExternalGobblets().begin(), m_currentPlayer->getExternalGobblets().end(), [&](const Gobblet* gobblet)
                                     {
-                                        m_clickedGobblet.lock()->getTile()->activeGobblet.reset();
+                                        return gobblet == m_clickedGobblet;
+                                    });
+
+                                    if (foundIt != m_currentPlayer->getExternalGobblets().end())
+                                    {
+                                        m_gobblets.push_back(*foundIt);
+                                        m_currentPlayer->getExternalGobblets().erase(std::remove(m_currentPlayer->getExternalGobblets().begin(), m_currentPlayer->getExternalGobblets().end(), *foundIt), m_currentPlayer->getExternalGobblets().end());
+                                    }
+
+                                    if (m_clickedGobblet->getChildGobblet() != nullptr)
+                                    {
+                                        m_clickedGobblet->getTile()->activeGobblet = nullptr;
                                     }
                                     else
                                     {
-                                        m_clickedGobblet.lock()->getTile()->activeGobblet = m_clickedGobblet.lock()->getChildGobblet();
+                                        m_clickedGobblet->getTile()->activeGobblet = m_clickedGobblet->getChildGobblet();
                                     }
                                 }
+                                    
+                                tile.activeGobblet = m_clickedGobblet;
+
+                                if (tile.activeGobblet->getChildGobblet() != nullptr)
+                                {
+                                    tile.activeGobblet->getChildGobblet()->setParentGobblet(nullptr);
+                                }
                                 
+                                tile.activeGobblet->setParentGobblet(nullptr);
+                                tile.activeGobblet->setChildGobblet(nullptr);
+                                tile.activeGobblet->setTile(&tile);
                                 
-                                tile.activeGobblet.lock()->setParentGobblet(nullptr);
-                                tile.activeGobblet.lock()->setChildGobblet(nullptr);
-                                tile.activeGobblet.lock()->setTile(&tile);
-                                
-                                tile.activeGobblet.lock()->setGridCoordinates(m_grid, sf::Vector2i(static_cast<int>(y), static_cast<int>(x)));
+                                tile.activeGobblet->setGridCoordinates(m_grid, sf::Vector2i(static_cast<int>(y), static_cast<int>(x)));
 
                                 deactivateClickedGobblet();
                             }
@@ -148,22 +142,32 @@ bool Board::placeGobblet()
                                 {
                                     if (m_currentPlayer->canUseReserves())
                                     {
-                                        if (m_clickedGobblet.lock()->getSize() > tile.activeGobblet.lock()->getSize())
+                                        if (m_clickedGobblet->getSize() > tile.activeGobblet->getSize())
                                         {
-                                            const bool hasGobbledUp = tile.activeGobblet.lock()->gobbleUp(m_grid, m_clickedGobblet.lock());
+                                            const bool hasGobbledUp = tile.activeGobblet->gobbleUp(m_grid, *m_clickedGobblet);
                                             if (hasGobbledUp)
                                             {
-                                                removeClickedGobbletFromReserve();
-                                                
-                                                if (m_clickedGobblet.lock()->getGridCoordinates().has_value())
+                                                // If external stack
+                                                if (!m_clickedGobblet->getGridCoordinates().has_value())
                                                 {
-                                                    if (!m_clickedGobblet.lock()->getChildGobblet().expired())
+                                                    const auto foundIt = std::find_if(m_currentPlayer->getExternalGobblets().begin(), m_currentPlayer->getExternalGobblets().end(), [&](const Gobblet* gobblet)
                                                     {
-                                                        m_clickedGobblet.lock()->getTile()->activeGobblet.reset();
+                                                        return gobblet == m_clickedGobblet;
+                                                    });
+
+                                                    if (foundIt != m_currentPlayer->getExternalGobblets().end())
+                                                    {
+                                                        m_gobblets.push_back(*foundIt);
+                                                        m_currentPlayer->getExternalGobblets().erase(std::remove(m_currentPlayer->getExternalGobblets().begin(), m_currentPlayer->getExternalGobblets().end(), *foundIt), m_currentPlayer->getExternalGobblets().end());
+                                                    }
+
+                                                    if (m_clickedGobblet->getChildGobblet() != nullptr)
+                                                    {
+                                                        m_clickedGobblet->getTile()->activeGobblet = nullptr;
                                                     }
                                                     else
                                                     {
-                                                        m_clickedGobblet.lock()->getTile()->activeGobblet = m_clickedGobblet.lock()->getChildGobblet();
+                                                        m_clickedGobblet->getTile()->activeGobblet = m_clickedGobblet->getChildGobblet();
                                                     }
                                                 }
                                                 
@@ -181,24 +185,35 @@ bool Board::placeGobblet()
                                 }
                                 else
                                 {
-                                    if (m_clickedGobblet.lock()->getSize() > tile.activeGobblet.lock()->getSize())
+                                    if (m_clickedGobblet->getSize() > tile.activeGobblet->getSize())
                                     {
-                                        const bool hasGobbledUp = tile.activeGobblet.lock()->gobbleUp(m_grid, m_clickedGobblet.lock());
+                                        const bool hasGobbledUp = tile.activeGobblet->gobbleUp(m_grid, *m_clickedGobblet);
                                         if (hasGobbledUp)
                                         {
-                                            removeClickedGobbletFromReserve();
-
-                                            if (m_clickedGobblet.lock()->getGridCoordinates().has_value())
+                                            // If external stack
+                                            if (!m_clickedGobblet->getGridCoordinates().has_value())
                                             {
-                                                if (!m_clickedGobblet.lock()->getChildGobblet().expired())
+                                                const auto foundIt = std::find_if(m_currentPlayer->getExternalGobblets().begin(), m_currentPlayer->getExternalGobblets().end(), [&](const Gobblet* gobblet)
                                                 {
-                                                    m_clickedGobblet.lock()->getTile()->activeGobblet.reset();
+                                                    return gobblet == m_clickedGobblet;
+                                                });
+
+                                                if (foundIt != m_currentPlayer->getExternalGobblets().end())
+                                                {
+                                                    m_gobblets.push_back(*foundIt);
+                                                    m_currentPlayer->getExternalGobblets().erase(std::remove(m_currentPlayer->getExternalGobblets().begin(), m_currentPlayer->getExternalGobblets().end(), *foundIt), m_currentPlayer->getExternalGobblets().end());
+                                                }
+
+                                                if (m_clickedGobblet->getChildGobblet() != nullptr)
+                                                {
+                                                    m_clickedGobblet->getTile()->activeGobblet = nullptr;
                                                 }
                                                 else
                                                 {
-                                                    m_clickedGobblet.lock()->getTile()->activeGobblet = m_clickedGobblet.lock()->getChildGobblet();
+                                                    m_clickedGobblet->getTile()->activeGobblet = m_clickedGobblet->getChildGobblet();
                                                 }
                                             }
+
                                             
                                             tile.activeGobblet = m_clickedGobblet;
                                             deactivateClickedGobblet();
@@ -251,10 +266,10 @@ void Board::processMouse(sf::Event t_event)
         }
         else if (t_event.mouseButton.button == sf::Mouse::Right)
         {
-            if (!m_clickedGobblet.expired())
+            if (m_clickedGobblet != nullptr)
             {
-                m_clickedGobblet.lock()->deactivateClickedState();
-                m_clickedGobblet.reset();
+                m_clickedGobblet->deactivateClickedState();
+                m_clickedGobblet = nullptr;
                 
                 m_gobbletActionState = ActionState::ChooseGobblet;
             }

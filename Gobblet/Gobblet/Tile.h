@@ -18,7 +18,7 @@ public:
 
     sf::Vector2f getCenter() const;
 
-    std::weak_ptr<Gobblet> activeGobblet;
+    Gobblet* activeGobblet = nullptr;
     
     
 private:
