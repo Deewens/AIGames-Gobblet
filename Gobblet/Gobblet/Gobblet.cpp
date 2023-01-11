@@ -2,14 +2,13 @@
 
 #include "Grid.h"
 
-Gobblet::Gobblet(const Color& t_color, int t_size, Grid& t_grid) :
-    m_grid(t_grid),
+Gobblet::Gobblet(const sf::Color& t_color, int t_size) :
     m_size(t_size),
     m_shape(static_cast<float>(t_size) * m_sizeFactor)
 {
     verifySize();
 
-    if (t_color == Color::White)
+    if (t_color == sf::Color::White)
     {
         m_color = sf::Color::White;
     }
@@ -27,12 +26,17 @@ int Gobblet::getSize() const
     return m_size;
 }
 
+const sf::Color& Gobblet::getColor() const
+{
+    return m_color;
+}
+
 std::optional<sf::Vector2i> Gobblet::getGridCoordinates() const
 {
     return m_gridCoordinates;
 }
 
-void Gobblet::setGridCoordinates(const std::optional<sf::Vector2i> t_coordinates)
+void Gobblet::setGridCoordinates(const Grid& t_grid, const std::optional<sf::Vector2i> t_coordinates)
 {
     m_gridCoordinates = t_coordinates;
 
@@ -45,11 +49,73 @@ void Gobblet::setGridCoordinates(const std::optional<sf::Vector2i> t_coordinates
                 // Set the gobblet's world position to the grid coordinates
                 if (m_gridCoordinates->x == i && m_gridCoordinates->y == j)
                 {
-                    auto tile = m_grid.getGridArray()[i][j];
+                    auto tile = t_grid.getGridArray()[i][j];
                     m_shape.setPosition(tile.getCenter());
                 }
             }
         }
+    }
+}
+
+const std::weak_ptr<Gobblet>& Gobblet::getParentGobblet() const
+{
+    return m_parentGobblet;
+}
+
+const std::weak_ptr<Gobblet>& Gobblet::getChildGobblet() const
+{
+    return m_childGobblet;
+}
+
+std::weak_ptr<Gobblet>& Gobblet::getParentGobblet()
+{
+    return m_parentGobblet;
+}
+
+std::weak_ptr<Gobblet>& Gobblet::getChildGobblet()
+{
+    return m_childGobblet;
+}
+
+const Tile* Gobblet::getTile() const
+{
+    return m_tile;
+}
+
+Tile* Gobblet::getTile()
+{
+    return m_tile;
+}
+
+void Gobblet::setParentGobblet(std::shared_ptr<Gobblet> t_parent)
+{
+    m_parentGobblet = t_parent;
+}
+
+void Gobblet::setChildGobblet(std::shared_ptr<Gobblet> t_child)
+{
+    m_childGobblet = t_child;
+}
+
+void Gobblet::setTile(Tile* t_tile)
+{
+    m_tile = t_tile;
+}
+
+bool Gobblet::gobbleUp(const Grid& t_grid, const std::shared_ptr<Gobblet>& t_biggerGobblet)
+{
+    if (t_biggerGobblet->getSize() > m_size)
+    {
+        t_biggerGobblet->m_childGobblet = shared_from_this();
+        m_parentGobblet = t_biggerGobblet;
+        t_biggerGobblet->m_tile = m_tile;
+        t_biggerGobblet->setGridCoordinates(t_grid, m_gridCoordinates);
+        
+        return true;
+    }
+    else
+    {
+        return false;
     }
 }
 

@@ -3,8 +3,6 @@
 #include <iostream>
 #include <stack>
 
-class GobbletStack;
-
 class Gobblet;
 
 class Tile : public sf::Drawable
@@ -20,7 +18,7 @@ public:
 
     sf::Vector2f getCenter() const;
 
-    std::weak_ptr<GobbletStack> gobbletStack;
+    std::weak_ptr<Gobblet> activeGobblet;
     
     
 private:

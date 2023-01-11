@@ -1,6 +1,5 @@
 ﻿#pragma once
 
-#include "GobbletStack.hpp"
 #include "Grid.h"
 #include "Entity.h"
 
@@ -10,13 +9,15 @@ public:
     explicit Board(sf::RenderWindow& t_window);
 
     void update(sf::Time t_deltaTime);
-    void removeStackIfEmpty(const std::shared_ptr<GobbletStack>& stackToRemove);
+    void deactivateClickedGobblet();
 
     /**
      * \brief Choose the gobblet to be moved. The gobblet is selected from mouse position
      * \return flag used for controlling code flow. If true, nothing should be called after this method, and the calling method should immediately break or return. (e.g.: should not called placeGobblet after this method if it return true)
      */
     bool chooseGobblet();
+    void switchCurrentPlayer();
+    void removeClickedGobbletFromReserve() const;
     /**
      * \brief Place the chosen gobblet somewhere in the grid according to mouse position
      * \return flag used for controlling code flow. If true, nothing should be called after this method, and the calling method should immediately break or return
@@ -57,15 +58,16 @@ private:
 
     Grid m_grid;
 
-    std::vector<std::shared_ptr<GobbletStack>> m_gobbletStacks;
-    std::weak_ptr<GobbletStack> m_activeStack;
+    std::vector<std::shared_ptr<Gobblet>> m_gobblets;
 
     ActionState m_gobbletActionState = ActionState::ChooseGobblet;
 
-    bool m_turnOrder;//True is player 1, false is NPC 2
+    Entity* m_currentPlayer;
 
-    Entity m_player;
-    Entity m_NPCPlayer;
+    Entity m_maxPlayer;
+    Entity m_minPlayer;
+
+    std::weak_ptr<Gobblet> m_clickedGobblet;
 
     int m_sameActionCount;
 };

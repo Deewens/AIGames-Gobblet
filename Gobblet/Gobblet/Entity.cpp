@@ -1,23 +1,95 @@
 #include "Entity.h"
 
-Entity::Entity(sf::Color t_entityColor, bool t_isAI):
-	m_entityColor(t_entityColor),
-	m_isAi(t_isAI)
+#include "Grid.h"
+
+Entity::Entity(const sf::Color t_gobbletColor, const Type t_type, const bool t_isAI, Grid& t_grid):
+    m_gobbletColor(t_gobbletColor),
+    m_type(t_type),
+    m_isAI(t_isAI)
 {
-	m_canUseReserves = false;
+    m_canUseReserves = false;
+
+    // Initialise the board, create external stacks around the grid
+    const sf::Vector2f gridPosition = t_grid.getPosition();
+    const sf::Vector2f gridSize = t_grid.getSize();
+
+    float yPosition = gridPosition.y;
+    for (int i = 0; i < 3; i++)
+    {
+        yPosition = yPosition + 50;
+        for (int size = 1; size <= 4; size++)
+        {
+            Gobblet newGobblet = Gobblet(t_gobbletColor, size);
+            if (m_gobbletColor == sf::Color::Black)
+            {
+                newGobblet.setPosition({gridPosition.x - 50, yPosition}); // 50px - left side of the grid
+            }
+            else
+            {
+                newGobblet.setPosition({gridPosition.x + (gridSize.x + 50), yPosition});
+                // 50px - right side of the grid
+            }
+
+            m_externalGobblets.push_back(std::make_shared<Gobblet>(newGobblet));
+            if (m_externalGobblets.size() > 1)
+            {
+                m_externalGobblets[m_externalGobblets.size() - 2]->gobbleUp(t_grid, m_externalGobblets.back());
+            }
+        }
+    }
 }
 
-sf::Color Entity::GetColor()
+
+
+/*Entity::Entity(const Entity& t_entity) :
+    m_externalGobblets(t_entity.m_externalGobblets),
+    m_gobbletColor(t_entity.m_gobbletColor),
+    m_type(t_entity.m_type),
+    m_isAI(t_entity.m_isAI),
+    m_canUseReserves(t_entity.m_canUseReserves)
 {
-	return m_entityColor;
+    /*for (const auto& ptr : t_entity.m_externalGobblets)
+    {
+        if (ptr) m_externalGobblets.push_back(std::make_unique<Gobblet>(*ptr));
+    }
+}*/
+
+sf::Color Entity::getColor() const
+{
+    return m_gobbletColor;
 }
 
-bool Entity::CanUseReserves()
+sf::Color Entity::getColor()
 {
-	return m_canUseReserves;
+    return m_gobbletColor;
 }
 
-void Entity::SetReserveUse(bool t_b)
+const Entity::Type& Entity::getType() const
 {
-	m_canUseReserves = t_b;
+    return m_type;
+}
+
+bool Entity::isAI() const
+{
+    return m_isAI;
+}
+
+bool Entity::canUseReserves() const
+{
+    return m_canUseReserves;
+}
+
+void Entity::setReserveUse(const bool t_b)
+{
+    m_canUseReserves = t_b;
+}
+
+std::vector<std::shared_ptr<Gobblet>>& Entity::getExternalGobblets()
+{
+    return m_externalGobblets;
+}
+
+const std::vector<std::shared_ptr<Gobblet>>& Entity::getExternalGobblets() const
+{
+    return m_externalGobblets;
 }

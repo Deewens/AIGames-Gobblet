@@ -23,7 +23,6 @@
     <ClCompile Include="Board.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="Game.cpp" />
-    <ClCompile Include="GobbletStack.cpp" />
     <ClCompile Include="Grid.cpp" />
     <ClCompile Include="Gobblet.cpp" />
     <ClCompile Include="main.cpp" />
@@ -35,7 +34,6 @@
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Globals.h" />
-    <ClInclude Include="GobbletStack.hpp" />
     <ClInclude Include="Grid.h" />
     <ClInclude Include="Tile.h" />
     <ClInclude Include="Gobblet.hpp" />

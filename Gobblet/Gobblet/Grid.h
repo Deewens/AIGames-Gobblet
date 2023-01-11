@@ -20,6 +20,7 @@ public:
     sf::Vector2f getSize() const;
     
     std::array<std::array<Tile, 4>, 4>& getGridArray();
+    const std::array<std::array<Tile, 4>, 4>& getGridArray() const;
 
     sf::FloatRect getBounds() const;
 
