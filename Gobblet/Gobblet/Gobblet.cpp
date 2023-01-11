@@ -2,14 +2,13 @@
 
 #include "Grid.h"
 
-Gobblet::Gobblet(const Color& t_color, int t_size, Grid& t_grid) :
-    m_grid(t_grid),
+Gobblet::Gobblet(const sf::Color& t_color, int t_size) :
     m_size(t_size),
     m_shape(static_cast<float>(t_size) * m_sizeFactor)
 {
     verifySize();
 
-    if (t_color == Color::White)
+    if (t_color == sf::Color::White)
     {
         m_color = sf::Color::White;
     }
@@ -27,12 +26,17 @@ int Gobblet::getSize() const
     return m_size;
 }
 
+const sf::Color& Gobblet::getColor() const
+{
+    return m_color;
+}
+
 std::optional<sf::Vector2i> Gobblet::getGridCoordinates() const
 {
     return m_gridCoordinates;
 }
 
-void Gobblet::setGridCoordinates(const std::optional<sf::Vector2i> t_coordinates)
+void Gobblet::setGridCoordinates(const Grid& t_grid, const std::optional<sf::Vector2i> t_coordinates)
 {
     m_gridCoordinates = t_coordinates;
 
@@ -45,7 +49,7 @@ void Gobblet::setGridCoordinates(const std::optional<sf::Vector2i> t_coordinates
                 // Set the gobblet's world position to the grid coordinates
                 if (m_gridCoordinates->x == i && m_gridCoordinates->y == j)
                 {
-                    auto tile = m_grid.getGridArray()[i][j];
+                    auto tile = t_grid.getGridArray()[i][j];
                     m_shape.setPosition(tile.getCenter());
                 }
             }
@@ -63,21 +67,26 @@ void Gobblet::setPosition(const sf::Vector2f& t_position)
     m_shape.setPosition(t_position);
 }
 
-sf::CircleShape& Gobblet::getShape()
+sf::CircleShape Gobblet::getShape()
+{
+    return m_shape;
+}
+
+const sf::CircleShape& Gobblet::getShape() const
 {
     return m_shape;
 }
 
 void Gobblet::deactivateClickedState()
 {
-    getShape().setOutlineColor(sf::Color::Transparent);
-    getShape().setOutlineThickness(0);
+    m_shape.setOutlineColor(sf::Color::Transparent);
+    m_shape.setOutlineThickness(0);
 }
 
 void Gobblet::activateClickedState()
 {
-    getShape().setOutlineColor(sf::Color::Blue);
-    getShape().setOutlineThickness(2);
+    m_shape.setOutlineColor(sf::Color::Blue);
+    m_shape.setOutlineThickness(2);
 }
 
 void Gobblet::verifySize()

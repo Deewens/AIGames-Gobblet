@@ -3,12 +3,7 @@
 #include <memory>
 #include <optional>
 
-#include <SFML/Graphics/RenderTarget.hpp>
-#include <SFML/Graphics/CircleShape.hpp>
-
-#include <SFML/Graphics/Color.hpp>
-#include <SFML/Graphics/Drawable.hpp>
-#include <SFML/System/NonCopyable.hpp>
+#include <SFML/Graphics.hpp>
 
 
 class Grid;
@@ -16,17 +11,16 @@ class Grid;
 class Gobblet final : public sf::Drawable
 {
 public:
-    enum class Color { Black, White };
-
     /**
      * \brief Create a new gobblet
      * \param t_color Color of this gobblet (either black or white)
      * \param t_size Gobblet size between 1 and 4
      * \param t_grid Grid this gobblet is on
      */
-    Gobblet(const Color& t_color, int t_size, Grid& t_grid);
+    Gobblet(const sf::Color& t_color, int t_size);
 
     int getSize() const;
+    const sf::Color& getColor() const;
 
     /**
      * \brief Get the grid coordinate of the gobblet
@@ -38,7 +32,7 @@ public:
      * \brief Set the grid coordinate of the gobblet
      * \param t_coordinates Coordinate of the gobblet on the grid. Pass nullptr to remove the gobblet from the grid
      */
-    void setGridCoordinates(std::optional<sf::Vector2i> t_coordinates);
+    void setGridCoordinates(const Grid& t_grid, std::optional<sf::Vector2i> t_coordinates);
 
     /**
      * \brief Gobble up this gobblet with a bigger one
@@ -51,7 +45,8 @@ public:
     sf::Vector2f getPosition() const;
     void setPosition(const sf::Vector2f& t_position);
 
-    sf::CircleShape& getShape();
+    sf::CircleShape getShape();
+    const sf::CircleShape& getShape() const;
 
     void deactivateClickedState();
     void activateClickedState();
@@ -69,12 +64,10 @@ private:
 
     void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 
-    Grid& m_grid;
-
     std::optional<sf::Vector2i> m_gridCoordinates;
 
     int m_size;
-    const float m_sizeFactor = 4;
+    float m_sizeFactor = 4;
 
     sf::Color m_color;
     sf::CircleShape m_shape;

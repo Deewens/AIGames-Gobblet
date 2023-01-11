@@ -1,9 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-#include <iostream>
-#include <stack>
 
-class GobbletStack;
+#include "GobbletStack.hpp"
 
 class Gobblet;
 
@@ -20,12 +18,14 @@ public:
 
     sf::Vector2f getCenter() const;
 
-    std::weak_ptr<GobbletStack> gobbletStack;
-    
+    GobbletStack& getStack();
+    const GobbletStack& getStack() const;
     
 private:
     void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 
+    GobbletStack m_stack;
+    
     sf::RectangleShape m_tileShape;
     sf::Vector2f m_gridCoordinate;
     float m_tileSize = 20;

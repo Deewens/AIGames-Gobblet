@@ -37,7 +37,7 @@ Grid::Grid() : m_bounds(m_baseX, m_baseY, getSize().x, getSize().y)
         {
             m_gridArray[i][j] = Tile(i, j, m_tileSize);
             m_gridArray[i][j].SetPosition(x, y);
-
+            
             x += m_tileSize;
         }
         x = m_baseX;
@@ -88,6 +88,11 @@ sf::Vector2f Grid::getSize() const
 }
 
 std::array<std::array<Tile, 4>, 4>& Grid::getGridArray()
+{
+    return m_gridArray;
+}
+
+const std::array<std::array<Tile, 4>, 4>& Grid::getGridArray() const
 {
     return m_gridArray;
 }

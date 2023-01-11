@@ -37,6 +37,7 @@
     <ClInclude Include="Globals.h" />
     <ClInclude Include="GobbletStack.hpp" />
     <ClInclude Include="Grid.h" />
+    <ClInclude Include="Move.hpp" />
     <ClInclude Include="Tile.h" />
     <ClInclude Include="Gobblet.hpp" />
   </ItemGroup>

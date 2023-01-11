@@ -2,27 +2,37 @@
 
 #include <iostream>
 
-GobbletStack::GobbletStack()
+#include "Grid.h"
+
+GobbletStack::GobbletStack(const bool t_isExternalStack) :
+    isExternalStack(t_isExternalStack)
 {
 }
 
 void GobbletStack::add(const Gobblet& t_gobblet)
 {
-    m_stack.push(t_gobblet);
+    m_stack.push_back(t_gobblet);
 
-    m_stack.top().setGridCoordinates(m_gridPosition);
+    std::sort(m_stack.begin(), m_stack.end(), [](const Gobblet& t_gobblet1, const Gobblet& t_gobblet2)
+    {
+        return t_gobblet1.getSize() < t_gobblet2.getSize();
+    });
 }
 
 Gobblet& GobbletStack::top()
 {
-    return m_stack.top();
+    return m_stack.back();
+}
+
+const Gobblet& GobbletStack::top() const
+{
+    return m_stack.back();
 }
 
 Gobblet GobbletStack::pop()
 {
-    auto removedGobblet = m_stack.top();
-
-    m_stack.pop();
+    auto removedGobblet = m_stack.back();
+    m_stack.pop_back();
 
     return removedGobblet;
 }
@@ -32,54 +42,101 @@ bool GobbletStack::isEmpty() const
     return m_stack.empty();
 }
 
-void GobbletStack::setPosition(const sf::Vector2f& t_position)
+void GobbletStack::setPosition(sf::Vector2f t_position)
 {
     m_position = t_position;
-
-    if (m_stack.empty()) return;
-    
-    m_stack.top().setPosition(m_position);
+    setGobbletsPosition(m_position);
 }
 
-sf::Vector2f GobbletStack::getPosition() const
-{
-    return m_position;
-}
-
-std::optional<sf::Vector2i> GobbletStack::getGridPosition() const
-{
-    return m_gridPosition;
-}
-
-void GobbletStack::setGridPosition(const std::optional<sf::Vector2i>& t_gridPosition, Grid& t_grid)
+void GobbletStack::setGridPosition(const Grid& t_grid, const std::optional<sf::Vector2i>& t_gridPosition)
 {
     m_gridPosition = t_gridPosition;
 
-    if (m_stack.empty()) return;
-
-    if (m_gridPosition)
+    if (t_gridPosition)
     {
-        Tile tile;
         for (int i = 0; i < 4; i++)
         {
             for (int j = 0; j < 4; j++)
             {
                 // Set the gobblet's world position to the grid coordinates
-                if (m_gridPosition->x == i && m_gridPosition->y == j)
+                if (t_gridPosition->x == i && t_gridPosition->y == j)
                 {
-                    tile = t_grid.getGridArray()[i][j];
+                    auto tile = t_grid.getGridArray()[i][j];
                     setPosition(tile.getCenter());
                 }
             }
         }
 
-        m_stack.top().setGridCoordinates(m_gridPosition);
+        setGobbletsGridPosition(t_grid, t_gridPosition);
+    }
+}
+
+sf::Vector2f GobbletStack::getPosition()
+{
+    return m_position;
+}
+
+const sf::Vector2f& GobbletStack::getPosition() const
+{
+    return m_position;
+}
+
+void GobbletStack::setGobbletsPosition(const sf::Vector2f t_position)
+{
+    for (Gobblet& gobblet : m_stack)
+    {
+        gobblet.setPosition(t_position);
+    }
+
+    m_position = t_position;
+}
+
+void GobbletStack::setGobbletsGridPosition(const Grid& t_grid, const std::optional<sf::Vector2i>& t_gridPosition)
+{
+    for (Gobblet& gobblet : m_stack)
+    {
+        gobblet.setGridCoordinates(t_grid, t_gridPosition);
     }
 }
 
 void GobbletStack::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
-    if (m_stack.empty()) return;
+    //if (m_stack.empty()) return;
 
-    target.draw(m_stack.top(), states);
+    for (auto& gobblet : m_stack)
+    {
+        target.draw(gobblet, states);
+    }
+}
+
+std::vector<Gobblet> GobbletStack::container()
+{
+    return m_stack;
+}
+
+const std::vector<Gobblet>& GobbletStack::container() const
+{
+    return m_stack;
+}
+
+bool GobbletStack::isClicked() const
+{
+    return m_isClicked;
+}
+
+void GobbletStack::setClicked(const bool t_isClicked)
+{
+    m_isClicked = t_isClicked;
+}
+
+bool operator==(const GobbletStack& t_lhs, const GobbletStack& t_rhs)
+{
+    return t_lhs.m_stack == t_rhs.m_stack
+        && t_lhs.isExternalStack == t_rhs.isExternalStack
+        && t_lhs.m_isClicked == t_rhs.m_isClicked;
+}
+
+bool operator!=(const GobbletStack& t_lhs, const GobbletStack& t_rhs)
+{
+    return !(t_lhs == t_rhs);
 }

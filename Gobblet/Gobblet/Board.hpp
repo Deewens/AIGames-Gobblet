@@ -1,8 +1,11 @@
 ﻿#pragma once
 
-#include "GobbletStack.hpp"
-#include "Grid.h"
+#include <SFML/Graphics.hpp>
+
 #include "Entity.h"
+#include "Grid.h"
+
+class GobbletStack;
 
 class Board final : public sf::Drawable
 {
@@ -10,13 +13,12 @@ public:
     explicit Board(sf::RenderWindow& t_window);
 
     void update(sf::Time t_deltaTime);
-    void removeStackIfEmpty(const std::shared_ptr<GobbletStack>& stackToRemove);
-
     /**
      * \brief Choose the gobblet to be moved. The gobblet is selected from mouse position
      * \return flag used for controlling code flow. If true, nothing should be called after this method, and the calling method should immediately break or return. (e.g.: should not called placeGobblet after this method if it return true)
      */
     bool chooseGobblet();
+    void switchCurrentPlayer();
     /**
      * \brief Place the chosen gobblet somewhere in the grid according to mouse position
      * \return flag used for controlling code flow. If true, nothing should be called after this method, and the calling method should immediately break or return
@@ -28,7 +30,7 @@ public:
     /// <summary>
     /// This checks if there are 4 gobblets in a row/col or diagonal
     /// </summary>
-    bool CheckWinCondition(sf::Color t_color);
+    bool checkWinCondition(sf::Color t_color);
 
     /// <summary>
     ///Checks if either players can gobble using their reserves if there are 3 gobblets of the same colour in a row
@@ -37,9 +39,16 @@ public:
     /// <param name="b">The col/diagonalB array of colors</param>
     /// <param name="t_color"></param>
     /// <returns>Returns if either player is able to use the ability</returns>
-    bool CheckReserveUsage(sf::Color a[], sf::Color b[], sf::Color t_color);
+    bool checkReserveUsage(sf::Color a[], sf::Color b[], sf::Color t_color);
 
-    void CheckTieCondition();
+    void checkTieCondition();
+
+    Grid& getGrid();
+    const Grid& getGrid() const;
+    Entity& getOpponent(const Entity& t_entity);
+
+    static void moveGobblet(GobbletStack& t_fromStack, GobbletStack& t_toStack);
+    //void undoMove(GobbletStack& t_fromStack, GobbletStack& t_toStack);
 
 protected:
     void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
@@ -56,16 +65,14 @@ private:
     sf::FloatRect m_mousePosition;
 
     Grid m_grid;
-
-    std::vector<std::shared_ptr<GobbletStack>> m_gobbletStacks;
-    std::weak_ptr<GobbletStack> m_activeStack;
+    GobbletStack* m_activeStack = nullptr;
 
     ActionState m_gobbletActionState = ActionState::ChooseGobblet;
 
-    bool m_turnOrder;//True is player 1, false is NPC 2
+    Entity* m_currentPlayer = nullptr;
 
-    Entity m_player;
-    Entity m_NPCPlayer;
+    Entity m_maxPlayer;
+    Entity m_minPlayer;
 
     int m_sameActionCount;
 };

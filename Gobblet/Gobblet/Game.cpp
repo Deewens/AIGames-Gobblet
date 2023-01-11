@@ -91,7 +91,7 @@ void Game::processKeys(sf::Event t_event)
 
     if (sf::Keyboard::Space == t_event.key.code)
     {
-        m_board.CheckTieCondition();
+        m_board.checkTieCondition();
     }
 }
 
