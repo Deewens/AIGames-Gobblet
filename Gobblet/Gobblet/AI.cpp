@@ -1,9 +1,9 @@
-/*
 #include "AI.hpp"
 
 #include <algorithm>
 
 #include "Board.hpp"
+
 
 Move AI::findBestMove(Board& t_board, Entity t_AIPlayer)
 {
@@ -37,26 +37,27 @@ int AI::minimax(Board t_board, int t_depth, int alpha, int beta, Entity t_player
 {
     int bestValue = 0;
     // print alpha and beta
-    //std::cout << "Alpha: " << alpha << " Beta: " << beta << std::endl;
+    std::cout << "Alpha: " << alpha << " Beta: " << beta << std::endl;
 
     if (t_depth == 0 || t_board.CheckWinCondition(t_player.getColor()))
     // Should also return the score if game is over (if player is gonna win)
     {
         bestValue = evaluateScore(t_board, t_player);
     }
-    else if (t_player.getType() == PlayerAIType::Max) // Max player
+    else if (t_player.getType() == PlayerType::Max) // Max player
     {
         bestValue = alpha;
-
-
+        
         auto legalMoves = getAllLegalMoves(t_board, t_player);
         for (auto& move : legalMoves)
         {
-            auto copyBoard = t_board;
-            t_board.moveGobblet(move.fromStack, move.toPosition);
-            bestValue = std::max(bestValue, minimax(copyBoard, t_depth - 1, bestValue, beta,
+            t_board.moveGobblet(move.gobblet, &move.toTile);
+            bestValue = std::max(bestValue, minimax(t_board, t_depth - 1, bestValue, beta,
                                                     t_board.getOpponent(t_player)));
-            //t_board.moveGobblet(move.gobblet, std::nullopt);
+
+            t_board.moveGobblet(move.gobblet, &move.fromTile.value());
+            
+            //t_board.moveGobblet(move.toStack, move.toTile);
 
             if (beta <= bestValue)
             {
@@ -71,10 +72,11 @@ int AI::minimax(Board t_board, int t_depth, int alpha, int beta, Entity t_player
         auto legalMoves = getAllLegalMoves(t_board, t_player);
         for (auto& move : legalMoves)
         {
-            auto copyBoard = t_board;
-            t_board.moveGobblet(move.fromStack, move.toPosition);
+            t_board.moveGobblet(move.gobblet, &move.toTile);
             bestValue = std::min(bestValue, minimax(t_board, t_depth - 1, alpha, bestValue,
                                                     t_board.getOpponent(t_player)));
+            t_board.moveGobblet(move.gobblet, &move.fromTile.value());
+
             // Move it back to its initial position
             //t_board.moveGobblet(move.gobblet, move.fromStack.getGridPosition());
             if (bestValue <= alpha)
@@ -155,7 +157,7 @@ int AI::evaluateScore(Board& t_board, Entity& t_player)
             }
         }
 
-        if (t_player.getType() == PlayerAIType::Max)
+        if (t_player.getType() == PlayerType::Max)
         {
             totalScore += colScoreToAdd + rowScoreToAdd;
         }
@@ -168,7 +170,8 @@ int AI::evaluateScore(Board& t_board, Entity& t_player)
     return totalScore;
 }
 
-std::vector<Move> AI::getAllLegalMoves(Board& t_board, Entity t_currentPlayer)
+
+std::vector<Move> AI::getAllLegalMoves(const Board& t_board, Entity t_currentPlayer)
 {
     // Get current board state
     const auto grid = t_board.getGrid().getGridArray();
@@ -192,16 +195,28 @@ std::vector<Move> AI::getAllLegalMoves(Board& t_board, Entity t_currentPlayer)
                             auto tile2 = grid[i][j];
                             if (tile2.gobbletStack.expired())
                             {
-                                possibleMoves.push_back(
-                                    Move(t_currentPlayer, movingGobblet, *tile.gobbletStack.lock(), {i, j}));
+                                Move move;
+                                move.gobblet = movingGobblet;
+                                move.fromStack = *tile.gobbletStack.lock();
+                                move.fromTile = tile;
+                                //move.toStack = *tile2.gobbletStack.lock();
+                                move.toTile = tile2;
+
+                                possibleMoves.push_back(move);
                             }
                             else
                             {
                                 auto currentStack = tile2.gobbletStack.lock();
                                 if (currentStack->top().getSize() > tile.gobbletStack.lock()->top().getSize())
                                 {
-                                    possibleMoves.push_back(
-                                        Move(t_currentPlayer, movingGobblet, *tile.gobbletStack.lock(), {i, j}));
+                                    Move move;
+                                    move.gobblet = movingGobblet;
+                                    move.fromStack = *tile.gobbletStack.lock();
+                                    move.fromTile = tile;
+                                    move.toStack = *tile2.gobbletStack.lock();
+                                    move.toTile = tile2;
+
+                                    possibleMoves.push_back(move);
                                 }
                             }
                         }
@@ -211,10 +226,10 @@ std::vector<Move> AI::getAllLegalMoves(Board& t_board, Entity t_currentPlayer)
         }
     }
 
-    const auto allGobbletStacks = t_board.getGobbletStacks();
+    const auto& allGobbletStacks = t_board.getGobbletStacks();
     for (const auto stack : allGobbletStacks)
     {
-        if (stack->isExternalStack())
+        if (stack->isExternalStack)
         {
             auto movingGobblet = stack->top();
             for (int y = 0; y < grid.size(); y++)
@@ -224,16 +239,28 @@ std::vector<Move> AI::getAllLegalMoves(Board& t_board, Entity t_currentPlayer)
                     auto tile = grid[y][x];
                     if (tile.gobbletStack.expired())
                     {
-                        possibleMoves.push_back(
-                            Move(t_currentPlayer, movingGobblet, *stack, {y, x}));
+                        Move move;
+                        move.gobblet = movingGobblet;
+                        move.fromStack = *stack;
+                        move.fromTile = std::nullopt;
+                        //move.toStack = *tile.gobbletStack.lock();
+                        move.toTile = tile;
+
+                        possibleMoves.push_back(move);
                     }
                     else
                     {
                         auto currentStack = tile.gobbletStack.lock();
                         if (currentStack->top().getSize() > stack->top().getSize())
                         {
-                            possibleMoves.push_back(
-                                Move(t_currentPlayer, movingGobblet, *stack, {y, x}));
+                            Move move;
+                            move.gobblet = movingGobblet;
+                            move.fromStack = *stack;
+                            move.fromTile = std::nullopt;
+                            move.toStack = *tile.gobbletStack.lock();
+                            move.toTile = tile;
+
+                            possibleMoves.push_back(move);
                         }
                     }
                 }
@@ -243,4 +270,3 @@ std::vector<Move> AI::getAllLegalMoves(Board& t_board, Entity t_currentPlayer)
 
     return possibleMoves;
 }
-*/

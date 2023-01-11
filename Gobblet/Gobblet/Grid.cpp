@@ -92,6 +92,11 @@ std::array<std::array<Tile, 4>, 4>& Grid::getGridArray()
     return m_gridArray;
 }
 
+const std::array<std::array<Tile, 4>, 4>& Grid::getGridArray() const
+{
+    return m_gridArray;
+}
+
 sf::FloatRect Grid::getBounds() const
 {
     return m_bounds;

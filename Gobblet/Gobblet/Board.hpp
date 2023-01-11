@@ -3,6 +3,7 @@
 #include "GobbletStack.hpp"
 #include "Grid.h"
 #include "Entity.hpp"
+#include "Move.hpp"
 
 class Board final : public sf::Drawable
 {
@@ -10,19 +11,24 @@ public:
     explicit Board(sf::RenderWindow& t_window);
 
     void update(sf::Time t_deltaTime);
-    void removeStackIfEmpty(const GobbletStack& stackToRemove);
+    void removeStackIfEmpty(const std::shared_ptr<GobbletStack>& stackToRemove);
+    void activeGobbletStack(std::shared_ptr<GobbletStack> clickedStack);
 
     /**
      * \brief Choose the gobblet to be moved. The gobblet is selected from mouse position
      * \return flag used for controlling code flow. If true, nothing should be called after this method, and the calling method should immediately break or return. (e.g.: should not called placeGobblet after this method if it return true)
      */
     bool chooseGobblet();
+    void switchPlayer();
     /**
      * \brief Place the chosen gobblet somewhere in the grid according to mouse position
      * \return flag used for controlling code flow. If true, nothing should be called after this method, and the calling method should immediately break or return
      */
     bool placeGobblet();
 
+    std::shared_ptr<GobbletStack> findClickedGobbletStack(const Entity& t_player) const;
+
+    void deactivateGobbletStack();
     void processMouse(sf::Event t_event);
 
     /// <summary>
@@ -48,9 +54,18 @@ public:
      */
     bool moveGobblet(GobbletStack& t_gobbletStack, sf::Vector2i t_gridPosition);
 
+    void moveGobblet(const std::shared_ptr<GobbletStack>& t_gobbletStack, Tile* t_toTile);
+    
+    void moveGobblet(const GobbletStack& t_gobbletStack, const Tile& t_toTile);
+
     
     Grid& getGrid();
+    const Grid& getGrid() const;
     Entity getOpponent(const Entity& t_player) const;
+
+    std::list<std::shared_ptr<GobbletStack>> getGobbletStacks();
+    const std::list<std::shared_ptr<GobbletStack>>& getGobbletStacks() const;
+    void moveGobblet(Gobblet& t_gobblet, Tile* t_tile);
 
 protected:
     void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
@@ -68,16 +83,16 @@ private:
 
     Grid m_grid;
 
-    std::vector<GobbletStack> m_gobbletStacks;
+    std::list<std::shared_ptr<GobbletStack>> m_gobbletStacks;
     
-    GobbletStack* m_activeStack;
+    std::weak_ptr<GobbletStack> m_activeStack;
 
     ActionState m_gobbletActionState = ActionState::ChooseGobblet;
 
     Entity m_maxPlayer;
     Entity m_minPlayer;
 
-    bool m_turnOrder;//True is player max, false is min
+    PlayerType m_currentPlayer;
 
     int m_sameActionCount;
 };

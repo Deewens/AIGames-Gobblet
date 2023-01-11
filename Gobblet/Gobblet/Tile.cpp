@@ -18,7 +18,7 @@ Tile::Tile(int row, int col, int t_tileSize)
     m_tileShape.setOutlineThickness(2);
     m_tileShape.setSize(sf::Vector2f(t_tileSize, t_tileSize));
 
-    m_gridCoordinate = sf::Vector2f(row, col);
+    m_gridCoordinate = sf::Vector2i(row, col);
     std::cout << row << ", " << col << std::endl;
 }
 
@@ -30,7 +30,7 @@ void Tile::Update(sf::RectangleShape t_mouse)
 {
 }
 
-sf::Vector2f Tile::GetGridCoordinate()
+sf::Vector2i Tile::GetGridCoordinate()
 {
     return m_gridCoordinate;
 }
@@ -53,4 +53,15 @@ sf::Vector2f Tile::getCenter() const
 void Tile::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
     target.draw(m_tileShape, states);
+}
+
+bool operator==(const Tile& t_lhs, const Tile& t_rhs)
+{
+    return t_lhs.m_gridCoordinate == t_rhs.m_gridCoordinate
+        && t_lhs.m_tileSize == t_rhs.m_tileSize;
+}
+
+bool operator!=(const Tile& t_lhs, const Tile& t_rhs)
+{
+    return !(t_lhs == t_rhs);
 }

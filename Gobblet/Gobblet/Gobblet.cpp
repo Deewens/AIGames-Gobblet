@@ -2,6 +2,10 @@
 
 #include "Grid.h"
 
+Gobblet::Gobblet() : m_size(0)
+{
+}
+
 Gobblet::Gobblet(const sf::Color& t_color, int t_size) :
     m_size(t_size),
     m_shape(static_cast<float>(t_size) * m_sizeFactor)
@@ -70,6 +74,11 @@ sf::CircleShape& Gobblet::getShape()
 sf::Color Gobblet::getColor() const
 {
     return m_color;
+}
+
+std::weak_ptr<GobbletStack> Gobblet::getStack()
+{
+    return m_stack;
 }
 
 void Gobblet::deactivateClickedState()

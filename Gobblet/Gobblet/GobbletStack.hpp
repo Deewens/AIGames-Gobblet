@@ -5,7 +5,7 @@
 
 #include "Gobblet.hpp"
 
-class GobbletStack final : public sf::Drawable
+class GobbletStack final : public sf::Drawable, private std::enable_shared_from_this<GobbletStack>
 {
 public:
     GobbletStack();
@@ -22,8 +22,10 @@ public:
     std::list<std::reference_wrapper<Gobblet>>& stack();
     std::list<std::reference_wrapper<Gobblet>> stack() const;
     
+    bool isClicked() const;
+    void setClicked(bool t_isClicked);
+    
     bool isExternalStack = false;
-    bool isClicked = false;
 
     friend bool operator==(const GobbletStack& t_lhs, const GobbletStack& t_rhs);
     friend bool operator!=(const GobbletStack& t_lhs, const GobbletStack& t_rhs);
@@ -33,4 +35,6 @@ protected:
 
 private:
     std::list<std::reference_wrapper<Gobblet>> m_stack;
+
+    bool m_isClicked = false;
 };

@@ -5,12 +5,14 @@
 #include <SFML/Graphics.hpp>
 
 
+class GobbletStack;
 class Grid;
 
 class Gobblet final : public sf::Drawable
 {
 public:
     Gobblet();
+    
     /**
      * \brief Create a new gobblet
      * \param t_color Color of this gobblet (either black or white)
@@ -50,6 +52,8 @@ public:
 
     sf::Color getColor() const;
 
+    std::weak_ptr<GobbletStack> getStack();
+
     void deactivateClickedState();
     void activateClickedState();
     
@@ -69,8 +73,10 @@ private:
     std::optional<sf::Vector2i> m_gridCoordinates;
 
     int m_size;
-    const float m_sizeFactor = 4;
+    float m_sizeFactor = 4;
 
     sf::Color m_color;
     sf::CircleShape m_shape;
+
+    std::weak_ptr<GobbletStack> m_stack;
 };

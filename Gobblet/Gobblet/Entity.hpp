@@ -1,5 +1,6 @@
 ﻿#pragma once
 
+#include <list>
 #include <vector>
 
 #include <SFML/Graphics.hpp>
@@ -14,29 +15,32 @@ class Entity
 {
 public:
     Entity();
-    Entity(const sf::Color& t_gobbletColor, PlayerAIType t_AIType);
-    void initExternalStacks(const Grid& t_grid);
+    Entity(const sf::Color& t_gobbletColor, PlayerType t_type, bool t_isAI);
+    std::list<std::shared_ptr<GobbletStack>>& initExternalStacks(const Grid& t_grid);
     
     const sf::Color& getColor() const;
-    const PlayerAIType& getType() const;
+    const PlayerType& getType() const;
 
     bool canUseReserves() const;
     void setReserveUse(bool t_b);
 
-    const std::vector<Gobblet>& getGobblets() const;
-    const std::vector<GobbletStack>& getExternalStacks() const;
+    const std::list<Gobblet>& getGobblets() const;
+    const std::list<std::shared_ptr<GobbletStack>>& getExternalStacks() const;
+
+    bool isAI() const;
 
     friend bool operator==(const Entity& t_lhs, const Entity& t_rhs);
 
     friend bool operator!=(const Entity& t_lhs, const Entity& t_rhs);
-
-private:
-    std::vector<Gobblet> m_gobblets;
     
-    std::vector<GobbletStack> m_externalStacks;
+private:
+    std::list<Gobblet> m_gobblets;
+    
+    std::list<std::shared_ptr<GobbletStack>> m_externalStacks;
     
     const sf::Color m_gobbletColor;
-    const PlayerAIType m_type;
+    const PlayerType m_type;
+    const bool m_isAI = false;
 
     bool m_canUseReserves;
 };

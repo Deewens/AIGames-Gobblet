@@ -3,21 +3,21 @@
 #include "GobbletStack.hpp"
 #include "Grid.h"
 
-Entity::Entity(const sf::Color& t_gobbletColor, PlayerAIType t_AIType) :
+Entity::Entity(const sf::Color& t_gobbletColor, const PlayerType t_type, const bool t_isAI = false) :
     m_gobbletColor(t_gobbletColor),
-    m_type(t_AIType)
+    m_type(t_type),
+    m_isAI(t_isAI)
 {
     m_canUseReserves = false;
 }
 
-void Entity::initExternalStacks(const Grid& t_grid)
+std::list<std::shared_ptr<GobbletStack>>& Entity::initExternalStacks(const Grid& t_grid)
 {
     // Initialise the board, create external stacks around the grid
     const sf::Vector2f gridPosition = t_grid.getPosition();
     const sf::Vector2f gridSize = t_grid.getSize();
 
     float yPosition = gridPosition.y;
-
     for (int i = 0; i < 3; i++)
     {
         GobbletStack stack = GobbletStack(true);
@@ -38,8 +38,10 @@ void Entity::initExternalStacks(const Grid& t_grid)
             stack.setPosition({gridPosition.x + (gridSize.x + 50), yPosition}); // 50px - right side of the grid
         }
 
-        m_externalStacks.push_back(stack);
+        m_externalStacks.emplace_back(std::make_shared<GobbletStack>(stack));
     }
+
+    return m_externalStacks;
 }
 
 const sf::Color& Entity::getColor() const
@@ -47,7 +49,7 @@ const sf::Color& Entity::getColor() const
     return m_gobbletColor;
 }
 
-const PlayerAIType& Entity::getType() const
+const PlayerType& Entity::getType() const
 {
     return m_type;
 }
@@ -62,14 +64,19 @@ void Entity::setReserveUse(bool t_b)
     m_canUseReserves = t_b;
 }
 
-const std::vector<Gobblet>& Entity::getGobblets() const
+const std::list<Gobblet>& Entity::getGobblets() const
 {
     return m_gobblets;
 }
 
-const std::vector<GobbletStack>& Entity::getExternalStacks() const
+const std::list<std::shared_ptr<GobbletStack>>& Entity::getExternalStacks() const
 {
     return m_externalStacks;
+}
+
+bool Entity::isAI() const
+{
+    return m_isAI;
 }
 
 bool operator==(const Entity& t_lhs, const Entity& t_rhs)
