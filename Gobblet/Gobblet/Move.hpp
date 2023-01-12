@@ -5,8 +5,15 @@
 
 struct Move
 {
-    Gobblet* gobblet;
+    Move(const Gobblet& t_gobblet, const GobbletStack& t_fromStack, const GobbletStack& t_toStack) :
+        gobblet(t_gobblet),
+        fromStack(t_fromStack),
+        toStack(t_toStack)
+    {
+    }
 
-    GobbletStack* fromStack;
-    GobbletStack* toStack;
+    Gobblet gobblet;
+
+    GobbletStack fromStack;
+    GobbletStack toStack;
 };

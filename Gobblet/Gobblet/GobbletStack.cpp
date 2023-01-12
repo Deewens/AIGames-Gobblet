@@ -133,7 +133,8 @@ bool operator==(const GobbletStack& t_lhs, const GobbletStack& t_rhs)
 {
     return t_lhs.m_stack == t_rhs.m_stack
         && t_lhs.isExternalStack == t_rhs.isExternalStack
-        && t_lhs.m_isClicked == t_rhs.m_isClicked;
+        && t_lhs.m_isClicked == t_rhs.m_isClicked
+        && t_lhs.m_position == t_rhs.m_position;
 }
 
 bool operator!=(const GobbletStack& t_lhs, const GobbletStack& t_rhs)

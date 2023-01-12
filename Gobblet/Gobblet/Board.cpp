@@ -22,11 +22,52 @@ void Board::update(sf::Time t_deltaTime)
     m_mousePosition.left = mousePosition.x;
     m_mousePosition.top = mousePosition.y;
 
-    if (m_currentPlayer->isAI())
+    // The AI is not working properly
+    /*if (m_currentPlayer->isAI())
     {
-        AI::findBestMove(*this, *m_currentPlayer);
-    }
+        std::cout << "hello" << std::endl;
+        auto move = AI::findBestMove(*this);
+        std::cout << "From stack: " << move.fromStack.getPosition().x << " " << move.fromStack.getPosition().y << std::endl;
+        std::cout << "To stack: " << move.toStack.getPosition().x << " " << move.toStack.getPosition().y << std::endl;
+
+        GobbletStack* fromStack = findGobbletStack(move.fromStack);
+        GobbletStack* toStack = findGobbletStack(move.toStack);
+        
+        moveGobblet(*fromStack, *toStack);
+
+        switchCurrentPlayer();
+    }*/
 }
+
+GobbletStack* Board::findGobbletStack(const GobbletStack& t_stack)
+{
+    const auto foundIt = std::find_if(m_currentPlayer->getExternalStacks().begin(), m_currentPlayer->getExternalStacks().end(), [=](const GobbletStack& stack)
+    {
+        return stack == t_stack;
+    });
+
+    if (foundIt != m_currentPlayer->getExternalStacks().end())
+    {
+        return &(*foundIt);
+    }
+    else
+    {
+        for (int y = 0; y < m_grid.getGridArray().size(); y++)
+        {
+            for (int x = 0; x < m_grid.getGridArray()[y].size(); x++)
+            {
+                Tile& tile = m_grid.getGridArray()[y][x];
+                if (tile.getStack() == t_stack)
+                {
+                    return &tile.getStack();
+                }
+            }
+        }
+    }
+
+    return nullptr;
+}
+
 
 bool Board::chooseGobblet()
 {
@@ -468,6 +509,21 @@ void Board::moveGobblet(GobbletStack& t_fromStack, GobbletStack& t_toStack)
     t_toStack.add(t_fromStack.pop());
     t_toStack.top().setPosition(t_toStack.getPosition());
     t_toStack.top().deactivateClickedState();
+}
+
+Entity* Board::getCurrentPlayer()
+{
+    return m_currentPlayer;
+}
+
+Entity& Board::getMinPlayer()
+{
+    return m_minPlayer;
+}
+
+Entity& Board::getMaxPlayer()
+{
+    return m_maxPlayer;
 }
 
 

@@ -7,6 +7,9 @@
 
 class GobbletStack;
 
+/**
+ * \brief Board game state and logic
+ */
 class Board final : public sf::Drawable
 {
 public:
@@ -18,6 +21,10 @@ public:
      * \return flag used for controlling code flow. If true, nothing should be called after this method, and the calling method should immediately break or return. (e.g.: should not called placeGobblet after this method if it return true)
      */
     bool chooseGobblet();
+
+    /**
+     * \brief Switch the current playing player (from min to max or max to min)
+     */
     void switchCurrentPlayer();
     /**
      * \brief Place the chosen gobblet somewhere in the grid according to mouse position
@@ -47,13 +54,36 @@ public:
     const Grid& getGrid() const;
     Entity& getOpponent(const Entity& t_entity);
 
+    /**
+     * \brief Move a gobblet from one stack to another
+     * \param t_fromStack The stack to move the gobblet from
+     * \param t_toStack the stack to move the gobblet to
+     */
     static void moveGobblet(GobbletStack& t_fromStack, GobbletStack& t_toStack);
-    //void undoMove(GobbletStack& t_fromStack, GobbletStack& t_toStack);
+
+    /**
+     * \brief Given a stack, return the pointer to one of the stack stored in the board or the external stack list
+     * \param t_stack a stack to search
+     * \return pointer to the stack
+     */
+    GobbletStack* findGobbletStack(const GobbletStack& t_stack);
+
+    /**
+     * \brief Get whose turn it is
+     * \return raw pointer to the current playing player
+     */
+    Entity* getCurrentPlayer();
+    
+    Entity& getMinPlayer();
+    Entity& getMaxPlayer();
 
 protected:
     void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 
 private:
+    /**
+     * \brief Control the possible action that the player can do with the mouse
+     */
     enum class ActionState
     {
         ChooseGobblet,

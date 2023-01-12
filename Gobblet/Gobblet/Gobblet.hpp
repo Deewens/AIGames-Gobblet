@@ -8,6 +8,9 @@
 
 class Grid;
 
+/**
+ * \brief Representation of a gobblet
+ */
 class Gobblet final : public sf::Drawable
 {
 public:
@@ -34,22 +37,21 @@ public:
      */
     void setGridCoordinates(const Grid& t_grid, std::optional<sf::Vector2i> t_coordinates);
 
-    /**
-     * \brief Gobble up this gobblet with a bigger one
-     * \remark Should probably be private...
-     * \param t_biggerGobblet Bigger gobblet
-     * \return true if the passed gobblet is bigger than this one, false otherwise
-     */
-    //bool gobbleUp(Gobblet& t_biggerGobblet);
-
     sf::Vector2f getPosition() const;
     void setPosition(const sf::Vector2f& t_position);
 
     sf::CircleShape getShape();
     const sf::CircleShape& getShape() const;
 
-    void deactivateClickedState();
+    /**
+     * \brief Add a style effect around the gobblet to know that it has been clicked
+     */
     void activateClickedState();
+
+    /**
+     * \brief Deactivate the style effect
+     */
+    void deactivateClickedState();
 
     friend bool operator==(const Gobblet& t_lhs, const Gobblet& t_rhs);
 

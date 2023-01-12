@@ -5,6 +5,9 @@
 
 #include "Gobblet.hpp"
 
+/**
+ * \brief Represent a stack of gobblet. The stack is represented by a vector container for simplicity over a stack (which is more limited)
+ */
 class GobbletStack final : public sf::Drawable
 {
 public:
@@ -24,7 +27,15 @@ public:
     sf::Vector2f getPosition();
     const sf::Vector2f& getPosition() const;
 
+    /**
+     * \brief Get the underlying vector, containing the Gobblet stored in the stack
+     * \return vector of gobblets
+     */
     std::vector<Gobblet> container();
+    /**
+     * \brief Get the underlying vector, containing the Gobblet stored in the stack
+     * \return vector of gobblets
+     */
     const std::vector<Gobblet>& container() const;
     
     bool isClicked() const;

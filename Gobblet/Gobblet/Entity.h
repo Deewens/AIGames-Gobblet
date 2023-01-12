@@ -6,9 +6,15 @@
 
 class GobbletStack;
 
+/**
+ * \brief A player (AI or real player)
+ */
 class Entity
 {
 public:
+    /**
+     * \brief Type used by the minimax to know if the entity is a max or a min
+     */
     enum class Type
     {
         Min,
@@ -16,9 +22,6 @@ public:
     };
     
     Entity(sf::Color t_gobbletColor, Type t_type, bool t_isAI, const Grid& t_grid);
-    /*Entity(const Entity& t_entity);
-
-    ~Entity();*/
 
     sf::Color getColor() const;
 
