@@ -1,0 +1,7 @@
+<map id="GobbletStack::isEmpty" name="GobbletStack::isEmpty">
+<area shape="rect" id="node1" title=" " alt="" coords="401,55,559,80"/>
+<area shape="rect" id="node2" href="$class_board.html#a00811a0dd2c3a124bf9bacdb0fd510e9" title="Choose the gobblet to be moved. The gobblet is selected from mouse position." alt="" coords="203,5,353,31"/>
+<area shape="rect" id="node4" href="$class_board.html#acedae9b4a3dd11b540253c2a264eb14c" title=" " alt="" coords="233,55,323,80"/>
+<area shape="rect" id="node5" href="$class_board.html#a5a2abf0b067134c3fa08c5b2eea7f815" title="Place the chosen gobblet somewhere in the grid according to mouse position." alt="" coords="208,104,348,129"/>
+<area shape="rect" id="node3" href="$class_board.html#a19d4c00194913e42a5fea515457afb63" title=" " alt="" coords="5,55,155,80"/>
+</map>

@@ -1,0 +1,4 @@
+<map id="GobbletStack" name="GobbletStack">
+<area shape="rect" id="node1" title="Represent a stack of gobblet. The stack is represented by a vector container for simplicity over a st..." alt="" coords="5,131,136,413"/>
+<area shape="rect" id="node2" title=" " alt="" coords="24,5,117,83"/>
+</map>

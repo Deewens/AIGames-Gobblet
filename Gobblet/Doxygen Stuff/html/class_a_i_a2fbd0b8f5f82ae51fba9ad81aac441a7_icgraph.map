@@ -1,0 +1,4 @@
+<map id="AI::minimax" name="AI::minimax">
+<area shape="rect" id="node1" title="Minimax algorithm." alt="" coords="172,29,263,55"/>
+<area shape="rect" id="node2" href="$class_a_i.html#ad9a62ed4133030086e62497a6baddd52" title="Find the best move for the AI to make." alt="" coords="5,29,124,55"/>
+</map>

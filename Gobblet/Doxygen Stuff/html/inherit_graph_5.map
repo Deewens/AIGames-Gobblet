@@ -1,0 +1,8 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node1" title=" " alt="" coords="5,104,99,129"/>
+<area shape="rect" id="node2" href="$class_board.html" title="Board game state and logic." alt="" coords="169,5,225,31"/>
+<area shape="rect" id="node3" href="$class_gobblet.html" title="Representation of a gobblet." alt="" coords="164,55,231,80"/>
+<area shape="rect" id="node4" href="$class_gobblet_stack.html" title="Represent a stack of gobblet. The stack is represented by a vector container for simplicity over a st..." alt="" coords="147,104,248,129"/>
+<area shape="rect" id="node5" href="$class_grid.html" title=" " alt="" coords="174,153,221,179"/>
+<area shape="rect" id="node6" href="$class_tile.html" title=" " alt="" coords="176,203,219,228"/>
+</map>

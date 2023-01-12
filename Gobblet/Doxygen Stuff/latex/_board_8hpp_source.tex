@@ -1,0 +1,82 @@
+\hypertarget{_board_8hpp_source}{}\doxysection{Board.\+hpp}
+\label{_board_8hpp_source}\index{AI/AIGames-\/Gobblet/Gobblet/Gobblet/Board.hpp@{AI/AIGames-\/Gobblet/Gobblet/Gobblet/Board.hpp}}
+\mbox{\hyperlink{_board_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <SFML/Graphics.hpp>}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_entity_8h}{Entity.h}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_grid_8h}{Grid.h}}"{}}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_gobblet_stack}{GobbletStack}};}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_board}{Board}}\ final\ :\ \textcolor{keyword}{public}\ sf::Drawable}
+\DoxyCodeLine{00014\ \{}
+\DoxyCodeLine{00015\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{class_board}{Board}}(sf::RenderWindow\&\ t\_window);}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_board_a76201d34ab6d0c2db1f0171dbb984974}{update}}(sf::Time\ t\_deltaTime);}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_board_a00811a0dd2c3a124bf9bacdb0fd510e9}{chooseGobblet}}();}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_board_a5969f25fe451a96ba2e36428100f54ad}{switchCurrentPlayer}}();}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_board_a5a2abf0b067134c3fa08c5b2eea7f815}{placeGobblet}}();}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_board_a19d4c00194913e42a5fea515457afb63}{processMouse}}(sf::Event\ t\_event);}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_board_acd5029cfe370950f8ffcdd045d6a47fd}{checkWinCondition}}(sf::Color\ t\_color);}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_board_a2100820f01ae62ee3222966c3c58eddb}{checkReserveUsage}}(sf::Color\ a[],\ sf::Color\ b[],\ sf::Color\ t\_color);}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_board_ac37a6d476b71a2869836c706a62fcd43}{checkTieCondition}}();}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \ \ \mbox{\hyperlink{class_grid}{Grid}}\&\ \mbox{\hyperlink{class_board_a90e00acf1726e66e72e055ad914d6c58}{getGrid}}();}
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_grid}{Grid}}\&\ \mbox{\hyperlink{class_board_a90e00acf1726e66e72e055ad914d6c58}{getGrid}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00055\ \ \ \ \ \mbox{\hyperlink{class_entity}{Entity}}\&\ \mbox{\hyperlink{class_board_a2c593af8562f83e69ffed277c4e08169}{getOpponent}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_entity}{Entity}}\&\ t\_entity);}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_board_a35ee26d963e5ac8c76087f430e1b6987}{moveGobblet}}(\mbox{\hyperlink{class_gobblet_stack}{GobbletStack}}\&\ t\_fromStack,\ \mbox{\hyperlink{class_gobblet_stack}{GobbletStack}}\&\ t\_toStack);}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00069\ \ \ \ \ \mbox{\hyperlink{class_gobblet_stack}{GobbletStack}}*\ \mbox{\hyperlink{class_board_a1d04eed4c9a1ff7d99fbadaca2ca349d}{findGobbletStack}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_gobblet_stack}{GobbletStack}}\&\ t\_stack);}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00075\ \ \ \ \ \mbox{\hyperlink{class_entity}{Entity}}*\ \mbox{\hyperlink{class_board_a4d08bd6053aec668003fc3690b39e129}{getCurrentPlayer}}();}
+\DoxyCodeLine{00076\ \ \ \ \ }
+\DoxyCodeLine{00077\ \ \ \ \ \mbox{\hyperlink{class_entity}{Entity}}\&\ \mbox{\hyperlink{class_board_a6e2f0e140ebe0d35cdbc4a61955aa2d1}{getMinPlayer}}();}
+\DoxyCodeLine{00078\ \ \ \ \ \mbox{\hyperlink{class_entity}{Entity}}\&\ \mbox{\hyperlink{class_board_ac090ec440d4aae4bc59bd2033a777872}{getMaxPlayer}}();}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_board_acedae9b4a3dd11b540253c2a264eb14c}{draw}}(sf::RenderTarget\&\ target,\ sf::RenderStates\ states)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00087\ \ \ \ \ \textcolor{keyword}{enum\ class}\ ActionState}
+\DoxyCodeLine{00088\ \ \ \ \ \{}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ ChooseGobblet,}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ PlaceGobblet,}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ PlaceBoardGobblet}
+\DoxyCodeLine{00092\ \ \ \ \ \};}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \ \ \ \ sf::RenderWindow\&\ m\_window;}
+\DoxyCodeLine{00095\ \ \ \ \ sf::FloatRect\ m\_mousePosition;}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \ \ \ \ \mbox{\hyperlink{class_grid}{Grid}}\ m\_grid;}
+\DoxyCodeLine{00098\ \ \ \ \ \mbox{\hyperlink{class_gobblet_stack}{GobbletStack}}*\ m\_activeStack\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ \ \ \ \ ActionState\ m\_gobbletActionState\ =\ ActionState::ChooseGobblet;}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \ \ \ \ \mbox{\hyperlink{class_entity}{Entity}}*\ m\_currentPlayer\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \ \ \ \ \mbox{\hyperlink{class_entity}{Entity}}\ m\_maxPlayer;}
+\DoxyCodeLine{00105\ \ \ \ \ \mbox{\hyperlink{class_entity}{Entity}}\ m\_minPlayer;}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ \ \ \ \ \textcolor{keywordtype}{int}\ m\_sameActionCount;}
+\DoxyCodeLine{00108\ \};}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00111\ \textcolor{comment}{Rules\ to\ implement:}}
+\DoxyCodeLine{00112\ \textcolor{comment}{Gobblet\ clicked\ on\ board\ must\ be\ moved.\ Done}}
+\DoxyCodeLine{00113\ \textcolor{comment}{If\ the\ same\ or\ similar\ move\ is\ made\ 3\ times\ between\ players,\ it's\ a\ draw.}}
+\DoxyCodeLine{00114\ \textcolor{comment}{If\ there\ are\ 3\ Gobblets\ of\ the\ same\ colour\ in\ a\ row,\ opposing\ player\ may\ gobble\ up\ a\ gobblet\ from\ their\ reserves}}
+\DoxyCodeLine{00115\ \textcolor{comment}{4\ in\ a\ row\ of\ the\ same\ colour\ is\ a\ win.\ Done}}
+\DoxyCodeLine{00116\ \textcolor{comment}{}}
+\DoxyCodeLine{00117\ \textcolor{comment}{*/}}
+
+\end{DoxyCode}

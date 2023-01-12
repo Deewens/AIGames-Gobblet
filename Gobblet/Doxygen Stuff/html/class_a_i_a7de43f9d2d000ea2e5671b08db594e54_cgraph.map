@@ -1,0 +1,6 @@
+<map id="AI::evaluateScore" name="AI::evaluateScore">
+<area shape="rect" id="node1" title="Calculate a score for the board for a specific player." alt="" coords="5,55,128,80"/>
+<area shape="rect" id="node2" href="$class_entity.html#a91b386d4867fe9b7d8f6339fd6f90c86" title=" " alt="" coords="183,5,295,31"/>
+<area shape="rect" id="node3" href="$class_board.html#a90e00acf1726e66e72e055ad914d6c58" title=" " alt="" coords="186,55,293,80"/>
+<area shape="rect" id="node4" href="$class_grid.html#aae803d0ce5ae425631be9287824e57c1" title=" " alt="" coords="176,104,303,129"/>
+</map>

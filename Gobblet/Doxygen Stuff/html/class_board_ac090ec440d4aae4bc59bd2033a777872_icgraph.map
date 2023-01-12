@@ -1,0 +1,5 @@
+<map id="Board::getMaxPlayer" name="Board::getMaxPlayer">
+<area shape="rect" id="node1" title=" " alt="" coords="311,29,455,55"/>
+<area shape="rect" id="node2" href="$class_a_i.html#a2fbd0b8f5f82ae51fba9ad81aac441a7" title="Minimax algorithm." alt="" coords="172,29,263,55"/>
+<area shape="rect" id="node3" href="$class_a_i.html#ad9a62ed4133030086e62497a6baddd52" title="Find the best move for the AI to make." alt="" coords="5,29,124,55"/>
+</map>

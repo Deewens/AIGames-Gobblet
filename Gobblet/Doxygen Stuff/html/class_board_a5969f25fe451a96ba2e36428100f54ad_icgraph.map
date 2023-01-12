@@ -1,0 +1,5 @@
+<map id="Board::switchCurrentPlayer" name="Board::switchCurrentPlayer">
+<area shape="rect" id="node1" title="Switch the current playing player (from min to max or max to min)" alt="" coords="391,5,571,31"/>
+<area shape="rect" id="node2" href="$class_board.html#a5a2abf0b067134c3fa08c5b2eea7f815" title="Place the chosen gobblet somewhere in the grid according to mouse position." alt="" coords="203,5,343,31"/>
+<area shape="rect" id="node3" href="$class_board.html#a19d4c00194913e42a5fea515457afb63" title=" " alt="" coords="5,5,155,31"/>
+</map>

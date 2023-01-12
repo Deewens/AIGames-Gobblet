@@ -1,0 +1,10 @@
+<map id="Entity::getExternalStacks" name="Entity::getExternalStacks">
+<area shape="rect" id="node1" title=" " alt="" coords="580,80,751,105"/>
+<area shape="rect" id="node2" href="$class_board.html#a00811a0dd2c3a124bf9bacdb0fd510e9" title="Choose the gobblet to be moved. The gobblet is selected from mouse position." alt="" coords="375,5,526,31"/>
+<area shape="rect" id="node4" href="$class_board.html#acedae9b4a3dd11b540253c2a264eb14c" title=" " alt="" coords="405,55,496,80"/>
+<area shape="rect" id="node5" href="$class_board.html#a1d04eed4c9a1ff7d99fbadaca2ca349d" title="Given a stack, return the pointer to one of the stack stored in the board or the external stack list." alt="" coords="369,104,532,129"/>
+<area shape="rect" id="node6" href="$class_a_i.html#a2ae36307a4f7f4066e852633c5d29e03" title="Search for all the possible moves, that are legal in the game of Gobblet." alt="" coords="379,153,522,179"/>
+<area shape="rect" id="node3" href="$class_board.html#a19d4c00194913e42a5fea515457afb63" title=" " alt="" coords="172,5,321,31"/>
+<area shape="rect" id="node7" href="$class_a_i.html#a2fbd0b8f5f82ae51fba9ad81aac441a7" title="Minimax algorithm." alt="" coords="201,153,292,179"/>
+<area shape="rect" id="node8" href="$class_a_i.html#ad9a62ed4133030086e62497a6baddd52" title="Find the best move for the AI to make." alt="" coords="5,153,124,179"/>
+</map>

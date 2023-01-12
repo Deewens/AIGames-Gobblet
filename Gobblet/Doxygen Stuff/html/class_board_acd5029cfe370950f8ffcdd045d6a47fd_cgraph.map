@@ -1,0 +1,7 @@
+<map id="Board::checkWinCondition" name="Board::checkWinCondition">
+<area shape="rect" id="node1" title="This checks if there are 4 gobblets in a row/col or diagonal." alt="" coords="5,80,181,105"/>
+<area shape="rect" id="node2" href="$class_entity.html#a12bd5070eff8cbd58c2c95f4305784d4" title=" " alt="" coords="240,5,401,31"/>
+<area shape="rect" id="node3" href="$class_board.html#a2100820f01ae62ee3222966c3c58eddb" title="Checks if either players can gobble using their reserves if there are 3 gobblets of the same colour i..." alt="" coords="229,55,412,80"/>
+<area shape="rect" id="node4" href="$class_grid.html#aae803d0ce5ae425631be9287824e57c1" title=" " alt="" coords="257,104,384,129"/>
+<area shape="rect" id="node5" href="$class_entity.html#a17163f4b8870c296ed4f26decda4e479" title=" " alt="" coords="245,153,396,179"/>
+</map>

@@ -1,0 +1,252 @@
+\hypertarget{class_gobblet}{}\doxysection{Gobblet Class Reference}
+\label{class_gobblet}\index{Gobblet@{Gobblet}}
+
+
+Representation of a gobblet.  
+
+
+
+
+{\ttfamily \#include $<$Gobblet.\+hpp$>$}
+
+
+
+Inheritance diagram for Gobblet\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=211pt]{class_gobblet__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Gobblet\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=211pt]{class_gobblet__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_gobblet_a892552310e1accdf0bc60c3d8c31e976}{Gobblet}} (const sf\+::\+Color \&t\+\_\+color, int t\+\_\+size)
+\begin{DoxyCompactList}\small\item\em Create a new gobblet. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_gobblet_ab8530f9ac59d92c2b09221d1f09da504}{get\+Size}} () const
+\item 
+const sf\+::\+Color \& \mbox{\hyperlink{class_gobblet_a939d04049da8abbcafa0d59963c61d45}{get\+Color}} () const
+\item 
+std\+::optional$<$ sf\+::\+Vector2i $>$ \mbox{\hyperlink{class_gobblet_af6a3e0cd261fc677468d76bc3622151c}{get\+Grid\+Coordinates}} () const
+\begin{DoxyCompactList}\small\item\em Get the grid coordinate of the gobblet. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_gobblet_adb3f3f3dac4b690926cd9c7e86cd01ef}{set\+Grid\+Coordinates}} (const \mbox{\hyperlink{class_grid}{Grid}} \&t\+\_\+grid, std\+::optional$<$ sf\+::\+Vector2i $>$ t\+\_\+coordinates)
+\begin{DoxyCompactList}\small\item\em Set the grid coordinate of the gobblet. \end{DoxyCompactList}\item 
+sf\+::\+Vector2f \mbox{\hyperlink{class_gobblet_a6485e81d7e41e2f8e63ccbe94172274c}{get\+Position}} () const
+\item 
+void \mbox{\hyperlink{class_gobblet_ad543c446c68928c58e9ccae208c33e72}{set\+Position}} (const sf\+::\+Vector2f \&t\+\_\+position)
+\item 
+sf\+::\+Circle\+Shape \mbox{\hyperlink{class_gobblet_aa7d0ee3eec11884767c6a3358bf3b9b7}{get\+Shape}} ()
+\item 
+const sf\+::\+Circle\+Shape \& \mbox{\hyperlink{class_gobblet_a05712dd7fbc2762cc8b12f3930388b2e}{get\+Shape}} () const
+\item 
+void \mbox{\hyperlink{class_gobblet_ad02e76139f82dd2c5a6b3d0f70adb973}{activate\+Clicked\+State}} ()
+\begin{DoxyCompactList}\small\item\em Add a style effect around the gobblet to know that it has been clicked. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_gobblet_a77782c317126221999eef65448411a61}{deactivate\+Clicked\+State}} ()
+\begin{DoxyCompactList}\small\item\em Deactivate the style effect. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{class_gobblet_a24024058b927b51c7b0fab238ab9756b}{operator==}} (const \mbox{\hyperlink{class_gobblet}{Gobblet}} \&t\+\_\+lhs, const \mbox{\hyperlink{class_gobblet}{Gobblet}} \&t\+\_\+rhs)
+\item 
+bool \mbox{\hyperlink{class_gobblet_a0e6bebcd00a87a10f435f2e7e9393e58}{operator!=}} (const \mbox{\hyperlink{class_gobblet}{Gobblet}} \&t\+\_\+lhs, const \mbox{\hyperlink{class_gobblet}{Gobblet}} \&t\+\_\+rhs)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Representation of a gobblet. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_gobblet_a892552310e1accdf0bc60c3d8c31e976}\label{class_gobblet_a892552310e1accdf0bc60c3d8c31e976}} 
+\index{Gobblet@{Gobblet}!Gobblet@{Gobblet}}
+\index{Gobblet@{Gobblet}!Gobblet@{Gobblet}}
+\doxysubsubsection{\texorpdfstring{Gobblet()}{Gobblet()}}
+{\footnotesize\ttfamily Gobblet\+::\+Gobblet (\begin{DoxyParamCaption}\item[{const sf\+::\+Color \&}]{t\+\_\+color,  }\item[{int}]{t\+\_\+size }\end{DoxyParamCaption})}
+
+
+
+Create a new gobblet. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t\+\_\+color} & Color of this gobblet (either black or white) \\
+\hline
+{\em t\+\_\+size} & \mbox{\hyperlink{class_gobblet}{Gobblet}} size between 1 and 4 \\
+\hline
+{\em t\+\_\+grid} & \mbox{\hyperlink{class_grid}{Grid}} this gobblet is on \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_gobblet_ad02e76139f82dd2c5a6b3d0f70adb973}\label{class_gobblet_ad02e76139f82dd2c5a6b3d0f70adb973}} 
+\index{Gobblet@{Gobblet}!activateClickedState@{activateClickedState}}
+\index{activateClickedState@{activateClickedState}!Gobblet@{Gobblet}}
+\doxysubsubsection{\texorpdfstring{activateClickedState()}{activateClickedState()}}
+{\footnotesize\ttfamily void Gobblet\+::activate\+Clicked\+State (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Add a style effect around the gobblet to know that it has been clicked. 
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_gobblet_ad02e76139f82dd2c5a6b3d0f70adb973_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_gobblet_a77782c317126221999eef65448411a61}\label{class_gobblet_a77782c317126221999eef65448411a61}} 
+\index{Gobblet@{Gobblet}!deactivateClickedState@{deactivateClickedState}}
+\index{deactivateClickedState@{deactivateClickedState}!Gobblet@{Gobblet}}
+\doxysubsubsection{\texorpdfstring{deactivateClickedState()}{deactivateClickedState()}}
+{\footnotesize\ttfamily void Gobblet\+::deactivate\+Clicked\+State (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Deactivate the style effect. 
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_gobblet_a77782c317126221999eef65448411a61_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_gobblet_a939d04049da8abbcafa0d59963c61d45}\label{class_gobblet_a939d04049da8abbcafa0d59963c61d45}} 
+\index{Gobblet@{Gobblet}!getColor@{getColor}}
+\index{getColor@{getColor}!Gobblet@{Gobblet}}
+\doxysubsubsection{\texorpdfstring{getColor()}{getColor()}}
+{\footnotesize\ttfamily const sf\+::\+Color \& Gobblet\+::get\+Color (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_gobblet_a939d04049da8abbcafa0d59963c61d45_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_gobblet_af6a3e0cd261fc677468d76bc3622151c}\label{class_gobblet_af6a3e0cd261fc677468d76bc3622151c}} 
+\index{Gobblet@{Gobblet}!getGridCoordinates@{getGridCoordinates}}
+\index{getGridCoordinates@{getGridCoordinates}!Gobblet@{Gobblet}}
+\doxysubsubsection{\texorpdfstring{getGridCoordinates()}{getGridCoordinates()}}
+{\footnotesize\ttfamily std\+::optional$<$ sf\+::\+Vector2i $>$ Gobblet\+::get\+Grid\+Coordinates (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Get the grid coordinate of the gobblet. 
+
+\begin{DoxyReturn}{Returns}
+The coordinate of the gobblet on the grid. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_gobblet_a6485e81d7e41e2f8e63ccbe94172274c}\label{class_gobblet_a6485e81d7e41e2f8e63ccbe94172274c}} 
+\index{Gobblet@{Gobblet}!getPosition@{getPosition}}
+\index{getPosition@{getPosition}!Gobblet@{Gobblet}}
+\doxysubsubsection{\texorpdfstring{getPosition()}{getPosition()}}
+{\footnotesize\ttfamily sf\+::\+Vector2f Gobblet\+::get\+Position (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{class_gobblet_aa7d0ee3eec11884767c6a3358bf3b9b7}\label{class_gobblet_aa7d0ee3eec11884767c6a3358bf3b9b7}} 
+\index{Gobblet@{Gobblet}!getShape@{getShape}}
+\index{getShape@{getShape}!Gobblet@{Gobblet}}
+\doxysubsubsection{\texorpdfstring{getShape()}{getShape()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily sf\+::\+Circle\+Shape Gobblet\+::get\+Shape (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_gobblet_aa7d0ee3eec11884767c6a3358bf3b9b7_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_gobblet_a05712dd7fbc2762cc8b12f3930388b2e}\label{class_gobblet_a05712dd7fbc2762cc8b12f3930388b2e}} 
+\index{Gobblet@{Gobblet}!getShape@{getShape}}
+\index{getShape@{getShape}!Gobblet@{Gobblet}}
+\doxysubsubsection{\texorpdfstring{getShape()}{getShape()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily const sf\+::\+Circle\+Shape \& Gobblet\+::get\+Shape (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{class_gobblet_ab8530f9ac59d92c2b09221d1f09da504}\label{class_gobblet_ab8530f9ac59d92c2b09221d1f09da504}} 
+\index{Gobblet@{Gobblet}!getSize@{getSize}}
+\index{getSize@{getSize}!Gobblet@{Gobblet}}
+\doxysubsubsection{\texorpdfstring{getSize()}{getSize()}}
+{\footnotesize\ttfamily int Gobblet\+::get\+Size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_gobblet_ab8530f9ac59d92c2b09221d1f09da504_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_gobblet_adb3f3f3dac4b690926cd9c7e86cd01ef}\label{class_gobblet_adb3f3f3dac4b690926cd9c7e86cd01ef}} 
+\index{Gobblet@{Gobblet}!setGridCoordinates@{setGridCoordinates}}
+\index{setGridCoordinates@{setGridCoordinates}!Gobblet@{Gobblet}}
+\doxysubsubsection{\texorpdfstring{setGridCoordinates()}{setGridCoordinates()}}
+{\footnotesize\ttfamily void Gobblet\+::set\+Grid\+Coordinates (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_grid}{Grid}} \&}]{t\+\_\+grid,  }\item[{std\+::optional$<$ sf\+::\+Vector2i $>$}]{t\+\_\+coordinates }\end{DoxyParamCaption})}
+
+
+
+Set the grid coordinate of the gobblet. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t\+\_\+coordinates} & Coordinate of the gobblet on the grid. Pass nullptr to remove the gobblet from the grid \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_gobblet_adb3f3f3dac4b690926cd9c7e86cd01ef_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_gobblet_ad543c446c68928c58e9ccae208c33e72}\label{class_gobblet_ad543c446c68928c58e9ccae208c33e72}} 
+\index{Gobblet@{Gobblet}!setPosition@{setPosition}}
+\index{setPosition@{setPosition}!Gobblet@{Gobblet}}
+\doxysubsubsection{\texorpdfstring{setPosition()}{setPosition()}}
+{\footnotesize\ttfamily void Gobblet\+::set\+Position (\begin{DoxyParamCaption}\item[{const sf\+::\+Vector2f \&}]{t\+\_\+position }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_gobblet_ad543c446c68928c58e9ccae208c33e72_icgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Friends And Related Function Documentation}
+\mbox{\Hypertarget{class_gobblet_a0e6bebcd00a87a10f435f2e7e9393e58}\label{class_gobblet_a0e6bebcd00a87a10f435f2e7e9393e58}} 
+\index{Gobblet@{Gobblet}!operator"!=@{operator"!=}}
+\index{operator"!=@{operator"!=}!Gobblet@{Gobblet}}
+\doxysubsubsection{\texorpdfstring{operator"!=}{operator!=}}
+{\footnotesize\ttfamily bool operator!= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_gobblet}{Gobblet}} \&}]{t\+\_\+lhs,  }\item[{const \mbox{\hyperlink{class_gobblet}{Gobblet}} \&}]{t\+\_\+rhs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+\mbox{\Hypertarget{class_gobblet_a24024058b927b51c7b0fab238ab9756b}\label{class_gobblet_a24024058b927b51c7b0fab238ab9756b}} 
+\index{Gobblet@{Gobblet}!operator==@{operator==}}
+\index{operator==@{operator==}!Gobblet@{Gobblet}}
+\doxysubsubsection{\texorpdfstring{operator==}{operator==}}
+{\footnotesize\ttfamily bool operator== (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_gobblet}{Gobblet}} \&}]{t\+\_\+lhs,  }\item[{const \mbox{\hyperlink{class_gobblet}{Gobblet}} \&}]{t\+\_\+rhs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+AI/\+AIGames-\/\+Gobblet/\+Gobblet/\+Gobblet/\mbox{\hyperlink{_gobblet_8hpp}{Gobblet.\+hpp}}\item 
+AI/\+AIGames-\/\+Gobblet/\+Gobblet/\+Gobblet/\mbox{\hyperlink{_gobblet_8cpp}{Gobblet.\+cpp}}\end{DoxyCompactItemize}

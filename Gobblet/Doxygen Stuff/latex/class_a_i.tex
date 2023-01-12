@@ -1,0 +1,178 @@
+\hypertarget{class_a_i}{}\doxysection{AI Class Reference}
+\label{class_a_i}\index{AI@{AI}}
+
+
+{\ttfamily \#include $<$AI.\+h$>$}
+
+
+
+Collaboration diagram for AI\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=187pt]{class_a_i__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{struct_move}{Move}} \mbox{\hyperlink{class_a_i_ad9a62ed4133030086e62497a6baddd52}{find\+Best\+Move}} (\mbox{\hyperlink{class_board}{Board}} t\+\_\+board)
+\begin{DoxyCompactList}\small\item\em Find the best move for the \mbox{\hyperlink{class_a_i}{AI}} to make. \end{DoxyCompactList}\item 
+static int \mbox{\hyperlink{class_a_i_a2fbd0b8f5f82ae51fba9ad81aac441a7}{minimax}} (\mbox{\hyperlink{class_board}{Board}} \&t\+\_\+board, int t\+\_\+depth, int alpha, int beta, bool t\+\_\+is\+Maximising, \mbox{\hyperlink{struct_move_ptr}{Move\+Ptr}} \&best\+Move)
+\begin{DoxyCompactList}\small\item\em Minimax algorithm. \end{DoxyCompactList}\item 
+static int \mbox{\hyperlink{class_a_i_a7de43f9d2d000ea2e5671b08db594e54}{evaluate\+Score}} (const \mbox{\hyperlink{class_board}{Board}} \&t\+\_\+board, const \mbox{\hyperlink{class_entity}{Entity}} \&t\+\_\+player)
+\begin{DoxyCompactList}\small\item\em Calculate a score for the board for a specific player. \end{DoxyCompactList}\item 
+static std\+::vector$<$ \mbox{\hyperlink{struct_move_ptr}{Move\+Ptr}} $>$ \mbox{\hyperlink{class_a_i_a2ae36307a4f7f4066e852633c5d29e03}{get\+All\+Legal\+Moves}} (\mbox{\hyperlink{class_board}{Board}} \&t\+\_\+board, \mbox{\hyperlink{class_entity}{Entity}} \&t\+\_\+current\+Player)
+\begin{DoxyCompactList}\small\item\em Search for all the possible moves, that are legal in the game of \mbox{\hyperlink{class_gobblet}{Gobblet}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_a_i_a7de43f9d2d000ea2e5671b08db594e54}\label{class_a_i_a7de43f9d2d000ea2e5671b08db594e54}} 
+\index{AI@{AI}!evaluateScore@{evaluateScore}}
+\index{evaluateScore@{evaluateScore}!AI@{AI}}
+\doxysubsubsection{\texorpdfstring{evaluateScore()}{evaluateScore()}}
+{\footnotesize\ttfamily int AI\+::evaluate\+Score (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_board}{Board}} \&}]{t\+\_\+board,  }\item[{const \mbox{\hyperlink{class_entity}{Entity}} \&}]{t\+\_\+player }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Calculate a score for the board for a specific player. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t\+\_\+board} & \mbox{\hyperlink{class_game}{Game}} state \\
+\hline
+{\em t\+\_\+player} & player to evaluate the score for \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+calculated score of the player 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=303pt]{class_a_i_a7de43f9d2d000ea2e5671b08db594e54_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_a_i_a7de43f9d2d000ea2e5671b08db594e54_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_a_i_ad9a62ed4133030086e62497a6baddd52}\label{class_a_i_ad9a62ed4133030086e62497a6baddd52}} 
+\index{AI@{AI}!findBestMove@{findBestMove}}
+\index{findBestMove@{findBestMove}!AI@{AI}}
+\doxysubsubsection{\texorpdfstring{findBestMove()}{findBestMove()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_move}{Move}} AI\+::find\+Best\+Move (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_board}{Board}}}]{t\+\_\+board }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Find the best move for the \mbox{\hyperlink{class_a_i}{AI}} to make. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t\+\_\+board} & \mbox{\hyperlink{class_board}{Board}} corresponding to the current game state (passed as a copy to not update the real board). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The best move for the \mbox{\hyperlink{class_a_i}{AI}} to make. 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_a_i_ad9a62ed4133030086e62497a6baddd52_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_a_i_a2ae36307a4f7f4066e852633c5d29e03}\label{class_a_i_a2ae36307a4f7f4066e852633c5d29e03}} 
+\index{AI@{AI}!getAllLegalMoves@{getAllLegalMoves}}
+\index{getAllLegalMoves@{getAllLegalMoves}!AI@{AI}}
+\doxysubsubsection{\texorpdfstring{getAllLegalMoves()}{getAllLegalMoves()}}
+{\footnotesize\ttfamily std\+::vector$<$ \mbox{\hyperlink{struct_move_ptr}{Move\+Ptr}} $>$ AI\+::get\+All\+Legal\+Moves (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_board}{Board}} \&}]{t\+\_\+board,  }\item[{\mbox{\hyperlink{class_entity}{Entity}} \&}]{t\+\_\+current\+Player }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Search for all the possible moves, that are legal in the game of \mbox{\hyperlink{class_gobblet}{Gobblet}}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t\+\_\+board} & \\
+\hline
+{\em t\+\_\+current\+Player} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+list of legal moves 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_a_i_a2ae36307a4f7f4066e852633c5d29e03_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_a_i_a2ae36307a4f7f4066e852633c5d29e03_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_a_i_a2fbd0b8f5f82ae51fba9ad81aac441a7}\label{class_a_i_a2fbd0b8f5f82ae51fba9ad81aac441a7}} 
+\index{AI@{AI}!minimax@{minimax}}
+\index{minimax@{minimax}!AI@{AI}}
+\doxysubsubsection{\texorpdfstring{minimax()}{minimax()}}
+{\footnotesize\ttfamily int AI\+::minimax (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_board}{Board}} \&}]{t\+\_\+board,  }\item[{int}]{t\+\_\+depth,  }\item[{int}]{alpha,  }\item[{int}]{beta,  }\item[{bool}]{t\+\_\+is\+Maximising,  }\item[{\mbox{\hyperlink{struct_move_ptr}{Move\+Ptr}} \&}]{best\+Move }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Minimax algorithm. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t\+\_\+board} & \mbox{\hyperlink{class_game}{Game}} state to evaluate. \\
+\hline
+{\em t\+\_\+depth} & \\
+\hline
+{\em alpha} & \\
+\hline
+{\em beta} & \\
+\hline
+{\em t\+\_\+is\+Maximising} & if the current player is max/min. \\
+\hline
+{\em best\+Move} & Reference to the best move found so far. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+best score found by minimax 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_a_i_a2fbd0b8f5f82ae51fba9ad81aac441a7_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=273pt]{class_a_i_a2fbd0b8f5f82ae51fba9ad81aac441a7_icgraph}
+\end{center}
+\end{figure}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+AI/\+AIGames-\/\+Gobblet/\+Gobblet/\+Gobblet/\mbox{\hyperlink{_a_i_8h}{AI.\+h}}\item 
+AI/\+AIGames-\/\+Gobblet/\+Gobblet/\+Gobblet/\mbox{\hyperlink{_a_i_8cpp}{AI.\+cpp}}\end{DoxyCompactItemize}

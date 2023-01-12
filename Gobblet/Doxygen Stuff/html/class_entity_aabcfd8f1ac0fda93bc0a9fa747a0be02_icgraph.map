@@ -1,0 +1,6 @@
+<map id="Entity::getType" name="Entity::getType">
+<area shape="rect" id="node1" title=" " alt="" coords="391,31,501,56"/>
+<area shape="rect" id="node2" href="$class_board.html#a2c593af8562f83e69ffed277c4e08169" title=" " alt="" coords="203,5,342,31"/>
+<area shape="rect" id="node3" href="$class_board.html#a5a2abf0b067134c3fa08c5b2eea7f815" title="Place the chosen gobblet somewhere in the grid according to mouse position." alt="" coords="203,55,343,80"/>
+<area shape="rect" id="node4" href="$class_board.html#a19d4c00194913e42a5fea515457afb63" title=" " alt="" coords="5,55,155,80"/>
+</map>

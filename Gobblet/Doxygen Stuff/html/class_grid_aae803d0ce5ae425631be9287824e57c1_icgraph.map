@@ -1,0 +1,15 @@
+<map id="Grid::getGridArray" name="Grid::getGridArray">
+<area shape="rect" id="node1" title=" " alt="" coords="648,204,775,229"/>
+<area shape="rect" id="node2" href="$class_board.html#acd5029cfe370950f8ffcdd045d6a47fd" title="This checks if there are 4 gobblets in a row/col or diagonal." alt="" coords="413,105,589,131"/>
+<area shape="rect" id="node5" href="$class_board.html#a5a2abf0b067134c3fa08c5b2eea7f815" title="Place the chosen gobblet somewhere in the grid according to mouse position." alt="" coords="208,55,348,80"/>
+<area shape="rect" id="node7" href="$class_board.html#a00811a0dd2c3a124bf9bacdb0fd510e9" title="Choose the gobblet to be moved. The gobblet is selected from mouse position." alt="" coords="203,5,353,31"/>
+<area shape="rect" id="node8" href="$class_board.html#acedae9b4a3dd11b540253c2a264eb14c" title=" " alt="" coords="455,155,546,180"/>
+<area shape="rect" id="node9" href="$class_a_i.html#a7de43f9d2d000ea2e5671b08db594e54" title="Calculate a score for the board for a specific player." alt="" coords="439,303,562,328"/>
+<area shape="rect" id="node10" href="$class_board.html#a1d04eed4c9a1ff7d99fbadaca2ca349d" title="Given a stack, return the pointer to one of the stack stored in the board or the external stack list." alt="" coords="419,253,582,279"/>
+<area shape="rect" id="node11" href="$class_a_i.html#a2ae36307a4f7f4066e852633c5d29e03" title="Search for all the possible moves, that are legal in the game of Gobblet." alt="" coords="429,204,572,229"/>
+<area shape="rect" id="node12" href="$class_gobblet.html#adb3f3f3dac4b690926cd9c7e86cd01ef" title="Set the grid coordinate of the gobblet." alt="" coords="407,352,594,377"/>
+<area shape="rect" id="node13" href="$class_gobblet_stack.html#a6c8021b21b132a67df782523cd9dcf19" title=" " alt="" coords="401,401,600,427"/>
+<area shape="rect" id="node3" href="$class_a_i.html#a2fbd0b8f5f82ae51fba9ad81aac441a7" title="Minimax algorithm." alt="" coords="233,204,323,229"/>
+<area shape="rect" id="node4" href="$class_a_i.html#ad9a62ed4133030086e62497a6baddd52" title="Find the best move for the AI to make." alt="" coords="21,204,139,229"/>
+<area shape="rect" id="node6" href="$class_board.html#a19d4c00194913e42a5fea515457afb63" title=" " alt="" coords="5,31,155,56"/>
+</map>

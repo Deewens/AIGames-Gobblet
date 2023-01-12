@@ -1,0 +1,27 @@
+\hypertarget{_a_i_8h_source}{}\doxysection{AI.\+h}
+\label{_a_i_8h_source}\index{AI/AIGames-\/Gobblet/Gobblet/Gobblet/AI.h@{AI/AIGames-\/Gobblet/Gobblet/Gobblet/AI.h}}
+\mbox{\hyperlink{_a_i_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_move_8hpp}{Move.hpp}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_move_ptr_8hpp}{MovePtr.hpp}}"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_board}{Board}};}
+\DoxyCodeLine{00008\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_entity}{Entity}};}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_a_i}{AI}}}
+\DoxyCodeLine{00011\ \{}
+\DoxyCodeLine{00012\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{struct_move}{Move}}\ \mbox{\hyperlink{class_a_i_ad9a62ed4133030086e62497a6baddd52}{findBestMove}}(\mbox{\hyperlink{class_board}{Board}}\ t\_board);}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_a_i_a2fbd0b8f5f82ae51fba9ad81aac441a7}{minimax}}(\mbox{\hyperlink{class_board}{Board}}\&\ t\_board,\ \textcolor{keywordtype}{int}\ t\_depth,\ \textcolor{keywordtype}{int}\ alpha,\ \textcolor{keywordtype}{int}\ beta,\ \textcolor{keywordtype}{bool}\ t\_isMaximising,\ \mbox{\hyperlink{struct_move_ptr}{MovePtr}}\&\ bestMove);}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_a_i_a7de43f9d2d000ea2e5671b08db594e54}{evaluateScore}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_board}{Board}}\&\ t\_board,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_entity}{Entity}}\&\ t\_player);}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keyword}{static}\ std::vector<MovePtr>\ \mbox{\hyperlink{class_a_i_a2ae36307a4f7f4066e852633c5d29e03}{getAllLegalMoves}}(\mbox{\hyperlink{class_board}{Board}}\&\ t\_board,\ \mbox{\hyperlink{class_entity}{Entity}}\&\ t\_currentPlayer);}
+\DoxyCodeLine{00047\ \};}
+\DoxyCodeLine{00048\ }
+
+\end{DoxyCode}

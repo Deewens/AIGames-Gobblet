@@ -1,0 +1,38 @@
+\hypertarget{_tile_8h_source}{}\doxysection{Tile.\+h}
+\label{_tile_8h_source}\index{AI/AIGames-\/Gobblet/Gobblet/Gobblet/Tile.h@{AI/AIGames-\/Gobblet/Gobblet/Gobblet/Tile.h}}
+\mbox{\hyperlink{_tile_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ <SFML/Graphics.hpp>}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_gobblet_stack_8hpp}{GobbletStack.hpp}}"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_gobblet}{Gobblet}};}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_tile}{Tile}}\ :\ \textcolor{keyword}{public}\ sf::Drawable}
+\DoxyCodeLine{00009\ \{}
+\DoxyCodeLine{00010\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00011\ \ \ \ \ \mbox{\hyperlink{class_tile_aeeb5593bb6b75aae2edfcccbc84ab378}{Tile}}();}
+\DoxyCodeLine{00012\ \ \ \ \ \mbox{\hyperlink{class_tile_aeeb5593bb6b75aae2edfcccbc84ab378}{Tile}}(\textcolor{keywordtype}{int}\ row,\ \textcolor{keywordtype}{int}\ col,\ \textcolor{keywordtype}{int}\ t\_tileSize);}
+\DoxyCodeLine{00013\ \ \ \ \ \mbox{\hyperlink{class_tile_a98634abbd93fa13d0578d7103202d03d}{\string~Tile}}();}
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_tile_ab384213a656c5fd7d853ec92a6c857cc}{Update}}(sf::RectangleShape\ t\_mouse);}
+\DoxyCodeLine{00015\ \ \ \ \ sf::Vector2f\ \mbox{\hyperlink{class_tile_a95512e3c6ae99033adf1ea78d585243d}{GetGridCoordinate}}();}
+\DoxyCodeLine{00016\ \ \ \ \ sf::RectangleShape\&\ \mbox{\hyperlink{class_tile_a2891a049ef7b496bb16bab9e8d429f99}{GetShape}}();}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_tile_a99dce9b1ecbac2b5747e29d4238fcbd2}{SetPosition}}(\textcolor{keywordtype}{int}\ t\_x,\ \textcolor{keywordtype}{int}\ t\_y);}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \ \ \ \ sf::Vector2f\ \mbox{\hyperlink{class_tile_a0a39dcb90cec5ab6f6815b3dac8faf93}{getCenter}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \ \ \ \ \mbox{\hyperlink{class_gobblet_stack}{GobbletStack}}\&\ \mbox{\hyperlink{class_tile_a43e7991ff11f382671b296ec857f2564}{getStack}}();}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_gobblet_stack}{GobbletStack}}\&\ \mbox{\hyperlink{class_tile_a43e7991ff11f382671b296ec857f2564}{getStack}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00023\ \ \ \ \ }
+\DoxyCodeLine{00024\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordtype}{void}\ draw(sf::RenderTarget\&\ target,\ sf::RenderStates\ states)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \ \ \ \ \mbox{\hyperlink{class_gobblet_stack}{GobbletStack}}\ m\_stack;}
+\DoxyCodeLine{00028\ \ \ \ \ }
+\DoxyCodeLine{00029\ \ \ \ \ sf::RectangleShape\ m\_tileShape;}
+\DoxyCodeLine{00030\ \ \ \ \ sf::Vector2f\ m\_gridCoordinate;}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordtype}{float}\ m\_tileSize\ =\ 20;}
+\DoxyCodeLine{00032\ \};}
+
+\end{DoxyCode}

@@ -1,0 +1,57 @@
+\hypertarget{_gobblet_stack_8hpp_source}{}\doxysection{Gobblet\+Stack.\+hpp}
+\label{_gobblet_stack_8hpp_source}\index{AI/AIGames-\/Gobblet/Gobblet/Gobblet/GobbletStack.hpp@{AI/AIGames-\/Gobblet/Gobblet/Gobblet/GobbletStack.hpp}}
+\mbox{\hyperlink{_gobblet_stack_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <stack>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <functional>}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_gobblet_8hpp}{Gobblet.hpp}}"{}}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_gobblet_stack}{GobbletStack}}\ final\ :\ \textcolor{keyword}{public}\ sf::Drawable}
+\DoxyCodeLine{00012\ \{}
+\DoxyCodeLine{00013\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{class_gobblet_stack}{GobbletStack}}(\textcolor{keywordtype}{bool}\ t\_isExternalStack);}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_gobblet_stack_a4266527750b45f00a8e212a61a80adf3}{add}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_gobblet}{Gobblet}}\&\ t\_gobblet);}
+\DoxyCodeLine{00017\ \ \ \ \ }
+\DoxyCodeLine{00018\ \ \ \ \ \mbox{\hyperlink{class_gobblet}{Gobblet}}\&\ \mbox{\hyperlink{class_gobblet_stack_af501096153b2e8697766e8d059ef041c}{top}}();}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_gobblet}{Gobblet}}\&\ \mbox{\hyperlink{class_gobblet_stack_af501096153b2e8697766e8d059ef041c}{top}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00020\ \ \ \ \ \mbox{\hyperlink{class_gobblet}{Gobblet}}\ \mbox{\hyperlink{class_gobblet_stack_a56504c9af864dc8bcc7c00d4b1d6af77}{pop}}();}
+\DoxyCodeLine{00021\ \ \ \ \ }
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_gobblet_stack_ae9d223ca04b51719eae6a2dc8a00cc8b}{isEmpty}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_gobblet_stack_a48150aac9cd40ba75892115a3105a027}{setPosition}}(sf::Vector2f\ t\_position);}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_gobblet_stack_a6c8021b21b132a67df782523cd9dcf19}{setGridPosition}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_grid}{Grid}}\&\ t\_grid,\ \textcolor{keyword}{const}\ std::optional<sf::Vector2i>\&\ t\_gridPosition);}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \ \ \ \ sf::Vector2f\ \mbox{\hyperlink{class_gobblet_stack_a1a841912edd465667e23e4680848cdf3}{getPosition}}();}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keyword}{const}\ sf::Vector2f\&\ \mbox{\hyperlink{class_gobblet_stack_a1a841912edd465667e23e4680848cdf3}{getPosition}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00034\ \ \ \ \ std::vector<Gobblet>\ \mbox{\hyperlink{class_gobblet_stack_a328311bcc25193388ccaf234eb960107}{container}}();}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keyword}{const}\ std::vector<Gobblet>\&\ \mbox{\hyperlink{class_gobblet_stack_a328311bcc25193388ccaf234eb960107}{container}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00040\ \ \ \ \ }
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_gobblet_stack_a1ff8862bf1d2d2490acff6397b562a10}{isClicked}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_gobblet_stack_aec5edf81ff17fab11feedc7deba20e30}{setClicked}}(\textcolor{keywordtype}{bool}\ t\_isClicked);}
+\DoxyCodeLine{00043\ \ \ \ \ }
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_gobblet_stack_a30ee72debc9a3506eb64b7c8308d03f8}{isExternalStack}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keyword}{friend}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_gobblet_stack_a8b21f35e4f6bb7fa1f11b154c424cce5}{operator==}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_gobblet_stack}{GobbletStack}}\&\ t\_lhs,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_gobblet_stack}{GobbletStack}}\&\ t\_rhs);}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keyword}{friend}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_gobblet_stack_a3b7f9f56b177ab8f4a7d6fca83262862}{operator!=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_gobblet_stack}{GobbletStack}}\&\ t\_lhs,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_gobblet_stack}{GobbletStack}}\&\ t\_rhs);}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_gobblet_stack_abbb6bbe7e39187957fa5383f794d9014}{draw}}(sf::RenderTarget\&\ target,\ sf::RenderStates\ states)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keywordtype}{void}\ setGobbletsPosition(sf::Vector2f\ t\_position);}
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keywordtype}{void}\ setGobbletsGridPosition(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_grid}{Grid}}\&\ t\_grid,\ \textcolor{keyword}{const}\ std::optional<sf::Vector2i>\&\ t\_gridPosition);}
+\DoxyCodeLine{00055\ \ \ \ \ }
+\DoxyCodeLine{00056\ \ \ \ \ std::vector<Gobblet>\ m\_stack;}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keywordtype}{bool}\ m\_isClicked\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \ \ sf::Vector2f\ m\_position;}
+\DoxyCodeLine{00061\ \ \ \ \ std::optional<sf::Vector2i>\ m\_gridPosition;}
+\DoxyCodeLine{00062\ \};}
+
+\end{DoxyCode}

@@ -1,0 +1,421 @@
+\hypertarget{class_board}{}\doxysection{Board Class Reference}
+\label{class_board}\index{Board@{Board}}
+
+
+\mbox{\hyperlink{class_board}{Board}} game state and logic.  
+
+
+
+
+{\ttfamily \#include $<$Board.\+hpp$>$}
+
+
+
+Inheritance diagram for Board\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=200pt]{class_board__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Board\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=200pt]{class_board__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_board_aedb98f6950b5da17ae147a8a9b441e1a}{Board}} (sf\+::\+Render\+Window \&t\+\_\+window)
+\item 
+void \mbox{\hyperlink{class_board_a76201d34ab6d0c2db1f0171dbb984974}{update}} (sf\+::\+Time t\+\_\+delta\+Time)
+\item 
+bool \mbox{\hyperlink{class_board_a00811a0dd2c3a124bf9bacdb0fd510e9}{choose\+Gobblet}} ()
+\begin{DoxyCompactList}\small\item\em Choose the gobblet to be moved. The gobblet is selected from mouse position. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_board_a5969f25fe451a96ba2e36428100f54ad}{switch\+Current\+Player}} ()
+\begin{DoxyCompactList}\small\item\em Switch the current playing player (from min to max or max to min) \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_board_a5a2abf0b067134c3fa08c5b2eea7f815}{place\+Gobblet}} ()
+\begin{DoxyCompactList}\small\item\em Place the chosen gobblet somewhere in the grid according to mouse position. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_board_a19d4c00194913e42a5fea515457afb63}{process\+Mouse}} (sf\+::\+Event t\+\_\+event)
+\item 
+bool \mbox{\hyperlink{class_board_acd5029cfe370950f8ffcdd045d6a47fd}{check\+Win\+Condition}} (sf\+::\+Color t\+\_\+color)
+\begin{DoxyCompactList}\small\item\em This checks if there are 4 gobblets in a row/col or diagonal. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_board_a2100820f01ae62ee3222966c3c58eddb}{check\+Reserve\+Usage}} (sf\+::\+Color a\mbox{[}$\,$\mbox{]}, sf\+::\+Color b\mbox{[}$\,$\mbox{]}, sf\+::\+Color t\+\_\+color)
+\begin{DoxyCompactList}\small\item\em Checks if either players can gobble using their reserves if there are 3 gobblets of the same colour in a row. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_board_ac37a6d476b71a2869836c706a62fcd43}{check\+Tie\+Condition}} ()
+\item 
+\mbox{\hyperlink{class_grid}{Grid}} \& \mbox{\hyperlink{class_board_a90e00acf1726e66e72e055ad914d6c58}{get\+Grid}} ()
+\item 
+const \mbox{\hyperlink{class_grid}{Grid}} \& \mbox{\hyperlink{class_board_a455864a9dd4239c820add7c51866adc5}{get\+Grid}} () const
+\item 
+\mbox{\hyperlink{class_entity}{Entity}} \& \mbox{\hyperlink{class_board_a2c593af8562f83e69ffed277c4e08169}{get\+Opponent}} (const \mbox{\hyperlink{class_entity}{Entity}} \&t\+\_\+entity)
+\item 
+\mbox{\hyperlink{class_gobblet_stack}{Gobblet\+Stack}} $\ast$ \mbox{\hyperlink{class_board_a1d04eed4c9a1ff7d99fbadaca2ca349d}{find\+Gobblet\+Stack}} (const \mbox{\hyperlink{class_gobblet_stack}{Gobblet\+Stack}} \&t\+\_\+stack)
+\begin{DoxyCompactList}\small\item\em Given a stack, return the pointer to one of the stack stored in the board or the external stack list. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_entity}{Entity}} $\ast$ \mbox{\hyperlink{class_board_a4d08bd6053aec668003fc3690b39e129}{get\+Current\+Player}} ()
+\begin{DoxyCompactList}\small\item\em Get whose turn it is. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_entity}{Entity}} \& \mbox{\hyperlink{class_board_a6e2f0e140ebe0d35cdbc4a61955aa2d1}{get\+Min\+Player}} ()
+\item 
+\mbox{\hyperlink{class_entity}{Entity}} \& \mbox{\hyperlink{class_board_ac090ec440d4aae4bc59bd2033a777872}{get\+Max\+Player}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{class_board_a35ee26d963e5ac8c76087f430e1b6987}{move\+Gobblet}} (\mbox{\hyperlink{class_gobblet_stack}{Gobblet\+Stack}} \&t\+\_\+from\+Stack, \mbox{\hyperlink{class_gobblet_stack}{Gobblet\+Stack}} \&t\+\_\+to\+Stack)
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{struct_move}{Move}} a gobblet from one stack to another. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_board_acedae9b4a3dd11b540253c2a264eb14c}{draw}} (sf\+::\+Render\+Target \&target, sf\+::\+Render\+States states) const override
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{class_board}{Board}} game state and logic. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_board_aedb98f6950b5da17ae147a8a9b441e1a}\label{class_board_aedb98f6950b5da17ae147a8a9b441e1a}} 
+\index{Board@{Board}!Board@{Board}}
+\index{Board@{Board}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{Board()}{Board()}}
+{\footnotesize\ttfamily Board\+::\+Board (\begin{DoxyParamCaption}\item[{sf\+::\+Render\+Window \&}]{t\+\_\+window }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_board_a2100820f01ae62ee3222966c3c58eddb}\label{class_board_a2100820f01ae62ee3222966c3c58eddb}} 
+\index{Board@{Board}!checkReserveUsage@{checkReserveUsage}}
+\index{checkReserveUsage@{checkReserveUsage}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{checkReserveUsage()}{checkReserveUsage()}}
+{\footnotesize\ttfamily bool Board\+::check\+Reserve\+Usage (\begin{DoxyParamCaption}\item[{sf\+::\+Color}]{a\mbox{[}$\,$\mbox{]},  }\item[{sf\+::\+Color}]{b\mbox{[}$\,$\mbox{]},  }\item[{sf\+::\+Color}]{t\+\_\+color }\end{DoxyParamCaption})}
+
+
+
+Checks if either players can gobble using their reserves if there are 3 gobblets of the same colour in a row. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & The row/diagonalA array of colors\\
+\hline
+{\em b} & The col/diagonalB array of colors\\
+\hline
+{\em t\+\_\+color} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns if either player is able to use the ability
+\end{DoxyReturn}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_board_a2100820f01ae62ee3222966c3c58eddb_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_board_ac37a6d476b71a2869836c706a62fcd43}\label{class_board_ac37a6d476b71a2869836c706a62fcd43}} 
+\index{Board@{Board}!checkTieCondition@{checkTieCondition}}
+\index{checkTieCondition@{checkTieCondition}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{checkTieCondition()}{checkTieCondition()}}
+{\footnotesize\ttfamily void Board\+::check\+Tie\+Condition (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_board_acd5029cfe370950f8ffcdd045d6a47fd}\label{class_board_acd5029cfe370950f8ffcdd045d6a47fd}} 
+\index{Board@{Board}!checkWinCondition@{checkWinCondition}}
+\index{checkWinCondition@{checkWinCondition}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{checkWinCondition()}{checkWinCondition()}}
+{\footnotesize\ttfamily bool Board\+::check\+Win\+Condition (\begin{DoxyParamCaption}\item[{sf\+::\+Color}]{t\+\_\+color }\end{DoxyParamCaption})}
+
+
+
+This checks if there are 4 gobblets in a row/col or diagonal. 
+
+Checks the diagonals if there is 4 in a row
+
+
+\begin{DoxyParams}{Parameters}
+{\em t\+\_\+color} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_board_acd5029cfe370950f8ffcdd045d6a47fd_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_board_acd5029cfe370950f8ffcdd045d6a47fd_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_board_a00811a0dd2c3a124bf9bacdb0fd510e9}\label{class_board_a00811a0dd2c3a124bf9bacdb0fd510e9}} 
+\index{Board@{Board}!chooseGobblet@{chooseGobblet}}
+\index{chooseGobblet@{chooseGobblet}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{chooseGobblet()}{chooseGobblet()}}
+{\footnotesize\ttfamily bool Board\+::choose\+Gobblet (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Choose the gobblet to be moved. The gobblet is selected from mouse position. 
+
+\begin{DoxyReturn}{Returns}
+flag used for controlling code flow. If true, nothing should be called after this method, and the calling method should immediately break or return. (e.\+g.\+: should not called place\+Gobblet after this method if it return true) 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_board_a00811a0dd2c3a124bf9bacdb0fd510e9_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=341pt]{class_board_a00811a0dd2c3a124bf9bacdb0fd510e9_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_board_acedae9b4a3dd11b540253c2a264eb14c}\label{class_board_acedae9b4a3dd11b540253c2a264eb14c}} 
+\index{Board@{Board}!draw@{draw}}
+\index{draw@{draw}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{draw()}{draw()}}
+{\footnotesize\ttfamily void Board\+::draw (\begin{DoxyParamCaption}\item[{sf\+::\+Render\+Target \&}]{target,  }\item[{sf\+::\+Render\+States}]{states }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=312pt]{class_board_acedae9b4a3dd11b540253c2a264eb14c_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_board_a1d04eed4c9a1ff7d99fbadaca2ca349d}\label{class_board_a1d04eed4c9a1ff7d99fbadaca2ca349d}} 
+\index{Board@{Board}!findGobbletStack@{findGobbletStack}}
+\index{findGobbletStack@{findGobbletStack}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{findGobbletStack()}{findGobbletStack()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_gobblet_stack}{Gobblet\+Stack}} $\ast$ Board\+::find\+Gobblet\+Stack (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_gobblet_stack}{Gobblet\+Stack}} \&}]{t\+\_\+stack }\end{DoxyParamCaption})}
+
+
+
+Given a stack, return the pointer to one of the stack stored in the board or the external stack list. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t\+\_\+stack} & a stack to search \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+pointer to the stack 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_board_a1d04eed4c9a1ff7d99fbadaca2ca349d_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_board_a4d08bd6053aec668003fc3690b39e129}\label{class_board_a4d08bd6053aec668003fc3690b39e129}} 
+\index{Board@{Board}!getCurrentPlayer@{getCurrentPlayer}}
+\index{getCurrentPlayer@{getCurrentPlayer}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{getCurrentPlayer()}{getCurrentPlayer()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_entity}{Entity}} $\ast$ Board\+::get\+Current\+Player (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get whose turn it is. 
+
+\begin{DoxyReturn}{Returns}
+raw pointer to the current playing player 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_board_a90e00acf1726e66e72e055ad914d6c58}\label{class_board_a90e00acf1726e66e72e055ad914d6c58}} 
+\index{Board@{Board}!getGrid@{getGrid}}
+\index{getGrid@{getGrid}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{getGrid()}{getGrid()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_grid}{Grid}} \& Board\+::get\+Grid (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_board_a90e00acf1726e66e72e055ad914d6c58_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_board_a455864a9dd4239c820add7c51866adc5}\label{class_board_a455864a9dd4239c820add7c51866adc5}} 
+\index{Board@{Board}!getGrid@{getGrid}}
+\index{getGrid@{getGrid}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{getGrid()}{getGrid()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{class_grid}{Grid}} \& Board\+::get\+Grid (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{class_board_ac090ec440d4aae4bc59bd2033a777872}\label{class_board_ac090ec440d4aae4bc59bd2033a777872}} 
+\index{Board@{Board}!getMaxPlayer@{getMaxPlayer}}
+\index{getMaxPlayer@{getMaxPlayer}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{getMaxPlayer()}{getMaxPlayer()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_entity}{Entity}} \& Board\+::get\+Max\+Player (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_board_ac090ec440d4aae4bc59bd2033a777872_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_board_a6e2f0e140ebe0d35cdbc4a61955aa2d1}\label{class_board_a6e2f0e140ebe0d35cdbc4a61955aa2d1}} 
+\index{Board@{Board}!getMinPlayer@{getMinPlayer}}
+\index{getMinPlayer@{getMinPlayer}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{getMinPlayer()}{getMinPlayer()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_entity}{Entity}} \& Board\+::get\+Min\+Player (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_board_a6e2f0e140ebe0d35cdbc4a61955aa2d1_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_board_a2c593af8562f83e69ffed277c4e08169}\label{class_board_a2c593af8562f83e69ffed277c4e08169}} 
+\index{Board@{Board}!getOpponent@{getOpponent}}
+\index{getOpponent@{getOpponent}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{getOpponent()}{getOpponent()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_entity}{Entity}} \& Board\+::get\+Opponent (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_entity}{Entity}} \&}]{t\+\_\+entity }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=303pt]{class_board_a2c593af8562f83e69ffed277c4e08169_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_board_a35ee26d963e5ac8c76087f430e1b6987}\label{class_board_a35ee26d963e5ac8c76087f430e1b6987}} 
+\index{Board@{Board}!moveGobblet@{moveGobblet}}
+\index{moveGobblet@{moveGobblet}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{moveGobblet()}{moveGobblet()}}
+{\footnotesize\ttfamily void Board\+::move\+Gobblet (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_gobblet_stack}{Gobblet\+Stack}} \&}]{t\+\_\+from\+Stack,  }\item[{\mbox{\hyperlink{class_gobblet_stack}{Gobblet\+Stack}} \&}]{t\+\_\+to\+Stack }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+\mbox{\hyperlink{struct_move}{Move}} a gobblet from one stack to another. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t\+\_\+from\+Stack} & The stack to move the gobblet from \\
+\hline
+{\em t\+\_\+to\+Stack} & the stack to move the gobblet to \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_board_a35ee26d963e5ac8c76087f430e1b6987_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_board_a35ee26d963e5ac8c76087f430e1b6987_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_board_a5a2abf0b067134c3fa08c5b2eea7f815}\label{class_board_a5a2abf0b067134c3fa08c5b2eea7f815}} 
+\index{Board@{Board}!placeGobblet@{placeGobblet}}
+\index{placeGobblet@{placeGobblet}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{placeGobblet()}{placeGobblet()}}
+{\footnotesize\ttfamily bool Board\+::place\+Gobblet (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Place the chosen gobblet somewhere in the grid according to mouse position. 
+
+\begin{DoxyReturn}{Returns}
+flag used for controlling code flow. If true, nothing should be called after this method, and the calling method should immediately break or return 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_board_a5a2abf0b067134c3fa08c5b2eea7f815_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=333pt]{class_board_a5a2abf0b067134c3fa08c5b2eea7f815_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_board_a19d4c00194913e42a5fea515457afb63}\label{class_board_a19d4c00194913e42a5fea515457afb63}} 
+\index{Board@{Board}!processMouse@{processMouse}}
+\index{processMouse@{processMouse}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{processMouse()}{processMouse()}}
+{\footnotesize\ttfamily void Board\+::process\+Mouse (\begin{DoxyParamCaption}\item[{sf\+::\+Event}]{t\+\_\+event }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_board_a19d4c00194913e42a5fea515457afb63_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_board_a5969f25fe451a96ba2e36428100f54ad}\label{class_board_a5969f25fe451a96ba2e36428100f54ad}} 
+\index{Board@{Board}!switchCurrentPlayer@{switchCurrentPlayer}}
+\index{switchCurrentPlayer@{switchCurrentPlayer}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{switchCurrentPlayer()}{switchCurrentPlayer()}}
+{\footnotesize\ttfamily void Board\+::switch\+Current\+Player (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Switch the current playing player (from min to max or max to min) 
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_board_a5969f25fe451a96ba2e36428100f54ad_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_board_a76201d34ab6d0c2db1f0171dbb984974}\label{class_board_a76201d34ab6d0c2db1f0171dbb984974}} 
+\index{Board@{Board}!update@{update}}
+\index{update@{update}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily void Board\+::update (\begin{DoxyParamCaption}\item[{sf\+::\+Time}]{t\+\_\+delta\+Time }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_board_a76201d34ab6d0c2db1f0171dbb984974_cgraph}
+\end{center}
+\end{figure}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+AI/\+AIGames-\/\+Gobblet/\+Gobblet/\+Gobblet/\mbox{\hyperlink{_board_8hpp}{Board.\+hpp}}\item 
+AI/\+AIGames-\/\+Gobblet/\+Gobblet/\+Gobblet/\mbox{\hyperlink{_board_8cpp}{Board.\+cpp}}\end{DoxyCompactItemize}

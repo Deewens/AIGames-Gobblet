@@ -1,0 +1,8 @@
+<map id="Board::checkReserveUsage" name="Board::checkReserveUsage">
+<area shape="rect" id="node1" title="Checks if either players can gobble using their reserves if there are 3 gobblets of the same colour i..." alt="" coords="615,55,797,80"/>
+<area shape="rect" id="node2" href="$class_board.html#acd5029cfe370950f8ffcdd045d6a47fd" title="This checks if there are 4 gobblets in a row/col or diagonal." alt="" coords="391,55,567,80"/>
+<area shape="rect" id="node3" href="$class_a_i.html#a2fbd0b8f5f82ae51fba9ad81aac441a7" title="Minimax algorithm." alt="" coords="227,29,318,55"/>
+<area shape="rect" id="node5" href="$class_board.html#a5a2abf0b067134c3fa08c5b2eea7f815" title="Place the chosen gobblet somewhere in the grid according to mouse position." alt="" coords="203,79,343,104"/>
+<area shape="rect" id="node4" href="$class_a_i.html#ad9a62ed4133030086e62497a6baddd52" title="Find the best move for the AI to make." alt="" coords="21,29,139,55"/>
+<area shape="rect" id="node6" href="$class_board.html#a19d4c00194913e42a5fea515457afb63" title=" " alt="" coords="5,79,155,104"/>
+</map>

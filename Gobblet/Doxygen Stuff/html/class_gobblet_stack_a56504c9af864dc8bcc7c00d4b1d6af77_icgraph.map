@@ -1,0 +1,8 @@
+<map id="GobbletStack::pop" name="GobbletStack::pop">
+<area shape="rect" id="node1" title=" " alt="" coords="577,55,708,80"/>
+<area shape="rect" id="node2" href="$class_board.html#a35ee26d963e5ac8c76087f430e1b6987" title="Move a gobblet from one stack to another." alt="" coords="391,55,529,80"/>
+<area shape="rect" id="node3" href="$class_a_i.html#a2fbd0b8f5f82ae51fba9ad81aac441a7" title="Minimax algorithm." alt="" coords="227,29,318,55"/>
+<area shape="rect" id="node5" href="$class_board.html#a5a2abf0b067134c3fa08c5b2eea7f815" title="Place the chosen gobblet somewhere in the grid according to mouse position." alt="" coords="203,79,343,104"/>
+<area shape="rect" id="node4" href="$class_a_i.html#ad9a62ed4133030086e62497a6baddd52" title="Find the best move for the AI to make." alt="" coords="21,29,139,55"/>
+<area shape="rect" id="node6" href="$class_board.html#a19d4c00194913e42a5fea515457afb63" title=" " alt="" coords="5,79,155,104"/>
+</map>

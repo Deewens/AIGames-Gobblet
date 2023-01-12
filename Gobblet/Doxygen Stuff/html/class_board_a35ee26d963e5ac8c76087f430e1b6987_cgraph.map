@@ -1,0 +1,9 @@
+<map id="Board::moveGobblet" name="Board::moveGobblet">
+<area shape="rect" id="node1" title="Move a gobblet from one stack to another." alt="" coords="5,145,144,171"/>
+<area shape="rect" id="node2" href="$class_gobblet_stack.html#a4266527750b45f00a8e212a61a80adf3" title=" " alt="" coords="215,5,345,31"/>
+<area shape="rect" id="node3" href="$class_gobblet.html#a77782c317126221999eef65448411a61" title="Deactivate the style effect." alt="" coords="192,55,368,95"/>
+<area shape="rect" id="node4" href="$class_gobblet_stack.html#a1a841912edd465667e23e4680848cdf3" title=" " alt="" coords="193,120,367,145"/>
+<area shape="rect" id="node5" href="$class_gobblet_stack.html#a56504c9af864dc8bcc7c00d4b1d6af77" title=" " alt="" coords="215,169,345,195"/>
+<area shape="rect" id="node6" href="$class_gobblet.html#ad543c446c68928c58e9ccae208c33e72" title=" " alt="" coords="210,219,350,244"/>
+<area shape="rect" id="node7" href="$class_gobblet_stack.html#af501096153b2e8697766e8d059ef041c" title=" " alt="" coords="217,268,343,293"/>
+</map>

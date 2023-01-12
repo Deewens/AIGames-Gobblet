@@ -1,0 +1,10 @@
+<map id="Entity::getColor" name="Entity::getColor">
+<area shape="rect" id="node1" title=" " alt="" coords="568,104,680,129"/>
+<area shape="rect" id="node2" href="$class_board.html#a00811a0dd2c3a124bf9bacdb0fd510e9" title="Choose the gobblet to be moved. The gobblet is selected from mouse position." alt="" coords="369,5,520,31"/>
+<area shape="rect" id="node4" href="$class_a_i.html#a7de43f9d2d000ea2e5671b08db594e54" title="Calculate a score for the board for a specific player." alt="" coords="383,104,506,129"/>
+<area shape="rect" id="node5" href="$class_a_i.html#a2fbd0b8f5f82ae51fba9ad81aac441a7" title="Minimax algorithm." alt="" coords="201,155,292,180"/>
+<area shape="rect" id="node7" href="$class_a_i.html#a2ae36307a4f7f4066e852633c5d29e03" title="Search for all the possible moves, that are legal in the game of Gobblet." alt="" coords="373,205,516,231"/>
+<area shape="rect" id="node8" href="$class_board.html#a5a2abf0b067134c3fa08c5b2eea7f815" title="Place the chosen gobblet somewhere in the grid according to mouse position." alt="" coords="375,55,515,80"/>
+<area shape="rect" id="node3" href="$class_board.html#a19d4c00194913e42a5fea515457afb63" title=" " alt="" coords="172,31,321,56"/>
+<area shape="rect" id="node6" href="$class_a_i.html#ad9a62ed4133030086e62497a6baddd52" title="Find the best move for the AI to make." alt="" coords="5,155,124,180"/>
+</map>

@@ -1,0 +1,23 @@
+<map id="AI::findBestMove" name="AI::findBestMove">
+<area shape="rect" id="node1" title="Find the best move for the AI to make." alt="" coords="5,276,124,301"/>
+<area shape="rect" id="node2" href="$class_a_i.html#a2fbd0b8f5f82ae51fba9ad81aac441a7" title="Minimax algorithm." alt="" coords="172,276,263,301"/>
+<area shape="rect" id="node3" href="$class_board.html#acd5029cfe370950f8ffcdd045d6a47fd" title="This checks if there are 4 gobblets in a row/col or diagonal." alt="" coords="311,104,487,129"/>
+<area shape="rect" id="node8" href="$class_a_i.html#a7de43f9d2d000ea2e5671b08db594e54" title="Calculate a score for the board for a specific player." alt="" coords="337,176,460,201"/>
+<area shape="rect" id="node9" href="$class_entity.html#a91b386d4867fe9b7d8f6339fd6f90c86" title=" " alt="" coords="570,252,682,277"/>
+<area shape="rect" id="node11" href="$class_a_i.html#a2ae36307a4f7f4066e852633c5d29e03" title="Search for all the possible moves, that are legal in the game of Gobblet." alt="" coords="327,225,470,251"/>
+<area shape="rect" id="node13" href="$class_board.html#ac090ec440d4aae4bc59bd2033a777872" title=" " alt="" coords="327,327,471,352"/>
+<area shape="rect" id="node14" href="$class_board.html#a6e2f0e140ebe0d35cdbc4a61955aa2d1" title=" " alt="" coords="329,376,469,401"/>
+<area shape="rect" id="node15" href="$class_board.html#a35ee26d963e5ac8c76087f430e1b6987" title="Move a gobblet from one stack to another." alt="" coords="329,449,468,475"/>
+<area shape="rect" id="node4" href="$class_entity.html#a12bd5070eff8cbd58c2c95f4305784d4" title=" " alt="" coords="545,5,707,31"/>
+<area shape="rect" id="node5" href="$class_board.html#a2100820f01ae62ee3222966c3c58eddb" title="Checks if either players can gobble using their reserves if there are 3 gobblets of the same colour i..." alt="" coords="535,55,717,80"/>
+<area shape="rect" id="node6" href="$class_grid.html#aae803d0ce5ae425631be9287824e57c1" title=" " alt="" coords="563,153,689,179"/>
+<area shape="rect" id="node7" href="$class_entity.html#a17163f4b8870c296ed4f26decda4e479" title=" " alt="" coords="551,104,701,129"/>
+<area shape="rect" id="node10" href="$class_board.html#a90e00acf1726e66e72e055ad914d6c58" title=" " alt="" coords="573,203,679,228"/>
+<area shape="rect" id="node12" href="$class_entity.html#a5df056363b7193c9c8e7fc4c9e47c3ad" title=" " alt="" coords="541,301,711,327"/>
+<area shape="rect" id="node16" href="$class_gobblet_stack.html#a4266527750b45f00a8e212a61a80adf3" title=" " alt="" coords="561,499,691,524"/>
+<area shape="rect" id="node17" href="$class_gobblet.html#a77782c317126221999eef65448411a61" title="Deactivate the style effect." alt="" coords="538,549,714,589"/>
+<area shape="rect" id="node18" href="$class_gobblet_stack.html#a1a841912edd465667e23e4680848cdf3" title=" " alt="" coords="539,613,713,639"/>
+<area shape="rect" id="node19" href="$class_gobblet_stack.html#a56504c9af864dc8bcc7c00d4b1d6af77" title=" " alt="" coords="561,351,691,376"/>
+<area shape="rect" id="node20" href="$class_gobblet.html#ad543c446c68928c58e9ccae208c33e72" title=" " alt="" coords="556,400,696,425"/>
+<area shape="rect" id="node21" href="$class_gobblet_stack.html#af501096153b2e8697766e8d059ef041c" title=" " alt="" coords="563,449,689,475"/>
+</map>

@@ -1,0 +1,57 @@
+\hypertarget{_grid_8h_source}{}\doxysection{Grid.\+h}
+\label{_grid_8h_source}\index{AI/AIGames-\/Gobblet/Gobblet/Gobblet/Grid.h@{AI/AIGames-\/Gobblet/Gobblet/Gobblet/Grid.h}}
+\mbox{\hyperlink{_grid_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <array>}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}SFML/Graphics.hpp"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_tile_8h}{Tile.h}}"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_grid}{Grid}}\ :\ \textcolor{keyword}{public}\ sf::Drawable}
+\DoxyCodeLine{00011\ \{}
+\DoxyCodeLine{00012\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00013\ \ \ \ \ \mbox{\hyperlink{class_grid_a4ac9ff4f63552b4c61ff90fcb35ad66c}{Grid}}();}
+\DoxyCodeLine{00014\ \ \ \ \ \mbox{\hyperlink{class_grid_a3661d0a7f998caaaf8627d7a67072116}{\string~Grid}}();}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_grid_a91b8f1ef1d7d90d16dd6658d249abb8e}{update}}(\textcolor{keyword}{const}\ sf::RenderWindow\&\ t\_window);}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_grid_aadb51303a45e0d493d55cd2b138f32c4}{gridCoord}}();}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \ \ \ \ sf::Vector2f\ \mbox{\hyperlink{class_grid_a722cb421f5e079fcfbdbddfabf1af752}{getPosition}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00020\ \ \ \ \ sf::Vector2f\ \mbox{\hyperlink{class_grid_af447542e2c5dfd6880a2a43681c52b5d}{getSize}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00021\ \ \ \ \ }
+\DoxyCodeLine{00022\ \ \ \ \ std::array<std::array<Tile,\ 4>,\ 4>\&\ \mbox{\hyperlink{class_grid_aae803d0ce5ae425631be9287824e57c1}{getGridArray}}();}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keyword}{const}\ std::array<std::array<Tile,\ 4>,\ 4>\&\ \mbox{\hyperlink{class_grid_aae803d0ce5ae425631be9287824e57c1}{getGridArray}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \ \ \ \ sf::FloatRect\ \mbox{\hyperlink{class_grid_aeb097f11994fe082b96ba55919ce412d}{getBounds}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_grid_acba0b8bbff74116aff17edb67e603366}{draw}}(sf::RenderTarget\&\ target,\ sf::RenderStates\ states)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00029\ \ \ \ \ }
+\DoxyCodeLine{00030\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \ \ \ \ std::array<std::array<Tile,\ 4>,\ 4>\ m\_gridArray;}
+\DoxyCodeLine{00033\ \ \ \ \ sf::Font\ m\_arialBlackfont;\ \textcolor{comment}{//\ font\ used\ by\ message}}
+\DoxyCodeLine{00034\ \ \ \ \ sf::Text\ m\_gridCoordinateText;\ \textcolor{comment}{//\ text\ used\ for\ message\ on\ screen}}
+\DoxyCodeLine{00035\ \ \ \ \ sf::Text\ m\_mouseCoordinateText;\ \textcolor{comment}{//\ text\ used\ for\ message\ on\ screen}}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{comment}{//int\ m\_baseX\ =\ (sf::VideoMode::getDesktopMode().width/2)/4;}}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{comment}{//int\ m\_baseY\ =\ (sf::VideoMode::getDesktopMode().height/2)/4;}}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordtype}{int}\ m\_baseX\ =\ 300;}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordtype}{int}\ m\_baseY\ =\ 300;}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{comment}{//int\ m\_tileSize\ =\ 100;}}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordtype}{int}\ m\_tileSize\ =\ 50;\ \textcolor{comment}{//\ Use\ of\ 50\ for\ testing\ because\ 100\ is\ too\ big\ for\ 1080p\ screen}}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{comment}{//Mouse\ Position}}
+\DoxyCodeLine{00045\ \ \ \ \ sf::Vector2u\ m\_mousePositionGrid;}
+\DoxyCodeLine{00046\ \ \ \ \ sf::Vector2f\ m\_mousePositionView;}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \ \ \ \ sf::RectangleShape\ m\_invisibleMouse;}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \ \ \ \ sf::FloatRect\ m\_bounds;}
+\DoxyCodeLine{00051\ \};}
+
+\end{DoxyCode}

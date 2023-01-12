@@ -1,0 +1,5 @@
+<map id="Gobblet::getShape" name="Gobblet::getShape">
+<area shape="rect" id="node1" title=" " alt="" coords="401,5,532,31"/>
+<area shape="rect" id="node2" href="$class_board.html#a00811a0dd2c3a124bf9bacdb0fd510e9" title="Choose the gobblet to be moved. The gobblet is selected from mouse position." alt="" coords="203,5,353,31"/>
+<area shape="rect" id="node3" href="$class_board.html#a19d4c00194913e42a5fea515457afb63" title=" " alt="" coords="5,5,155,31"/>
+</map>

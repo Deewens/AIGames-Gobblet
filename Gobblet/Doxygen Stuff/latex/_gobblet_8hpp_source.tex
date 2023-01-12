@@ -1,0 +1,55 @@
+\hypertarget{_gobblet_8hpp_source}{}\doxysection{Gobblet.\+hpp}
+\label{_gobblet_8hpp_source}\index{AI/AIGames-\/Gobblet/Gobblet/Gobblet/Gobblet.hpp@{AI/AIGames-\/Gobblet/Gobblet/Gobblet/Gobblet.hpp}}
+\mbox{\hyperlink{_gobblet_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <optional>}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <SFML/Graphics.hpp>}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_grid}{Grid}};}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00014\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_gobblet}{Gobblet}}\ final\ :\ \textcolor{keyword}{public}\ sf::Drawable}
+\DoxyCodeLine{00015\ \{}
+\DoxyCodeLine{00016\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00023\ \ \ \ \ \mbox{\hyperlink{class_gobblet}{Gobblet}}(\textcolor{keyword}{const}\ sf::Color\&\ t\_color,\ \textcolor{keywordtype}{int}\ t\_size);}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_gobblet_ab8530f9ac59d92c2b09221d1f09da504}{getSize}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keyword}{const}\ sf::Color\&\ \mbox{\hyperlink{class_gobblet_a939d04049da8abbcafa0d59963c61d45}{getColor}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00032\ \ \ \ \ std::optional<sf::Vector2i>\ \mbox{\hyperlink{class_gobblet_af6a3e0cd261fc677468d76bc3622151c}{getGridCoordinates}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_gobblet_adb3f3f3dac4b690926cd9c7e86cd01ef}{setGridCoordinates}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_grid}{Grid}}\&\ t\_grid,\ std::optional<sf::Vector2i>\ t\_coordinates);}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \ \ \ sf::Vector2f\ \mbox{\hyperlink{class_gobblet_a6485e81d7e41e2f8e63ccbe94172274c}{getPosition}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_gobblet_ad543c446c68928c58e9ccae208c33e72}{setPosition}}(\textcolor{keyword}{const}\ sf::Vector2f\&\ t\_position);}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \ \ \ \ sf::CircleShape\ \mbox{\hyperlink{class_gobblet_aa7d0ee3eec11884767c6a3358bf3b9b7}{getShape}}();}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keyword}{const}\ sf::CircleShape\&\ \mbox{\hyperlink{class_gobblet_aa7d0ee3eec11884767c6a3358bf3b9b7}{getShape}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_gobblet_ad02e76139f82dd2c5a6b3d0f70adb973}{activateClickedState}}();}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_gobblet_a77782c317126221999eef65448411a61}{deactivateClickedState}}();}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keyword}{friend}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_gobblet_a24024058b927b51c7b0fab238ab9756b}{operator==}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_gobblet}{Gobblet}}\&\ t\_lhs,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_gobblet}{Gobblet}}\&\ t\_rhs);}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keyword}{friend}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_gobblet_a0e6bebcd00a87a10f435f2e7e9393e58}{operator!=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_gobblet}{Gobblet}}\&\ t\_lhs,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_gobblet}{Gobblet}}\&\ t\_rhs);}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keywordtype}{void}\ verifySize();}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keywordtype}{void}\ draw(sf::RenderTarget\&\ target,\ sf::RenderStates\ states)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \ \ \ \ std::optional<sf::Vector2i>\ m\_gridCoordinates;}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keywordtype}{int}\ m\_size;}
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keywordtype}{float}\ m\_sizeFactor\ =\ 4;}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \ \ \ \ sf::Color\ m\_color;}
+\DoxyCodeLine{00075\ \ \ \ \ sf::CircleShape\ m\_shape;}
+\DoxyCodeLine{00076\ \};}
+
+\end{DoxyCode}

@@ -1,0 +1,4 @@
+<map id="Board::placeGobblet" name="Board::placeGobblet">
+<area shape="rect" id="node1" title="Place the chosen gobblet somewhere in the grid according to mouse position." alt="" coords="203,5,343,31"/>
+<area shape="rect" id="node2" href="$class_board.html#a19d4c00194913e42a5fea515457afb63" title=" " alt="" coords="5,5,155,31"/>
+</map>

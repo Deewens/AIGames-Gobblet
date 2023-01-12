@@ -1,0 +1,181 @@
+\hypertarget{class_entity}{}\doxysection{Entity Class Reference}
+\label{class_entity}\index{Entity@{Entity}}
+
+
+A player (\mbox{\hyperlink{class_a_i}{AI}} or real player)  
+
+
+
+
+{\ttfamily \#include $<$Entity.\+h$>$}
+
+
+
+Collaboration diagram for Entity\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=192pt]{class_entity__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum class \mbox{\hyperlink{class_entity_a0e96d5b4903c3e32e07780aa12fe075b}{Type}} \{ \mbox{\hyperlink{class_entity_a0e96d5b4903c3e32e07780aa12fe075ba78d811e98514cd165dda532286610fd2}{Min}}
+, \mbox{\hyperlink{class_entity_a0e96d5b4903c3e32e07780aa12fe075ba6a061313d22e51e0f25b7cd4dc065233}{Max}}
+ \}
+\begin{DoxyCompactList}\small\item\em Type used by the minimax to know if the entity is a max or a min. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_entity_a84c41de1c633977bf02a10acd913a1a2}{Entity}} (sf\+::\+Color t\+\_\+gobblet\+Color, \mbox{\hyperlink{class_entity_a0e96d5b4903c3e32e07780aa12fe075b}{Type}} t\+\_\+type, bool t\+\_\+is\+AI, const \mbox{\hyperlink{class_grid}{Grid}} \&t\+\_\+grid)
+\item 
+sf\+::\+Color \mbox{\hyperlink{class_entity_a91b386d4867fe9b7d8f6339fd6f90c86}{get\+Color}} () const
+\item 
+const \mbox{\hyperlink{class_entity_a0e96d5b4903c3e32e07780aa12fe075b}{Type}} \& \mbox{\hyperlink{class_entity_aabcfd8f1ac0fda93bc0a9fa747a0be02}{get\+Type}} () const
+\item 
+bool \mbox{\hyperlink{class_entity_a46b28b3559bf382e6439f57a4778ced1}{is\+AI}} () const
+\item 
+bool \mbox{\hyperlink{class_entity_a12bd5070eff8cbd58c2c95f4305784d4}{can\+Use\+Reserves}} () const
+\item 
+void \mbox{\hyperlink{class_entity_a17163f4b8870c296ed4f26decda4e479}{set\+Reserve\+Use}} (bool t\+\_\+b)
+\item 
+const std\+::vector$<$ \mbox{\hyperlink{class_gobblet_stack}{Gobblet\+Stack}} $>$ \& \mbox{\hyperlink{class_entity_a5df056363b7193c9c8e7fc4c9e47c3ad}{get\+External\+Stacks}} () const
+\item 
+std\+::vector$<$ \mbox{\hyperlink{class_gobblet_stack}{Gobblet\+Stack}} $>$ \& \mbox{\hyperlink{class_entity_a8e045f02942b0a5d37e1379c5d023710}{get\+External\+Stacks}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A player (\mbox{\hyperlink{class_a_i}{AI}} or real player) 
+
+\doxysubsection{Member Enumeration Documentation}
+\mbox{\Hypertarget{class_entity_a0e96d5b4903c3e32e07780aa12fe075b}\label{class_entity_a0e96d5b4903c3e32e07780aa12fe075b}} 
+\index{Entity@{Entity}!Type@{Type}}
+\index{Type@{Type}!Entity@{Entity}}
+\doxysubsubsection{\texorpdfstring{Type}{Type}}
+{\footnotesize\ttfamily enum class \mbox{\hyperlink{class_entity_a0e96d5b4903c3e32e07780aa12fe075b}{Entity\+::\+Type}}\hspace{0.3cm}{\ttfamily [strong]}}
+
+
+
+Type used by the minimax to know if the entity is a max or a min. 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Min@{Min}!Entity@{Entity}}\index{Entity@{Entity}!Min@{Min}}}\mbox{\Hypertarget{class_entity_a0e96d5b4903c3e32e07780aa12fe075ba78d811e98514cd165dda532286610fd2}\label{class_entity_a0e96d5b4903c3e32e07780aa12fe075ba78d811e98514cd165dda532286610fd2}} 
+Min&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Max@{Max}!Entity@{Entity}}\index{Entity@{Entity}!Max@{Max}}}\mbox{\Hypertarget{class_entity_a0e96d5b4903c3e32e07780aa12fe075ba6a061313d22e51e0f25b7cd4dc065233}\label{class_entity_a0e96d5b4903c3e32e07780aa12fe075ba6a061313d22e51e0f25b7cd4dc065233}} 
+Max&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_entity_a84c41de1c633977bf02a10acd913a1a2}\label{class_entity_a84c41de1c633977bf02a10acd913a1a2}} 
+\index{Entity@{Entity}!Entity@{Entity}}
+\index{Entity@{Entity}!Entity@{Entity}}
+\doxysubsubsection{\texorpdfstring{Entity()}{Entity()}}
+{\footnotesize\ttfamily Entity\+::\+Entity (\begin{DoxyParamCaption}\item[{sf\+::\+Color}]{t\+\_\+gobblet\+Color,  }\item[{\mbox{\hyperlink{class_entity_a0e96d5b4903c3e32e07780aa12fe075b}{Type}}}]{t\+\_\+type,  }\item[{bool}]{t\+\_\+is\+AI,  }\item[{const \mbox{\hyperlink{class_grid}{Grid}} \&}]{t\+\_\+grid }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=321pt]{class_entity_a84c41de1c633977bf02a10acd913a1a2_cgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_entity_a12bd5070eff8cbd58c2c95f4305784d4}\label{class_entity_a12bd5070eff8cbd58c2c95f4305784d4}} 
+\index{Entity@{Entity}!canUseReserves@{canUseReserves}}
+\index{canUseReserves@{canUseReserves}!Entity@{Entity}}
+\doxysubsubsection{\texorpdfstring{canUseReserves()}{canUseReserves()}}
+{\footnotesize\ttfamily bool Entity\+::can\+Use\+Reserves (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_entity_a12bd5070eff8cbd58c2c95f4305784d4_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_entity_a91b386d4867fe9b7d8f6339fd6f90c86}\label{class_entity_a91b386d4867fe9b7d8f6339fd6f90c86}} 
+\index{Entity@{Entity}!getColor@{getColor}}
+\index{getColor@{getColor}!Entity@{Entity}}
+\doxysubsubsection{\texorpdfstring{getColor()}{getColor()}}
+{\footnotesize\ttfamily sf\+::\+Color Entity\+::get\+Color (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_entity_a91b386d4867fe9b7d8f6339fd6f90c86_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_entity_a8e045f02942b0a5d37e1379c5d023710}\label{class_entity_a8e045f02942b0a5d37e1379c5d023710}} 
+\index{Entity@{Entity}!getExternalStacks@{getExternalStacks}}
+\index{getExternalStacks@{getExternalStacks}!Entity@{Entity}}
+\doxysubsubsection{\texorpdfstring{getExternalStacks()}{getExternalStacks()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily std\+::vector$<$ \mbox{\hyperlink{class_gobblet_stack}{Gobblet\+Stack}} $>$ \& Entity\+::get\+External\+Stacks (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_entity_a5df056363b7193c9c8e7fc4c9e47c3ad}\label{class_entity_a5df056363b7193c9c8e7fc4c9e47c3ad}} 
+\index{Entity@{Entity}!getExternalStacks@{getExternalStacks}}
+\index{getExternalStacks@{getExternalStacks}!Entity@{Entity}}
+\doxysubsubsection{\texorpdfstring{getExternalStacks()}{getExternalStacks()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily const std\+::vector$<$ \mbox{\hyperlink{class_gobblet_stack}{Gobblet\+Stack}} $>$ \& Entity\+::get\+External\+Stacks (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_entity_a5df056363b7193c9c8e7fc4c9e47c3ad_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_entity_aabcfd8f1ac0fda93bc0a9fa747a0be02}\label{class_entity_aabcfd8f1ac0fda93bc0a9fa747a0be02}} 
+\index{Entity@{Entity}!getType@{getType}}
+\index{getType@{getType}!Entity@{Entity}}
+\doxysubsubsection{\texorpdfstring{getType()}{getType()}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{class_entity_a0e96d5b4903c3e32e07780aa12fe075b}{Entity\+::\+Type}} \& Entity\+::get\+Type (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_entity_aabcfd8f1ac0fda93bc0a9fa747a0be02_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_entity_a46b28b3559bf382e6439f57a4778ced1}\label{class_entity_a46b28b3559bf382e6439f57a4778ced1}} 
+\index{Entity@{Entity}!isAI@{isAI}}
+\index{isAI@{isAI}!Entity@{Entity}}
+\doxysubsubsection{\texorpdfstring{isAI()}{isAI()}}
+{\footnotesize\ttfamily bool Entity\+::is\+AI (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{class_entity_a17163f4b8870c296ed4f26decda4e479}\label{class_entity_a17163f4b8870c296ed4f26decda4e479}} 
+\index{Entity@{Entity}!setReserveUse@{setReserveUse}}
+\index{setReserveUse@{setReserveUse}!Entity@{Entity}}
+\doxysubsubsection{\texorpdfstring{setReserveUse()}{setReserveUse()}}
+{\footnotesize\ttfamily void Entity\+::set\+Reserve\+Use (\begin{DoxyParamCaption}\item[{bool}]{t\+\_\+b }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_entity_a17163f4b8870c296ed4f26decda4e479_icgraph}
+\end{center}
+\end{figure}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+AI/\+AIGames-\/\+Gobblet/\+Gobblet/\+Gobblet/\mbox{\hyperlink{_entity_8h}{Entity.\+h}}\item 
+AI/\+AIGames-\/\+Gobblet/\+Gobblet/\+Gobblet/\mbox{\hyperlink{_entity_8cpp}{Entity.\+cpp}}\end{DoxyCompactItemize}

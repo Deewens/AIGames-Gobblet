@@ -1,0 +1,278 @@
+\hypertarget{class_gobblet_stack}{}\doxysection{Gobblet\+Stack Class Reference}
+\label{class_gobblet_stack}\index{GobbletStack@{GobbletStack}}
+
+
+Represent a stack of gobblet. The stack is represented by a vector container for simplicity over a stack (which is more limited)  
+
+
+
+
+{\ttfamily \#include $<$Gobblet\+Stack.\+hpp$>$}
+
+
+
+Inheritance diagram for Gobblet\+Stack\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=178pt]{class_gobblet_stack__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Gobblet\+Stack\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=178pt]{class_gobblet_stack__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_gobblet_stack_a7236297bb31f7776a69165f6762fc884}{Gobblet\+Stack}} (bool t\+\_\+is\+External\+Stack)
+\item 
+void \mbox{\hyperlink{class_gobblet_stack_a4266527750b45f00a8e212a61a80adf3}{add}} (const \mbox{\hyperlink{class_gobblet}{Gobblet}} \&t\+\_\+gobblet)
+\item 
+\mbox{\hyperlink{class_gobblet}{Gobblet}} \& \mbox{\hyperlink{class_gobblet_stack_af501096153b2e8697766e8d059ef041c}{top}} ()
+\item 
+const \mbox{\hyperlink{class_gobblet}{Gobblet}} \& \mbox{\hyperlink{class_gobblet_stack_a9edbc639d064c24d075e6a46de2db107}{top}} () const
+\item 
+\mbox{\hyperlink{class_gobblet}{Gobblet}} \mbox{\hyperlink{class_gobblet_stack_a56504c9af864dc8bcc7c00d4b1d6af77}{pop}} ()
+\item 
+bool \mbox{\hyperlink{class_gobblet_stack_ae9d223ca04b51719eae6a2dc8a00cc8b}{is\+Empty}} () const
+\item 
+void \mbox{\hyperlink{class_gobblet_stack_a48150aac9cd40ba75892115a3105a027}{set\+Position}} (sf\+::\+Vector2f t\+\_\+position)
+\item 
+void \mbox{\hyperlink{class_gobblet_stack_a6c8021b21b132a67df782523cd9dcf19}{set\+Grid\+Position}} (const \mbox{\hyperlink{class_grid}{Grid}} \&t\+\_\+grid, const std\+::optional$<$ sf\+::\+Vector2i $>$ \&t\+\_\+grid\+Position)
+\item 
+sf\+::\+Vector2f \mbox{\hyperlink{class_gobblet_stack_a1a841912edd465667e23e4680848cdf3}{get\+Position}} ()
+\item 
+const sf\+::\+Vector2f \& \mbox{\hyperlink{class_gobblet_stack_a5169481acc53f81e6d65b8071274228b}{get\+Position}} () const
+\item 
+std\+::vector$<$ \mbox{\hyperlink{class_gobblet}{Gobblet}} $>$ \mbox{\hyperlink{class_gobblet_stack_a328311bcc25193388ccaf234eb960107}{container}} ()
+\begin{DoxyCompactList}\small\item\em Get the underlying vector, containing the \mbox{\hyperlink{class_gobblet}{Gobblet}} stored in the stack. \end{DoxyCompactList}\item 
+const std\+::vector$<$ \mbox{\hyperlink{class_gobblet}{Gobblet}} $>$ \& \mbox{\hyperlink{class_gobblet_stack_a5d6291846b27b8d3645ee42f01c7b05d}{container}} () const
+\begin{DoxyCompactList}\small\item\em Get the underlying vector, containing the \mbox{\hyperlink{class_gobblet}{Gobblet}} stored in the stack. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_gobblet_stack_a1ff8862bf1d2d2490acff6397b562a10}{is\+Clicked}} () const
+\item 
+void \mbox{\hyperlink{class_gobblet_stack_aec5edf81ff17fab11feedc7deba20e30}{set\+Clicked}} (bool t\+\_\+is\+Clicked)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{class_gobblet_stack_a30ee72debc9a3506eb64b7c8308d03f8}{is\+External\+Stack}} = false
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_gobblet_stack_abbb6bbe7e39187957fa5383f794d9014}{draw}} (sf\+::\+Render\+Target \&target, sf\+::\+Render\+States states) const override
+\end{DoxyCompactItemize}
+\doxysubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{class_gobblet_stack_a8b21f35e4f6bb7fa1f11b154c424cce5}{operator==}} (const \mbox{\hyperlink{class_gobblet_stack}{Gobblet\+Stack}} \&t\+\_\+lhs, const \mbox{\hyperlink{class_gobblet_stack}{Gobblet\+Stack}} \&t\+\_\+rhs)
+\item 
+bool \mbox{\hyperlink{class_gobblet_stack_a3b7f9f56b177ab8f4a7d6fca83262862}{operator!=}} (const \mbox{\hyperlink{class_gobblet_stack}{Gobblet\+Stack}} \&t\+\_\+lhs, const \mbox{\hyperlink{class_gobblet_stack}{Gobblet\+Stack}} \&t\+\_\+rhs)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represent a stack of gobblet. The stack is represented by a vector container for simplicity over a stack (which is more limited) 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_gobblet_stack_a7236297bb31f7776a69165f6762fc884}\label{class_gobblet_stack_a7236297bb31f7776a69165f6762fc884}} 
+\index{GobbletStack@{GobbletStack}!GobbletStack@{GobbletStack}}
+\index{GobbletStack@{GobbletStack}!GobbletStack@{GobbletStack}}
+\doxysubsubsection{\texorpdfstring{GobbletStack()}{GobbletStack()}}
+{\footnotesize\ttfamily Gobblet\+Stack\+::\+Gobblet\+Stack (\begin{DoxyParamCaption}\item[{bool}]{t\+\_\+is\+External\+Stack }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_gobblet_stack_a4266527750b45f00a8e212a61a80adf3}\label{class_gobblet_stack_a4266527750b45f00a8e212a61a80adf3}} 
+\index{GobbletStack@{GobbletStack}!add@{add}}
+\index{add@{add}!GobbletStack@{GobbletStack}}
+\doxysubsubsection{\texorpdfstring{add()}{add()}}
+{\footnotesize\ttfamily void Gobblet\+Stack\+::add (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_gobblet}{Gobblet}} \&}]{t\+\_\+gobblet }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_gobblet_stack_a4266527750b45f00a8e212a61a80adf3_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_gobblet_stack_a328311bcc25193388ccaf234eb960107}\label{class_gobblet_stack_a328311bcc25193388ccaf234eb960107}} 
+\index{GobbletStack@{GobbletStack}!container@{container}}
+\index{container@{container}!GobbletStack@{GobbletStack}}
+\doxysubsubsection{\texorpdfstring{container()}{container()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily std\+::vector$<$ \mbox{\hyperlink{class_gobblet}{Gobblet}} $>$ Gobblet\+Stack\+::container (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get the underlying vector, containing the \mbox{\hyperlink{class_gobblet}{Gobblet}} stored in the stack. 
+
+\begin{DoxyReturn}{Returns}
+vector of gobblets 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_gobblet_stack_a5d6291846b27b8d3645ee42f01c7b05d}\label{class_gobblet_stack_a5d6291846b27b8d3645ee42f01c7b05d}} 
+\index{GobbletStack@{GobbletStack}!container@{container}}
+\index{container@{container}!GobbletStack@{GobbletStack}}
+\doxysubsubsection{\texorpdfstring{container()}{container()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily const std\+::vector$<$ \mbox{\hyperlink{class_gobblet}{Gobblet}} $>$ \& Gobblet\+Stack\+::container (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Get the underlying vector, containing the \mbox{\hyperlink{class_gobblet}{Gobblet}} stored in the stack. 
+
+\begin{DoxyReturn}{Returns}
+vector of gobblets 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_gobblet_stack_abbb6bbe7e39187957fa5383f794d9014}\label{class_gobblet_stack_abbb6bbe7e39187957fa5383f794d9014}} 
+\index{GobbletStack@{GobbletStack}!draw@{draw}}
+\index{draw@{draw}!GobbletStack@{GobbletStack}}
+\doxysubsubsection{\texorpdfstring{draw()}{draw()}}
+{\footnotesize\ttfamily void Gobblet\+Stack\+::draw (\begin{DoxyParamCaption}\item[{sf\+::\+Render\+Target \&}]{target,  }\item[{sf\+::\+Render\+States}]{states }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_gobblet_stack_a1a841912edd465667e23e4680848cdf3}\label{class_gobblet_stack_a1a841912edd465667e23e4680848cdf3}} 
+\index{GobbletStack@{GobbletStack}!getPosition@{getPosition}}
+\index{getPosition@{getPosition}!GobbletStack@{GobbletStack}}
+\doxysubsubsection{\texorpdfstring{getPosition()}{getPosition()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily sf\+::\+Vector2f Gobblet\+Stack\+::get\+Position (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_gobblet_stack_a1a841912edd465667e23e4680848cdf3_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_gobblet_stack_a5169481acc53f81e6d65b8071274228b}\label{class_gobblet_stack_a5169481acc53f81e6d65b8071274228b}} 
+\index{GobbletStack@{GobbletStack}!getPosition@{getPosition}}
+\index{getPosition@{getPosition}!GobbletStack@{GobbletStack}}
+\doxysubsubsection{\texorpdfstring{getPosition()}{getPosition()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily const sf\+::\+Vector2f \& Gobblet\+Stack\+::get\+Position (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{class_gobblet_stack_a1ff8862bf1d2d2490acff6397b562a10}\label{class_gobblet_stack_a1ff8862bf1d2d2490acff6397b562a10}} 
+\index{GobbletStack@{GobbletStack}!isClicked@{isClicked}}
+\index{isClicked@{isClicked}!GobbletStack@{GobbletStack}}
+\doxysubsubsection{\texorpdfstring{isClicked()}{isClicked()}}
+{\footnotesize\ttfamily bool Gobblet\+Stack\+::is\+Clicked (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{class_gobblet_stack_ae9d223ca04b51719eae6a2dc8a00cc8b}\label{class_gobblet_stack_ae9d223ca04b51719eae6a2dc8a00cc8b}} 
+\index{GobbletStack@{GobbletStack}!isEmpty@{isEmpty}}
+\index{isEmpty@{isEmpty}!GobbletStack@{GobbletStack}}
+\doxysubsubsection{\texorpdfstring{isEmpty()}{isEmpty()}}
+{\footnotesize\ttfamily bool Gobblet\+Stack\+::is\+Empty (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_gobblet_stack_ae9d223ca04b51719eae6a2dc8a00cc8b_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_gobblet_stack_a56504c9af864dc8bcc7c00d4b1d6af77}\label{class_gobblet_stack_a56504c9af864dc8bcc7c00d4b1d6af77}} 
+\index{GobbletStack@{GobbletStack}!pop@{pop}}
+\index{pop@{pop}!GobbletStack@{GobbletStack}}
+\doxysubsubsection{\texorpdfstring{pop()}{pop()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_gobblet}{Gobblet}} Gobblet\+Stack\+::pop (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_gobblet_stack_a56504c9af864dc8bcc7c00d4b1d6af77_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_gobblet_stack_aec5edf81ff17fab11feedc7deba20e30}\label{class_gobblet_stack_aec5edf81ff17fab11feedc7deba20e30}} 
+\index{GobbletStack@{GobbletStack}!setClicked@{setClicked}}
+\index{setClicked@{setClicked}!GobbletStack@{GobbletStack}}
+\doxysubsubsection{\texorpdfstring{setClicked()}{setClicked()}}
+{\footnotesize\ttfamily void Gobblet\+Stack\+::set\+Clicked (\begin{DoxyParamCaption}\item[{bool}]{t\+\_\+is\+Clicked }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_gobblet_stack_a6c8021b21b132a67df782523cd9dcf19}\label{class_gobblet_stack_a6c8021b21b132a67df782523cd9dcf19}} 
+\index{GobbletStack@{GobbletStack}!setGridPosition@{setGridPosition}}
+\index{setGridPosition@{setGridPosition}!GobbletStack@{GobbletStack}}
+\doxysubsubsection{\texorpdfstring{setGridPosition()}{setGridPosition()}}
+{\footnotesize\ttfamily void Gobblet\+Stack\+::set\+Grid\+Position (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_grid}{Grid}} \&}]{t\+\_\+grid,  }\item[{const std\+::optional$<$ sf\+::\+Vector2i $>$ \&}]{t\+\_\+grid\+Position }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_gobblet_stack_a6c8021b21b132a67df782523cd9dcf19_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_gobblet_stack_a48150aac9cd40ba75892115a3105a027}\label{class_gobblet_stack_a48150aac9cd40ba75892115a3105a027}} 
+\index{GobbletStack@{GobbletStack}!setPosition@{setPosition}}
+\index{setPosition@{setPosition}!GobbletStack@{GobbletStack}}
+\doxysubsubsection{\texorpdfstring{setPosition()}{setPosition()}}
+{\footnotesize\ttfamily void Gobblet\+Stack\+::set\+Position (\begin{DoxyParamCaption}\item[{sf\+::\+Vector2f}]{t\+\_\+position }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_gobblet_stack_a48150aac9cd40ba75892115a3105a027_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_gobblet_stack_af501096153b2e8697766e8d059ef041c}\label{class_gobblet_stack_af501096153b2e8697766e8d059ef041c}} 
+\index{GobbletStack@{GobbletStack}!top@{top}}
+\index{top@{top}!GobbletStack@{GobbletStack}}
+\doxysubsubsection{\texorpdfstring{top()}{top()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_gobblet}{Gobblet}} \& Gobblet\+Stack\+::top (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_gobblet_stack_af501096153b2e8697766e8d059ef041c_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_gobblet_stack_a9edbc639d064c24d075e6a46de2db107}\label{class_gobblet_stack_a9edbc639d064c24d075e6a46de2db107}} 
+\index{GobbletStack@{GobbletStack}!top@{top}}
+\index{top@{top}!GobbletStack@{GobbletStack}}
+\doxysubsubsection{\texorpdfstring{top()}{top()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{class_gobblet}{Gobblet}} \& Gobblet\+Stack\+::top (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+\doxysubsection{Friends And Related Function Documentation}
+\mbox{\Hypertarget{class_gobblet_stack_a3b7f9f56b177ab8f4a7d6fca83262862}\label{class_gobblet_stack_a3b7f9f56b177ab8f4a7d6fca83262862}} 
+\index{GobbletStack@{GobbletStack}!operator"!=@{operator"!=}}
+\index{operator"!=@{operator"!=}!GobbletStack@{GobbletStack}}
+\doxysubsubsection{\texorpdfstring{operator"!=}{operator!=}}
+{\footnotesize\ttfamily bool operator!= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_gobblet_stack}{Gobblet\+Stack}} \&}]{t\+\_\+lhs,  }\item[{const \mbox{\hyperlink{class_gobblet_stack}{Gobblet\+Stack}} \&}]{t\+\_\+rhs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+\mbox{\Hypertarget{class_gobblet_stack_a8b21f35e4f6bb7fa1f11b154c424cce5}\label{class_gobblet_stack_a8b21f35e4f6bb7fa1f11b154c424cce5}} 
+\index{GobbletStack@{GobbletStack}!operator==@{operator==}}
+\index{operator==@{operator==}!GobbletStack@{GobbletStack}}
+\doxysubsubsection{\texorpdfstring{operator==}{operator==}}
+{\footnotesize\ttfamily bool operator== (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_gobblet_stack}{Gobblet\+Stack}} \&}]{t\+\_\+lhs,  }\item[{const \mbox{\hyperlink{class_gobblet_stack}{Gobblet\+Stack}} \&}]{t\+\_\+rhs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_gobblet_stack_a30ee72debc9a3506eb64b7c8308d03f8}\label{class_gobblet_stack_a30ee72debc9a3506eb64b7c8308d03f8}} 
+\index{GobbletStack@{GobbletStack}!isExternalStack@{isExternalStack}}
+\index{isExternalStack@{isExternalStack}!GobbletStack@{GobbletStack}}
+\doxysubsubsection{\texorpdfstring{isExternalStack}{isExternalStack}}
+{\footnotesize\ttfamily bool Gobblet\+Stack\+::is\+External\+Stack = false}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+AI/\+AIGames-\/\+Gobblet/\+Gobblet/\+Gobblet/\mbox{\hyperlink{_gobblet_stack_8hpp}{Gobblet\+Stack.\+hpp}}\item 
+AI/\+AIGames-\/\+Gobblet/\+Gobblet/\+Gobblet/\mbox{\hyperlink{_gobblet_stack_8cpp}{Gobblet\+Stack.\+cpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,180 @@
+\hypertarget{class_grid}{}\doxysection{Grid Class Reference}
+\label{class_grid}\index{Grid@{Grid}}
+
+
+{\ttfamily \#include $<$Grid.\+h$>$}
+
+
+
+Inheritance diagram for Grid\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=166pt]{class_grid__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Grid\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=166pt]{class_grid__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_grid_a4ac9ff4f63552b4c61ff90fcb35ad66c}{Grid}} ()
+\item 
+\mbox{\hyperlink{class_grid_a3661d0a7f998caaaf8627d7a67072116}{$\sim$\+Grid}} ()
+\item 
+void \mbox{\hyperlink{class_grid_a91b8f1ef1d7d90d16dd6658d249abb8e}{update}} (const sf\+::\+Render\+Window \&t\+\_\+window)
+\item 
+void \mbox{\hyperlink{class_grid_aadb51303a45e0d493d55cd2b138f32c4}{grid\+Coord}} ()
+\item 
+sf\+::\+Vector2f \mbox{\hyperlink{class_grid_a722cb421f5e079fcfbdbddfabf1af752}{get\+Position}} () const
+\item 
+sf\+::\+Vector2f \mbox{\hyperlink{class_grid_af447542e2c5dfd6880a2a43681c52b5d}{get\+Size}} () const
+\item 
+std\+::array$<$ std\+::array$<$ \mbox{\hyperlink{class_tile}{Tile}}, 4 $>$, 4 $>$ \& \mbox{\hyperlink{class_grid_aae803d0ce5ae425631be9287824e57c1}{get\+Grid\+Array}} ()
+\item 
+const std\+::array$<$ std\+::array$<$ \mbox{\hyperlink{class_tile}{Tile}}, 4 $>$, 4 $>$ \& \mbox{\hyperlink{class_grid_aba769199e496a2c9e2d786a8f2c099d3}{get\+Grid\+Array}} () const
+\item 
+sf\+::\+Float\+Rect \mbox{\hyperlink{class_grid_aeb097f11994fe082b96ba55919ce412d}{get\+Bounds}} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_grid_acba0b8bbff74116aff17edb67e603366}{draw}} (sf\+::\+Render\+Target \&target, sf\+::\+Render\+States states) const override
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_grid_a4ac9ff4f63552b4c61ff90fcb35ad66c}\label{class_grid_a4ac9ff4f63552b4c61ff90fcb35ad66c}} 
+\index{Grid@{Grid}!Grid@{Grid}}
+\index{Grid@{Grid}!Grid@{Grid}}
+\doxysubsubsection{\texorpdfstring{Grid()}{Grid()}}
+{\footnotesize\ttfamily Grid\+::\+Grid (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_grid_a3661d0a7f998caaaf8627d7a67072116}\label{class_grid_a3661d0a7f998caaaf8627d7a67072116}} 
+\index{Grid@{Grid}!````~Grid@{$\sim$Grid}}
+\index{````~Grid@{$\sim$Grid}!Grid@{Grid}}
+\doxysubsubsection{\texorpdfstring{$\sim$Grid()}{~Grid()}}
+{\footnotesize\ttfamily Grid\+::$\sim$\+Grid (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_grid_acba0b8bbff74116aff17edb67e603366}\label{class_grid_acba0b8bbff74116aff17edb67e603366}} 
+\index{Grid@{Grid}!draw@{draw}}
+\index{draw@{draw}!Grid@{Grid}}
+\doxysubsubsection{\texorpdfstring{draw()}{draw()}}
+{\footnotesize\ttfamily void Grid\+::draw (\begin{DoxyParamCaption}\item[{sf\+::\+Render\+Target \&}]{target,  }\item[{sf\+::\+Render\+States}]{states }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_grid_aeb097f11994fe082b96ba55919ce412d}\label{class_grid_aeb097f11994fe082b96ba55919ce412d}} 
+\index{Grid@{Grid}!getBounds@{getBounds}}
+\index{getBounds@{getBounds}!Grid@{Grid}}
+\doxysubsubsection{\texorpdfstring{getBounds()}{getBounds()}}
+{\footnotesize\ttfamily sf\+::\+Float\+Rect Grid\+::get\+Bounds (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_grid_aeb097f11994fe082b96ba55919ce412d_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_grid_aae803d0ce5ae425631be9287824e57c1}\label{class_grid_aae803d0ce5ae425631be9287824e57c1}} 
+\index{Grid@{Grid}!getGridArray@{getGridArray}}
+\index{getGridArray@{getGridArray}!Grid@{Grid}}
+\doxysubsubsection{\texorpdfstring{getGridArray()}{getGridArray()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily std\+::array$<$ std\+::array$<$ \mbox{\hyperlink{class_tile}{Tile}}, 4 $>$, 4 $>$ \& Grid\+::get\+Grid\+Array (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_grid_aae803d0ce5ae425631be9287824e57c1_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_grid_aba769199e496a2c9e2d786a8f2c099d3}\label{class_grid_aba769199e496a2c9e2d786a8f2c099d3}} 
+\index{Grid@{Grid}!getGridArray@{getGridArray}}
+\index{getGridArray@{getGridArray}!Grid@{Grid}}
+\doxysubsubsection{\texorpdfstring{getGridArray()}{getGridArray()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily const std\+::array$<$ std\+::array$<$ \mbox{\hyperlink{class_tile}{Tile}}, 4 $>$, 4 $>$ \& Grid\+::get\+Grid\+Array (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{class_grid_a722cb421f5e079fcfbdbddfabf1af752}\label{class_grid_a722cb421f5e079fcfbdbddfabf1af752}} 
+\index{Grid@{Grid}!getPosition@{getPosition}}
+\index{getPosition@{getPosition}!Grid@{Grid}}
+\doxysubsubsection{\texorpdfstring{getPosition()}{getPosition()}}
+{\footnotesize\ttfamily sf\+::\+Vector2f Grid\+::get\+Position (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=279pt]{class_grid_a722cb421f5e079fcfbdbddfabf1af752_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_grid_af447542e2c5dfd6880a2a43681c52b5d}\label{class_grid_af447542e2c5dfd6880a2a43681c52b5d}} 
+\index{Grid@{Grid}!getSize@{getSize}}
+\index{getSize@{getSize}!Grid@{Grid}}
+\doxysubsubsection{\texorpdfstring{getSize()}{getSize()}}
+{\footnotesize\ttfamily sf\+::\+Vector2f Grid\+::get\+Size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=264pt]{class_grid_af447542e2c5dfd6880a2a43681c52b5d_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_grid_aadb51303a45e0d493d55cd2b138f32c4}\label{class_grid_aadb51303a45e0d493d55cd2b138f32c4}} 
+\index{Grid@{Grid}!gridCoord@{gridCoord}}
+\index{gridCoord@{gridCoord}!Grid@{Grid}}
+\doxysubsubsection{\texorpdfstring{gridCoord()}{gridCoord()}}
+{\footnotesize\ttfamily void Grid\+::grid\+Coord (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_grid_aadb51303a45e0d493d55cd2b138f32c4_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_grid_a91b8f1ef1d7d90d16dd6658d249abb8e}\label{class_grid_a91b8f1ef1d7d90d16dd6658d249abb8e}} 
+\index{Grid@{Grid}!update@{update}}
+\index{update@{update}!Grid@{Grid}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily void Grid\+::update (\begin{DoxyParamCaption}\item[{const sf\+::\+Render\+Window \&}]{t\+\_\+window }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=268pt]{class_grid_a91b8f1ef1d7d90d16dd6658d249abb8e_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=263pt]{class_grid_a91b8f1ef1d7d90d16dd6658d249abb8e_icgraph}
+\end{center}
+\end{figure}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+AI/\+AIGames-\/\+Gobblet/\+Gobblet/\+Gobblet/\mbox{\hyperlink{_grid_8h}{Grid.\+h}}\item 
+AI/\+AIGames-\/\+Gobblet/\+Gobblet/\+Gobblet/\mbox{\hyperlink{_grid_8cpp}{Grid.\+cpp}}\end{DoxyCompactItemize}

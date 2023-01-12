@@ -1,0 +1,8 @@
+<map id="Board::draw" name="Board::draw">
+<area shape="rect" id="node1" title=" " alt="" coords="5,104,96,129"/>
+<area shape="rect" id="node2" href="$class_entity.html#a5df056363b7193c9c8e7fc4c9e47c3ad" title=" " alt="" coords="144,5,315,31"/>
+<area shape="rect" id="node3" href="$class_grid.html#aae803d0ce5ae425631be9287824e57c1" title=" " alt="" coords="166,55,293,80"/>
+<area shape="rect" id="node4" href="$class_tile.html#a43e7991ff11f382671b296ec857f2564" title=" " alt="" coords="178,104,281,129"/>
+<area shape="rect" id="node5" href="$class_gobblet_stack.html#ae9d223ca04b51719eae6a2dc8a00cc8b" title=" " alt="" coords="151,153,308,179"/>
+<area shape="rect" id="node6" href="$class_gobblet_stack.html#af501096153b2e8697766e8d059ef041c" title=" " alt="" coords="166,203,293,228"/>
+</map>

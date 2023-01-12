@@ -1,0 +1,6 @@
+<map id="Board::findGobbletStack" name="Board::findGobbletStack">
+<area shape="rect" id="node1" title="Given a stack, return the pointer to one of the stack stored in the board or the external stack list." alt="" coords="5,55,168,80"/>
+<area shape="rect" id="node2" href="$class_entity.html#a5df056363b7193c9c8e7fc4c9e47c3ad" title=" " alt="" coords="216,5,387,31"/>
+<area shape="rect" id="node3" href="$class_grid.html#aae803d0ce5ae425631be9287824e57c1" title=" " alt="" coords="238,55,365,80"/>
+<area shape="rect" id="node4" href="$class_tile.html#a43e7991ff11f382671b296ec857f2564" title=" " alt="" coords="250,104,353,129"/>
+</map>

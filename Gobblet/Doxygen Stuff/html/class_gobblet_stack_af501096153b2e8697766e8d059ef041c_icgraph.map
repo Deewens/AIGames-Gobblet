@@ -1,0 +1,10 @@
+<map id="GobbletStack::top" name="GobbletStack::top">
+<area shape="rect" id="node1" title=" " alt="" coords="588,81,715,107"/>
+<area shape="rect" id="node2" href="$class_board.html#a00811a0dd2c3a124bf9bacdb0fd510e9" title="Choose the gobblet to be moved. The gobblet is selected from mouse position." alt="" coords="203,5,353,31"/>
+<area shape="rect" id="node4" href="$class_board.html#acedae9b4a3dd11b540253c2a264eb14c" title=" " alt="" coords="425,156,516,181"/>
+<area shape="rect" id="node5" href="$class_board.html#a35ee26d963e5ac8c76087f430e1b6987" title="Move a gobblet from one stack to another." alt="" coords="401,107,540,132"/>
+<area shape="rect" id="node8" href="$class_board.html#a5a2abf0b067134c3fa08c5b2eea7f815" title="Place the chosen gobblet somewhere in the grid according to mouse position." alt="" coords="208,55,348,80"/>
+<area shape="rect" id="node3" href="$class_board.html#a19d4c00194913e42a5fea515457afb63" title=" " alt="" coords="5,31,155,56"/>
+<area shape="rect" id="node6" href="$class_a_i.html#a2fbd0b8f5f82ae51fba9ad81aac441a7" title="Minimax algorithm." alt="" coords="233,128,323,153"/>
+<area shape="rect" id="node7" href="$class_a_i.html#ad9a62ed4133030086e62497a6baddd52" title="Find the best move for the AI to make." alt="" coords="21,128,139,153"/>
+</map>

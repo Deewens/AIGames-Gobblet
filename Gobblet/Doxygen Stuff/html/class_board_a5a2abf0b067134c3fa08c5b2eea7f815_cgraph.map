@@ -1,0 +1,21 @@
+<map id="Board::placeGobblet" name="Board::placeGobblet">
+<area shape="rect" id="node1" title="Place the chosen gobblet somewhere in the grid according to mouse position." alt="" coords="5,321,145,347"/>
+<area shape="rect" id="node2" href="$class_entity.html#a12bd5070eff8cbd58c2c95f4305784d4" title=" " alt="" coords="432,8,593,33"/>
+<area shape="rect" id="node3" href="$class_board.html#acd5029cfe370950f8ffcdd045d6a47fd" title="This checks if there are 4 gobblets in a row/col or diagonal." alt="" coords="195,68,371,93"/>
+<area shape="rect" id="node5" href="$class_grid.html#aae803d0ce5ae425631be9287824e57c1" title=" " alt="" coords="449,107,576,132"/>
+<area shape="rect" id="node6" href="$class_entity.html#a17163f4b8870c296ed4f26decda4e479" title=" " alt="" coords="437,156,588,181"/>
+<area shape="rect" id="node7" href="$class_gobblet.html#a77782c317126221999eef65448411a61" title="Deactivate the style effect." alt="" coords="425,206,601,246"/>
+<area shape="rect" id="node8" href="$class_grid.html#aeb097f11994fe082b96ba55919ce412d" title=" " alt="" coords="225,372,341,397"/>
+<area shape="rect" id="node9" href="$class_entity.html#a91b386d4867fe9b7d8f6339fd6f90c86" title=" " alt="" coords="227,421,339,447"/>
+<area shape="rect" id="node10" href="$class_gobblet.html#ab8530f9ac59d92c2b09221d1f09da504" title=" " alt="" coords="224,471,343,496"/>
+<area shape="rect" id="node11" href="$class_entity.html#aabcfd8f1ac0fda93bc0a9fa747a0be02" title=" " alt="" coords="228,520,339,545"/>
+<area shape="rect" id="node12" href="$class_gobblet_stack.html#ae9d223ca04b51719eae6a2dc8a00cc8b" title=" " alt="" coords="205,569,362,595"/>
+<area shape="rect" id="node13" href="$class_board.html#a35ee26d963e5ac8c76087f430e1b6987" title="Move a gobblet from one stack to another." alt="" coords="214,271,353,296"/>
+<area shape="rect" id="node18" href="$class_gobblet_stack.html#af501096153b2e8697766e8d059ef041c" title=" " alt="" coords="449,468,576,493"/>
+<area shape="rect" id="node19" href="$class_board.html#a5969f25fe451a96ba2e36428100f54ad" title="Switch the current playing player (from min to max or max to min)" alt="" coords="193,619,373,644"/>
+<area shape="rect" id="node4" href="$class_board.html#a2100820f01ae62ee3222966c3c58eddb" title="Checks if either players can gobble using their reserves if there are 3 gobblets of the same colour i..." alt="" coords="421,57,604,83"/>
+<area shape="rect" id="node14" href="$class_gobblet_stack.html#a4266527750b45f00a8e212a61a80adf3" title=" " alt="" coords="447,369,578,395"/>
+<area shape="rect" id="node15" href="$class_gobblet_stack.html#a1a841912edd465667e23e4680848cdf3" title=" " alt="" coords="425,419,600,444"/>
+<area shape="rect" id="node16" href="$class_gobblet_stack.html#a56504c9af864dc8bcc7c00d4b1d6af77" title=" " alt="" coords="447,271,578,296"/>
+<area shape="rect" id="node17" href="$class_gobblet.html#ad543c446c68928c58e9ccae208c33e72" title=" " alt="" coords="443,320,583,345"/>
+</map>

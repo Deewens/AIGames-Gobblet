@@ -1,0 +1,13 @@
+<map id="Board::chooseGobblet" name="Board::chooseGobblet">
+<area shape="rect" id="node1" title="Choose the gobblet to be moved. The gobblet is selected from mouse position." alt="" coords="5,258,156,283"/>
+<area shape="rect" id="node2" href="$class_gobblet.html#ad02e76139f82dd2c5a6b3d0f70adb973" title="Add a style effect around the gobblet to know that it has been clicked." alt="" coords="211,5,373,45"/>
+<area shape="rect" id="node3" href="$class_gobblet.html#a77782c317126221999eef65448411a61" title="Deactivate the style effect." alt="" coords="204,69,380,109"/>
+<area shape="rect" id="node4" href="$class_entity.html#a91b386d4867fe9b7d8f6339fd6f90c86" title=" " alt="" coords="236,134,348,159"/>
+<area shape="rect" id="node5" href="$class_gobblet.html#a939d04049da8abbcafa0d59963c61d45" title=" " alt="" coords="231,183,353,209"/>
+<area shape="rect" id="node6" href="$class_entity.html#a5df056363b7193c9c8e7fc4c9e47c3ad" title=" " alt="" coords="207,233,377,258"/>
+<area shape="rect" id="node7" href="$class_grid.html#aae803d0ce5ae425631be9287824e57c1" title=" " alt="" coords="229,282,355,307"/>
+<area shape="rect" id="node8" href="$class_gobblet.html#aa7d0ee3eec11884767c6a3358bf3b9b7" title=" " alt="" coords="227,331,357,357"/>
+<area shape="rect" id="node9" href="$class_tile.html#a43e7991ff11f382671b296ec857f2564" title=" " alt="" coords="241,381,343,406"/>
+<area shape="rect" id="node10" href="$class_gobblet_stack.html#ae9d223ca04b51719eae6a2dc8a00cc8b" title=" " alt="" coords="213,430,371,455"/>
+<area shape="rect" id="node11" href="$class_gobblet_stack.html#af501096153b2e8697766e8d059ef041c" title=" " alt="" coords="229,479,355,505"/>
+</map>
